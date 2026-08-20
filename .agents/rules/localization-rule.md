@@ -33,8 +33,19 @@ Every piece of visible text must be sourced through the app's localization
    it in a variable named `l10n`, and reference `l10n.someKey` everywhere
    else in that widget instead of repeating the lookup.
 
+5. **Resolve once, at the source — not in the widget.** For static UI text,
+   `l10n` is called once inside the feature's `Static<Feature>Repository`
+   `getStaticData(context)` function (see the MVVM rule's Static Data
+   Repository Pattern) and stored as a variable named `l10n` there. The
+   resulting model is what the screen/widget consumes — widgets do not call
+   `AppLocalizations.of(context)!` directly for text that belongs to a
+   static model. If a widget genuinely needs a one-off localized string
+   outside that pattern, the same rule applies at the widget level: call it
+   once, store it as `l10n`, never call it twice in the same build.
+
 ## Pattern
 ```dart
+// Inside Static<Feature>Repository.getStaticData(context):
 final l10n = AppLocalizations.of(context)!;
 
 return LandingModel(
@@ -47,6 +58,8 @@ return LandingModel(
     TrustIndicator(title: l10n.trust2Title, subtitle: l10n.trust2Subtitle),
   ],
 );
+// The screen then just consumes the resulting LandingModel — no l10n
+// calls of its own.
 ```
 
 ## Enforcement

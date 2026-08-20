@@ -1,17 +1,21 @@
-import 'dart:ui';
-
 import 'package:go_router/go_router.dart';
-import 'package:mvvvm_template_with_basic_services/main.dart';
+import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
 
 class RoutingService {
   static final GoRouter router = GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const LandingPage()),
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const CustomerAuthenticationScreen(),
+      ),
+      GoRoute(
+        path: '/customer-auth',
+        builder: (context, state) => const CustomerAuthenticationScreen(),
+      ),
     ],
   );
 }
-
 
 /*
 routes: [

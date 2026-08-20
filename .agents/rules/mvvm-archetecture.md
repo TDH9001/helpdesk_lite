@@ -54,6 +54,10 @@ top-level sub-folders: `data/` and `presentation/`.
   - `implementations/` — the concrete repo implementation(s). **Implementations
     are team-lead-owned only** — other contributors code against the abstract
     repo class, not the implementation.
+  - a **static repository**, when the feature's screen has static UI text
+    (i.e. any text/data that is fixed and NOT coming from an API/backend/user
+    input — labels, titles, button text, etc.). See "Static Data Repository
+    Pattern" below.
 
 **`presentation/`**
 - `view/`
@@ -66,7 +70,56 @@ top-level sub-folders: `data/` and `presentation/`.
     state/business logic for the feature. Views never talk to repos directly;
     they go through the view model.
 
-### 2. `core/widgets/`
+### 2. Static Data Repository Pattern
+Any static UI text or data — meaning fixed content that is NOT obtained from
+an API, backend, or user input (e.g. page titles, labels, button text) — must
+never be scattered as literals across a screen or widget. Instead, it is
+assembled into a single model object by a dedicated static repository
+function, and the screen consumes the model.
+
+- The feature's `repos/` folder holds an abstract repo (the contract) plus a
+  `Static<Feature>Repository` implementing it.
+- `Static<Feature>Repository` exposes a `getStaticData(BuildContext context)`
+  function that resolves all static text (via `l10n`, called once — see the
+  Localization rule) and returns it as a single populated model.
+- The repo's interface method (e.g. `get<Feature>Data`) returns that static
+  data — this is also the seam where real API data would later be merged in
+  or substituted, without the screen itself changing.
+- The screen/view model never rebuilds static text or calls `l10n` on its
+  own for this data — it consumes the model the repository already produced.
+
+```dart
+abstract class LandingRepository {
+  Future<LandingModel> getLandingData(BuildContext context);
+}
+
+class StaticLandingRepository implements LandingRepository {
+  const StaticLandingRepository();
+
+  static LandingModel getStaticData(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return LandingModel(
+      logoText: 'directions_car',
+      title: l10n.landingTitle,
+      subtitle: l10n.landingSubtitle,
+      primaryButtonText: l10n.buyCarButton,
+      secondaryButtonText: l10n.sellCarButton,
+      backgroundSilhouetteUrl: 'assets/Images/landing_page_image.avif',
+      trustIndicators: [
+        TrustIndicator(title: l10n.trust1Title, subtitle: l10n.trust1Subtitle),
+        TrustIndicator(title: l10n.trust2Title, subtitle: l10n.trust2Subtitle),
+      ],
+    );
+  }
+
+  @override
+  Future<LandingModel> getLandingData(BuildContext context) async {
+    return getStaticData(context);
+  }
+}
+```
+
+### 3. `core/widgets/`
 This folder is reserved **only** for widgets that are guaranteed to be reused
 across many screens/features app-wide — e.g. the language toggle, the
 light/dark mode toggle, a shared form field.
@@ -76,13 +129,13 @@ unrelated features, not just multiple screens within one feature?" If the
 answer is no, it belongs in that feature's `presentation/view/widgets/`
 instead, not in `core`.
 
-### 3. `core/utils/`
+### 4. `core/utils/`
 Shared, cross-app, non-UI-widget concerns only: fonts (`AppFonts`), colors
 (`AppThemeColors`/`app_colors`), localization, responsive helpers, routing,
 shared models, snackbar service, and any other app-wide utility/service. No
 feature-specific logic is ever placed here.
 
-### 4. Cross-feature boundaries
+### 5. Cross-feature boundaries
 Features must not directly import or reference another feature's internals
 (models, repos, widgets, cubits). Anything that needs to be shared across
 features belongs in `core` instead.
@@ -96,3 +149,6 @@ features belongs in `core` instead.
 - Any repo implementation added or modified outside review by the team lead
   should be flagged — implementations live in `repos/implementations/` and
   are team-lead-owned.
+- Any screen with static UI text that does NOT go through a
+  `Static<Feature>Repository` model must be rejected and restructured —
+  static text is never assembled inline in the widget/view model.

@@ -1,1 +1,19 @@
-{"@@locale": "ar"}
+{
+  "@@locale": "ar",
+  "appName": "HelpDesk Lite",
+  "myTickets": "تذاكري",
+  "logIn": "تسجيل الدخول",
+  "signUp": "إنشاء حساب",
+  "welcomeBack": "مرحباً بعودتك",
+  "loginSubtitle": "سجل الدخول لإدارة تذاكر الدعم الخاصة بك.",
+  "createAccount": "إنشاء حساب جديد",
+  "signupSubtitle": "أنشئ حساباً لتقديم ومتابعة طلبات الدعم.",
+  "emailAddress": "البريد الإلكتروني",
+  "emailPlaceholder": "name@company.com",
+  "password": "كلمة المرور",
+  "passwordPlaceholder": "••••••••",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "havingTrouble": "هل تواجه مشكلة؟",
+  "contactSupport": "تواصل مع الدعم"
+}

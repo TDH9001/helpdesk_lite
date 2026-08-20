@@ -1,1 +1,19 @@
-{ "@@locale": "en"}
+{
+  "@@locale": "en",
+  "appName": "HelpDesk Lite",
+  "myTickets": "My Tickets",
+  "logIn": "Log In",
+  "signUp": "Sign Up",
+  "welcomeBack": "Welcome Back",
+  "loginSubtitle": "Log in to manage your support tickets.",
+  "createAccount": "Create Account",
+  "signupSubtitle": "Sign up to submit and track support requests.",
+  "emailAddress": "Email Address",
+  "emailPlaceholder": "name@company.com",
+  "password": "Password",
+  "passwordPlaceholder": "••••••••",
+  "confirmPassword": "Confirm Password",
+  "forgotPassword": "Forgot?",
+  "havingTrouble": "Having trouble?",
+  "contactSupport": "Contact Support"
+}
