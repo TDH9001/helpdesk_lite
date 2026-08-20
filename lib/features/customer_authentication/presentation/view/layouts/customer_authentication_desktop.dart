@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
+import 'package:mvvvm_template_with_basic_services/core/widgets/language_toggle_widget.dart';
+import 'package:mvvvm_template_with_basic_services/core/widgets/theme_toggle_widget.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_static_model.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
@@ -23,6 +25,7 @@ class CustomerAuthenticationDesktop extends StatelessWidget {
       backgroundColor: widgetColors.background,
       body: Column(
         children: [
+          // Top navigation bar
           AuthAppBarWidget(
             title: staticData.appTitle,
             isDesktop: true,
@@ -49,15 +52,31 @@ class CustomerAuthenticationDesktop extends StatelessWidget {
                     ),
                   ),
                 ),
+                // Main authentication card and bottom controls
                 Center(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 32,
                       vertical: 32,
                     ),
-                    child: AuthCardWidget(
-                      staticData: staticData,
-                      isDesktop: true,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AuthCardWidget(
+                          staticData: staticData,
+                          isDesktop: true,
+                        ),
+                        const SizedBox(height: 20),
+                        // Quick preference toggles (Language & Theme)
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            LanguageToggleWidget(),
+                            SizedBox(width: 12),
+                            ThemeToggleWidget(),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),

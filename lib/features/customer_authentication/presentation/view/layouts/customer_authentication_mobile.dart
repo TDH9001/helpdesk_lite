@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
+import 'package:mvvvm_template_with_basic_services/core/widgets/language_toggle_widget.dart';
+import 'package:mvvvm_template_with_basic_services/core/widgets/theme_toggle_widget.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_static_model.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
@@ -23,10 +25,12 @@ class CustomerAuthenticationMobile extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            // Top navigation bar
             AuthAppBarWidget(
               title: staticData.myTicketsTitle,
               isDesktop: false,
             ),
+            // Scrollable authentication card and bottom controls
             Expanded(
               child: Center(
                 child: SingleChildScrollView(
@@ -34,9 +38,25 @@ class CustomerAuthenticationMobile extends StatelessWidget {
                     horizontal: 20,
                     vertical: 24,
                   ),
-                  child: AuthCardWidget(
-                    staticData: staticData,
-                    isDesktop: false,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AuthCardWidget(
+                        staticData: staticData,
+                        isDesktop: false,
+                      ),
+                      const SizedBox(height: 16),
+                      // Quick preference toggles (Language & Theme)
+                      const Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 12,
+                        runSpacing: 10,
+                        children: [
+                          LanguageToggleWidget(),
+                          ThemeToggleWidget(),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -4,8 +4,8 @@ import 'package:mvvvm_template_with_basic_services/core/utils/app%20fonts/app_fo
 import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
 import 'package:mvvvm_template_with_basic_services/core/utils/localization_service/localization_cubit/localization_cubit.dart';
 
-/// Interactive button widget to toggle application language between Arabic
-/// and English using LocalizationCubit.
+/// Segmented pill toggle widget allowing users to switch between English
+/// and Arabic languages.
 class LanguageToggleWidget extends StatelessWidget {
   const LanguageToggleWidget({super.key});
 
@@ -17,48 +17,98 @@ class LanguageToggleWidget extends StatelessWidget {
     return BlocBuilder<LocalizationCubit, SupportedLanguages>(
       builder: (context, currentLanguage) {
         final isArabic = currentLanguage == SupportedLanguages.arabic;
-        final label = isArabic ? 'English' : 'العربية';
 
-        // Container with subtle border and theme-aware hover surface
-        return InkWell(
-          onTap: () => context.read<LocalizationCubit>().toggle(),
-          borderRadius: BorderRadius.circular(20),
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 6,
+        // Outer pill container holding both language segment options
+        return Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: widgetColors.surfaceContainerHigh,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color: widgetColors.outlineVariant.withValues(alpha: 0.35),
+              width: 1,
             ),
-            decoration: BoxDecoration(
-              color: widgetColors.surfaceContainerLow,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: widgetColors.outlineVariant.withValues(alpha: 0.5),
-                width: 1,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // English segment option
+              _LanguageSegment(
+                title: 'English',
+                isSelected: !isArabic,
+                onTap: () {
+                  if (isArabic) {
+                    context.read<LocalizationCubit>().setLanguage(
+                          SupportedLanguages.english,
+                        );
+                  }
+                },
               ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Language icon indicator
-                Icon(
-                  Icons.language,
-                  size: 16,
-                  color: widgetColors.primary,
-                ),
-                const SizedBox(width: 6),
-                // Target language label
-                Text(
-                  label,
-                  style: AppFonts().mobileCoreLanguageToggleInter12Medium(
-                    context,
-                    color: widgetColors.onSurface,
-                  ),
-                ),
-              ],
-            ),
+              // Arabic segment option
+              _LanguageSegment(
+                title: 'العربية',
+                isSelected: isArabic,
+                onTap: () {
+                  if (!isArabic) {
+                    context.read<LocalizationCubit>().setLanguage(
+                          SupportedLanguages.arabic,
+                        );
+                  }
+                },
+              ),
+            ],
           ),
         );
       },
+    );
+  }
+}
+
+/// Private individual language option button for LanguageToggleWidget.
+class _LanguageSegment extends StatelessWidget {
+  final String title;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _LanguageSegment({
+    required this.title,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final widgetColors =
+        Theme.of(context).extension<AppThemeColors>()!.colors;
+
+    // Interactive button with animated background pill
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 6,
+        ),
+        decoration: BoxDecoration(
+          color: isSelected ? widgetColors.primary : Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          title,
+          style: isSelected
+              ? AppFonts().mobileCoreLanguageToggleActiveCairo13SemiBold(
+                  context,
+                  color: widgetColors.onPrimary,
+                )
+              : AppFonts().mobileCoreLanguageToggleInactiveCairo13Medium(
+                  context,
+                  color: widgetColors.onSurfaceVariant,
+                ),
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/theme_cubit/theme_cubit.dart';
 import 'package:mvvvm_template_with_basic_services/core/utils/localization_service/localization_cubit/localization_cubit.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/layouts/customer_authentication_desktop.dart';
@@ -9,6 +10,14 @@ import 'package:mvvvm_template_with_basic_services/features/customer_authenticat
 import 'package:mvvvm_template_with_basic_services/main.dart';
 
 void main() {
+  Widget buildTestApp() => MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => LocalizationCubit()),
+          BlocProvider(create: (context) => ThemeCubit()),
+        ],
+        child: const MyApp(),
+      );
+
   testWidgets('Customer authentication renders mobile layout on small screen', (
     WidgetTester tester,
   ) async {
@@ -16,12 +25,7 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
 
-    await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => LocalizationCubit(),
-        child: const MyApp(),
-      ),
-    );
+    await tester.pumpWidget(buildTestApp());
     await tester.pumpAndSettle();
 
     expect(find.byType(CustomerAuthenticationScreen), findsOneWidget);
@@ -37,12 +41,7 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
 
-    await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => LocalizationCubit(),
-        child: const MyApp(),
-      ),
-    );
+    await tester.pumpWidget(buildTestApp());
     await tester.pumpAndSettle();
 
     expect(find.byType(CustomerAuthenticationScreen), findsOneWidget);
@@ -57,12 +56,7 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
 
-    await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => LocalizationCubit(),
-        child: const MyApp(),
-      ),
-    );
+    await tester.pumpWidget(buildTestApp());
     await tester.pumpAndSettle();
 
     // Default is Log In
@@ -85,12 +79,7 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
 
-    await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => LocalizationCubit(),
-        child: const MyApp(),
-      ),
-    );
+    await tester.pumpWidget(buildTestApp());
     await tester.pumpAndSettle();
 
     // Tap submit button with empty fields
@@ -120,12 +109,7 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
 
-    await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => LocalizationCubit(),
-        child: const MyApp(),
-      ),
-    );
+    await tester.pumpWidget(buildTestApp());
     await tester.pumpAndSettle();
 
     // Switch to Sign Up

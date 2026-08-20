@@ -23,6 +23,28 @@ class AppFonts {
         color: color,
       );
 
+  TextStyle mobileCoreLanguageToggleActiveCairo13SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Cairo',
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileCoreLanguageToggleInactiveCairo13Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Cairo',
+        fontSize: 13,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
   TextStyle mobileCoreThemeToggleInter12Medium(
     BuildContext context, {
     Color? color,
@@ -30,6 +52,28 @@ class AppFonts {
       TextStyle(
         fontFamily: 'Inter',
         fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileCoreThemeToggleActiveInter13SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileCoreThemeToggleInactiveInter13Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
         fontWeight: FontWeight.w500,
         color: color,
       );
