@@ -12,6 +12,28 @@ class AppFonts {
         color: color,
       );
 
+  TextStyle mobileCoreLanguageToggleInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileCoreThemeToggleInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
   // --- Mobile Customer Authentication Styles ---
 
   TextStyle mobileCustomerAuthenticationHeaderTitleInter18SemiBold(
