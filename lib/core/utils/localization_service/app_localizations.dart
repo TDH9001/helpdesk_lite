@@ -193,6 +193,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact Support'**
   String get contactSupport;
+
+  /// No description provided for @emailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get emailRequired;
+
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get emailInvalid;
+
+  /// No description provided for @passwordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get passwordRequired;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordTooShort;
+
+  /// No description provided for @confirmPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get confirmPasswordRequired;
+
+  /// No description provided for @passwordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
 }
 
 class _AppLocalizationsDelegate

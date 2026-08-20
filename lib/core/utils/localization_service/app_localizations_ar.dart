@@ -55,4 +55,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get contactSupport => 'تواصل مع الدعم';
+
+  @override
+  String get emailRequired => 'يرجى إدخال البريد الإلكتروني';
+
+  @override
+  String get emailInvalid => 'يرجى إدخال بريد إلكتروني صالح';
+
+  @override
+  String get passwordRequired => 'يرجى إدخال كلمة المرور';
+
+  @override
+  String get passwordTooShort => 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل';
+
+  @override
+  String get confirmPasswordRequired => 'يرجى تأكيد كلمة المرور';
+
+  @override
+  String get passwordsDoNotMatch => 'كلمتا المرور غير متطابقتين';
 }

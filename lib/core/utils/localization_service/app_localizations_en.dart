@@ -55,4 +55,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get contactSupport => 'Contact Support';
+
+  @override
+  String get emailRequired => 'Please enter your email';
+
+  @override
+  String get emailInvalid => 'Please enter a valid email address';
+
+  @override
+  String get passwordRequired => 'Please enter your password';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 6 characters';
+
+  @override
+  String get confirmPasswordRequired => 'Please confirm your password';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
 }

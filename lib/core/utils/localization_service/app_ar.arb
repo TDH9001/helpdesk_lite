@@ -15,5 +15,11 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "forgotPassword": "نسيت كلمة المرور؟",
   "havingTrouble": "هل تواجه مشكلة؟",
-  "contactSupport": "تواصل مع الدعم"
+  "contactSupport": "تواصل مع الدعم",
+  "emailRequired": "يرجى إدخال البريد الإلكتروني",
+  "emailInvalid": "يرجى إدخال بريد إلكتروني صالح",
+  "passwordRequired": "يرجى إدخال كلمة المرور",
+  "passwordTooShort": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+  "confirmPasswordRequired": "يرجى تأكيد كلمة المرور",
+  "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين"
 }

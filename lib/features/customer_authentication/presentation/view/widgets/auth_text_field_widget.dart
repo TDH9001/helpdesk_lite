@@ -13,6 +13,7 @@ class AuthTextFieldWidget extends StatelessWidget {
   final Widget? trailingAction;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
+  final FormFieldValidator<String>? validator;
   final bool isDesktop;
 
   const AuthTextFieldWidget({
@@ -27,6 +28,7 @@ class AuthTextFieldWidget extends StatelessWidget {
     this.trailingAction,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.next,
+    this.validator,
     this.isDesktop = false,
   });
 
@@ -55,6 +57,16 @@ class AuthTextFieldWidget extends StatelessWidget {
             color: widgetColors.onSurface,
           );
 
+    final errorStyle = isDesktop
+        ? AppFonts().desktopCustomerAuthenticationErrorInter12Regular(
+            context,
+            color: widgetColors.error,
+          )
+        : AppFonts().mobileCustomerAuthenticationErrorInter11Regular(
+            context,
+            color: widgetColors.error,
+          );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -69,48 +81,69 @@ class AuthTextFieldWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 6),
-        Container(
-          decoration: BoxDecoration(
-            color: widgetColors.surfaceContainerLowest,
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(
-              color: widgetColors.outlineVariant,
-              width: 1,
+        TextFormField(
+          controller: controller,
+          obscureText: isPassword && isObscured,
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
+          validator: validator,
+          style: inputStyle,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: widgetColors.surfaceContainerLowest,
+            hintText: placeholder,
+            hintStyle: inputStyle.copyWith(
+              color: widgetColors.onSurfaceVariant.withValues(alpha: 0.5),
             ),
-          ),
-          child: TextField(
-            controller: controller,
-            obscureText: isPassword && isObscured,
-            keyboardType: keyboardType,
-            textInputAction: textInputAction,
-            style: inputStyle,
-            decoration: InputDecoration(
-              hintText: placeholder,
-              hintStyle: inputStyle.copyWith(
-                color: widgetColors.onSurfaceVariant.withValues(alpha: 0.5),
+            errorStyle: errorStyle,
+            prefixIcon: Icon(
+              prefixIcon,
+              size: 20,
+              color: widgetColors.onSurfaceVariant,
+            ),
+            suffixIcon: isPassword
+                ? IconButton(
+                    icon: Icon(
+                      isObscured
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      size: 20,
+                      color: widgetColors.onSurfaceVariant,
+                    ),
+                    onPressed: onToggleObscured,
+                  )
+                : null,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6),
+              borderSide: BorderSide(
+                color: widgetColors.outlineVariant,
+                width: 1,
               ),
-              prefixIcon: Icon(
-                prefixIcon,
-                size: 20,
-                color: widgetColors.onSurfaceVariant,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6),
+              borderSide: BorderSide(
+                color: widgetColors.primary,
+                width: 1.5,
               ),
-              suffixIcon: isPassword
-                  ? IconButton(
-                      icon: Icon(
-                        isObscured
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        size: 20,
-                        color: widgetColors.onSurfaceVariant,
-                      ),
-                      onPressed: onToggleObscured,
-                    )
-                  : null,
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 14,
-                vertical: 14,
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6),
+              borderSide: BorderSide(
+                color: widgetColors.error,
+                width: 1,
               ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6),
+              borderSide: BorderSide(
+                color: widgetColors.error,
+                width: 1.5,
+              ),
+            ),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 14,
             ),
           ),
         ),

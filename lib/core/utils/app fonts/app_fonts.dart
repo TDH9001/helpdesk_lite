@@ -80,6 +80,17 @@ class AppFonts {
         color: color,
       );
 
+  TextStyle mobileCustomerAuthenticationErrorInter11Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
   TextStyle mobileCustomerAuthenticationButtonInter12Medium(
     BuildContext context, {
     Color? color,
@@ -166,6 +177,17 @@ class AppFonts {
       TextStyle(
         fontFamily: 'Inter',
         fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopCustomerAuthenticationErrorInter12Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
         fontWeight: FontWeight.w400,
         color: color,
       );

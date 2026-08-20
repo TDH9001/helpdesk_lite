@@ -18,6 +18,14 @@ class CustomerAuthStaticModel {
   final String havingTroubleText;
   final String contactSupportText;
 
+  // Validation strings
+  final String emailRequired;
+  final String emailInvalid;
+  final String passwordRequired;
+  final String passwordTooShort;
+  final String confirmPasswordRequired;
+  final String passwordsDoNotMatch;
+
   const CustomerAuthStaticModel({
     required this.appTitle,
     required this.myTicketsTitle,
@@ -37,5 +45,11 @@ class CustomerAuthStaticModel {
     required this.signupButtonText,
     required this.havingTroubleText,
     required this.contactSupportText,
+    required this.emailRequired,
+    required this.emailInvalid,
+    required this.passwordRequired,
+    required this.passwordTooShort,
+    required this.confirmPasswordRequired,
+    required this.passwordsDoNotMatch,
   });
 }

@@ -50,6 +50,12 @@ class StaticCustomerAuthenticationRepository
       signupButtonText: l10n.signUp,
       havingTroubleText: l10n.havingTrouble,
       contactSupportText: l10n.contactSupport,
+      emailRequired: l10n.emailRequired,
+      emailInvalid: l10n.emailInvalid,
+      passwordRequired: l10n.passwordRequired,
+      passwordTooShort: l10n.passwordTooShort,
+      confirmPasswordRequired: l10n.confirmPasswordRequired,
+      passwordsDoNotMatch: l10n.passwordsDoNotMatch,
     );
   }
 

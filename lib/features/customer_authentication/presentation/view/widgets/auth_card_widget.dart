@@ -23,6 +23,8 @@ class AuthCardWidget extends StatefulWidget {
 }
 
 class _AuthCardWidgetState extends State<AuthCardWidget> {
+  final _formKey = GlobalKey<FormState>();
+
   bool _isLogin = true;
   bool _isPasswordObscured = true;
   bool _isConfirmPasswordObscured = true;
@@ -32,12 +34,22 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  static final RegExp _emailRegExp = RegExp(
+    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+  );
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  void _handleSubmit() {
+    if (_formKey.currentState?.validate() ?? false) {
+      //! <Where authentication submission should be handled>
+    }
   }
 
   @override
@@ -83,102 +95,136 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
               signupText: widget.staticData.signupTab,
               isDesktop: widget.isDesktop,
               onTabChanged: (isLoginTab) {
-                setState(() {
-                  _isLogin = isLoginTab;
-                });
+                if (_isLogin != isLoginTab) {
+                  setState(() {
+                    _isLogin = isLoginTab;
+                    _formKey.currentState?.reset();
+                  });
+                }
               },
             ),
             Padding(
               padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  AuthHeaderWidget(
-                    title: _isLogin
-                        ? widget.staticData.loginTitle
-                        : widget.staticData.signupTitle,
-                    subtitle: _isLogin
-                        ? widget.staticData.loginSubtitle
-                        : widget.staticData.signupSubtitle,
-                    isDesktop: widget.isDesktop,
-                  ),
-                  const SizedBox(height: 24),
-                  AuthTextFieldWidget(
-                    label: widget.staticData.emailLabel,
-                    placeholder: widget.staticData.emailPlaceholder,
-                    prefixIcon: Icons.mail_outline,
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    isDesktop: widget.isDesktop,
-                  ),
-                  const SizedBox(height: 16),
-                  AuthTextFieldWidget(
-                    label: widget.staticData.passwordLabel,
-                    placeholder: widget.staticData.passwordPlaceholder,
-                    prefixIcon: Icons.lock_outline,
-                    controller: _passwordController,
-                    isPassword: true,
-                    isObscured: _isPasswordObscured,
-                    onToggleObscured: () {
-                      setState(() {
-                        _isPasswordObscured = !_isPasswordObscured;
-                      });
-                    },
-                    trailingAction: _isLogin
-                        ? InkWell(
-                            onTap: () {
-                              //! <Where forgot password navigation should be handled>
-                            },
-                            child: Text(
-                              widget.staticData.forgotPasswordText,
-                              style: forgotStyle.copyWith(
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          )
-                        : null,
-                    textInputAction: _isLogin
-                        ? TextInputAction.done
-                        : TextInputAction.next,
-                    isDesktop: widget.isDesktop,
-                  ),
-                  if (!_isLogin) const SizedBox(height: 16),
-                  if (!_isLogin)
-                    AuthTextFieldWidget(
-                      label: widget.staticData.confirmPasswordLabel,
-                      placeholder: widget.staticData.passwordPlaceholder,
-                      prefixIcon: Icons.lock_reset_outlined,
-                      controller: _confirmPasswordController,
-                      isPassword: true,
-                      isObscured: _isConfirmPasswordObscured,
-                      onToggleObscured: () {
-                        setState(() {
-                          _isConfirmPasswordObscured =
-                              !_isConfirmPasswordObscured;
-                        });
-                      },
-                      textInputAction: TextInputAction.done,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AuthHeaderWidget(
+                      title: _isLogin
+                          ? widget.staticData.loginTitle
+                          : widget.staticData.signupTitle,
+                      subtitle: _isLogin
+                          ? widget.staticData.loginSubtitle
+                          : widget.staticData.signupSubtitle,
                       isDesktop: widget.isDesktop,
                     ),
-                  const SizedBox(height: 24),
-                  AuthSubmitButtonWidget(
-                    text: _isLogin
-                        ? widget.staticData.loginButtonText
-                        : widget.staticData.signupButtonText,
-                    isDesktop: widget.isDesktop,
-                    onPressed: () {
-                      //! <Where authentication submit should be handled>
-                    },
-                  ),
-                  // AuthFooterWidget is excluded from the current design for now
-                  // const SizedBox(height: 20),
-                  // AuthFooterWidget(
-                  //   havingTroubleText: widget.staticData.havingTroubleText,
-                  //   contactSupportText: widget.staticData.contactSupportText,
-                  //   isDesktop: widget.isDesktop,
-                  // ),
-                ],
+                    const SizedBox(height: 24),
+                    AuthTextFieldWidget(
+                      label: widget.staticData.emailLabel,
+                      placeholder: widget.staticData.emailPlaceholder,
+                      prefixIcon: Icons.mail_outline,
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      isDesktop: widget.isDesktop,
+                      validator: (value) {
+                        final email = value?.trim() ?? '';
+                        if (email.isEmpty) {
+                          return widget.staticData.emailRequired;
+                        }
+                        if (!_emailRegExp.hasMatch(email)) {
+                          return widget.staticData.emailInvalid;
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    AuthTextFieldWidget(
+                      label: widget.staticData.passwordLabel,
+                      placeholder: widget.staticData.passwordPlaceholder,
+                      prefixIcon: Icons.lock_outline,
+                      controller: _passwordController,
+                      isPassword: true,
+                      isObscured: _isPasswordObscured,
+                      onToggleObscured: () {
+                        setState(() {
+                          _isPasswordObscured = !_isPasswordObscured;
+                        });
+                      },
+                      trailingAction: _isLogin
+                          ? InkWell(
+                              onTap: () {
+                                //! <Where forgot password navigation should be handled>
+                              },
+                              child: Text(
+                                widget.staticData.forgotPasswordText,
+                                style: forgotStyle.copyWith(
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            )
+                          : null,
+                      textInputAction: _isLogin
+                          ? TextInputAction.done
+                          : TextInputAction.next,
+                      isDesktop: widget.isDesktop,
+                      validator: (value) {
+                        final password = value ?? '';
+                        if (password.isEmpty) {
+                          return widget.staticData.passwordRequired;
+                        }
+                        if (password.length < 6) {
+                          return widget.staticData.passwordTooShort;
+                        }
+                        return null;
+                      },
+                    ),
+                    if (!_isLogin) const SizedBox(height: 16),
+                    if (!_isLogin)
+                      AuthTextFieldWidget(
+                        label: widget.staticData.confirmPasswordLabel,
+                        placeholder: widget.staticData.passwordPlaceholder,
+                        prefixIcon: Icons.lock_reset_outlined,
+                        controller: _confirmPasswordController,
+                        isPassword: true,
+                        isObscured: _isConfirmPasswordObscured,
+                        onToggleObscured: () {
+                          setState(() {
+                            _isConfirmPasswordObscured =
+                                !_isConfirmPasswordObscured;
+                          });
+                        },
+                        textInputAction: TextInputAction.done,
+                        isDesktop: widget.isDesktop,
+                        validator: (value) {
+                          final confirmPassword = value ?? '';
+                          if (confirmPassword.isEmpty) {
+                            return widget.staticData.confirmPasswordRequired;
+                          }
+                          if (confirmPassword != _passwordController.text) {
+                            return widget.staticData.passwordsDoNotMatch;
+                          }
+                          return null;
+                        },
+                      ),
+                    const SizedBox(height: 24),
+                    AuthSubmitButtonWidget(
+                      text: _isLogin
+                          ? widget.staticData.loginButtonText
+                          : widget.staticData.signupButtonText,
+                      isDesktop: widget.isDesktop,
+                      onPressed: _handleSubmit,
+                    ),
+                    // AuthFooterWidget is excluded from the current design for now
+                    // const SizedBox(height: 20),
+                    // AuthFooterWidget(
+                    //   havingTroubleText: widget.staticData.havingTroubleText,
+                    //   contactSupportText: widget.staticData.contactSupportText,
+                    //   isDesktop: widget.isDesktop,
+                    // ),
+                  ],
+                ),
               ),
             ),
           ],
