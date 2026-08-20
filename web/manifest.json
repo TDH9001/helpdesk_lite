@@ -1,6 +1,6 @@
 {
-    "name": "helpdesk_lite",
-    "short_name": "helpdesk_lite",
+    "name": "HelpDesk Lite",
+    "short_name": "HelpDesk Lite",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

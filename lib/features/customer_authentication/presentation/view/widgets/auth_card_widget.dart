@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app%20fonts/app_fonts.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_static_model.dart';
-// import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_footer_widget.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_header_widget.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_submit_button_widget.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_tabs_widget.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_text_field_widget.dart';
+import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
+import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
+// import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_footer_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_header_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_submit_button_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_tabs_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_text_field_widget.dart';
 
 class AuthCardWidget extends StatefulWidget {
   final CustomerAuthStaticModel staticData;

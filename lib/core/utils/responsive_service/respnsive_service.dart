@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/responsive_service/breakpoints.dart';
+import 'package:helpdesk_lite/core/utils/responsive_service/breakpoints.dart';
 
 enum DeviceTypes { mobile, tablet, desktop }
 

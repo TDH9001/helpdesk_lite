@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
-import 'package:mvvvm_template_with_basic_services/core/widgets/language_toggle_widget.dart';
-import 'package:mvvvm_template_with_basic_services/core/widgets/theme_toggle_widget.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_static_model.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
+import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/widgets/language_toggle_widget.dart';
+import 'package:helpdesk_lite/core/widgets/theme_toggle_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
 
 /// Mobile layout for customer authentication with top branding bar and scrollable auth card.
 class CustomerAuthenticationMobile extends StatelessWidget {

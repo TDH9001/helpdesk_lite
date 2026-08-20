@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/theme_cubit/theme_cubit.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/localization_service/localization_cubit/localization_cubit.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/layouts/customer_authentication_desktop.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/layouts/customer_authentication_mobile.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
-import 'package:mvvvm_template_with_basic_services/main.dart';
+import 'package:helpdesk_lite/core/utils/app_theme/theme_cubit/theme_cubit.dart';
+import 'package:helpdesk_lite/core/utils/localization_service/localization_cubit/localization_cubit.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/layouts/customer_authentication_desktop.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/layouts/customer_authentication_mobile.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
+import 'package:helpdesk_lite/main.dart';
 
 void main() {
   Widget buildTestApp() => MultiBlocProvider(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app%20fonts/app_fonts.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/theme_cubit/theme_cubit.dart';
+import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
+import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/utils/app_theme/theme_cubit/theme_cubit.dart';
 
 /// Segmented pill toggle widget allowing users to switch between Light and Dark
 /// themes using ThemeCubit.

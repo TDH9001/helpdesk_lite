@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
-// import 'package:mvvvm_template_with_basic_services/core/utils/app%20fonts/app_fonts.dart';
-// import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
+// import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
+// import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 
 // class SnackBarService {
 //   SnackBarService._();

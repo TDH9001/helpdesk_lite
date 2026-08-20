@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/app_colors/app_colros.dart';
+import 'package:helpdesk_lite/core/utils/app_colors/app_colros.dart';
 
 class AppThemeColors extends ThemeExtension<AppThemeColors> {
   final AppColors colors;

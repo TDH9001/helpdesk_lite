@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_model.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_static_model.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/repos/customer_authentication_repo.dart';
+import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_model.dart';
+import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
+import 'package:helpdesk_lite/features/customer_authentication/data/repos/customer_authentication_repo.dart';
 
 // Team-Lead-Owned Implementation
 class CustomerAuthenticationRepoImpl implements CustomerAuthenticationRepo {

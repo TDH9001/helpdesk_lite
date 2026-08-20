@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:mvvvm_template_with_basic_services/core/utils/localization_service/app_localizations.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_model.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/data/model/customer_auth_static_model.dart';
+import 'package:helpdesk_lite/core/utils/localization_service/app_localizations.dart';
+import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_model.dart';
+import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
 
 abstract class CustomerAuthenticationRepo {
   Future<CustomerAuthStaticModel> getCustomerAuthStaticData(

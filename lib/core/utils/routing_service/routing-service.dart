@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
 
 class RoutingService {
   static final GoRouter router = GoRouter(
