@@ -4,6 +4,8 @@ import 'package:mvvvm_template_with_basic_services/features/customer_authenticat
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
 
+/// Desktop layout for customer authentication, providing a centered
+/// authentication card with ambient background glow and top branding bar.
 class CustomerAuthenticationDesktop extends StatelessWidget {
   final CustomerAuthStaticModel staticData;
 
@@ -22,7 +24,7 @@ class CustomerAuthenticationDesktop extends StatelessWidget {
       body: Column(
         children: [
           AuthAppBarWidget(
-            title: staticData.myTicketsTitle,
+            title: staticData.appTitle,
             isDesktop: true,
           ),
           Expanded(

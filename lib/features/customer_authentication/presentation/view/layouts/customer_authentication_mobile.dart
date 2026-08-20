@@ -4,6 +4,7 @@ import 'package:mvvvm_template_with_basic_services/features/customer_authenticat
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
 import 'package:mvvvm_template_with_basic_services/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
 
+/// Mobile layout for customer authentication with top branding bar and scrollable auth card.
 class CustomerAuthenticationMobile extends StatelessWidget {
   final CustomerAuthStaticModel staticData;
 

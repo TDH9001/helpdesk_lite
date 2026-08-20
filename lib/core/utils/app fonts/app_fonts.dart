@@ -126,6 +126,17 @@ class AppFonts {
         color: color,
       );
 
+  TextStyle desktopCustomerAuthenticationAppBarTitleInter20Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
   TextStyle desktopCustomerAuthenticationTitleInter24SemiBold(
     BuildContext context, {
     Color? color,

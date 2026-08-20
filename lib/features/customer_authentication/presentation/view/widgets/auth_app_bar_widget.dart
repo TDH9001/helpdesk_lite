@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mvvvm_template_with_basic_services/core/utils/app%20fonts/app_fonts.dart';
 import 'package:mvvvm_template_with_basic_services/core/utils/app_theme/app_theme_colors.dart';
 
+/// Top navigation and branding bar for authentication screens displaying the
+/// application logo (full logo with text on desktop, icon only on mobile)
+/// and user profile action.
 class AuthAppBarWidget extends StatelessWidget {
-  final String title;
+  final String? title;
   final bool isDesktop;
 
   const AuthAppBarWidget({
     super.key,
-    required this.title,
+    this.title,
     this.isDesktop = false,
   });
 
@@ -16,16 +19,6 @@ class AuthAppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgetColors =
         Theme.of(context).extension<AppThemeColors>()!.colors;
-
-    final titleStyle = isDesktop
-        ? AppFonts().desktopCustomerAuthenticationHeaderTitleInter20SemiBold(
-            context,
-            color: widgetColors.onSurface,
-          )
-        : AppFonts().mobileCustomerAuthenticationHeaderTitleInter18SemiBold(
-            context,
-            color: widgetColors.onSurface,
-          );
 
     return Container(
       height: 64,
@@ -42,28 +35,37 @@ class AuthAppBarWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: widgetColors.primaryContainer,
-                  borderRadius: BorderRadius.circular(8),
+          // Left branding: logo with text on desktop, logo only on mobile
+          isDesktop
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      'assets/Images/helpdesk_lite_icon_only.png',
+                      height: 36,
+                      width: 36,
+                      fit: BoxFit.contain,
+                    ),
+                    const SizedBox(width: 12),
+                    if (title != null && title!.isNotEmpty)
+                      Text(
+                        title!,
+                        style: AppFonts()
+                            .desktopCustomerAuthenticationAppBarTitleInter20Bold(
+                          context,
+                          color: widgetColors.onSurface,
+                        ),
+                      ),
+                  ],
+                )
+              : Image.asset(
+                  'assets/Images/helpdesk_lite_icon_only.png',
+                  height: 36,
+                  width: 36,
+                  fit: BoxFit.contain,
                 ),
-                child: Icon(
-                  Icons.confirmation_number_outlined,
-                  size: 20,
-                  color: widgetColors.onPrimaryContainer,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Text(
-                title,
-                style: titleStyle,
-              ),
-            ],
-          ),
+
+          // Right user profile action button
           Container(
             width: 36,
             height: 36,
