@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
+import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
 import 'package:helpdesk_lite/features/splash/presentation/view/splash_screen.dart';
 
 class RoutingService {
@@ -17,6 +18,10 @@ class RoutingService {
       GoRoute(
         path: '/customer-auth',
         builder: (context, state) => const CustomerAuthenticationScreen(),
+      ),
+      GoRoute(
+        path: '/my-tickets',
+        builder: (context, state) => const MyTicketsScreen(),
       ),
     ],
   );

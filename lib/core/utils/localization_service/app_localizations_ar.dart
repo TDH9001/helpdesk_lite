@@ -91,4 +91,108 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get splashReady => 'جاهز';
+
+  @override
+  String get yourTickets => 'تذاكرك';
+
+  @override
+  String get yourTicketsSubtitle => 'إدارة وتتبع طلبات الدعم النشطة الخاصة بك.';
+
+  @override
+  String get manageAssignedIssues => 'إدارة والرد على المشكلات المخصصة لك.';
+
+  @override
+  String get searchTicketsPlaceholder =>
+      'ابحث في التذاكر أو المعرفات أو الكلمات المفتاحية...';
+
+  @override
+  String get searchTicketsDesktopPlaceholder =>
+      'ابحث في التذاكر أو المعرفات أو المستخدمين...';
+
+  @override
+  String get filterAllActive => 'جميع النشطة';
+
+  @override
+  String get filterOpen => 'مفتوحة';
+
+  @override
+  String get filterPending => 'معلقة';
+
+  @override
+  String get filterWaiting => 'في الانتظار';
+
+  @override
+  String get filterDelayed => 'متأخرة';
+
+  @override
+  String get filterDate => 'التاريخ';
+
+  @override
+  String get statusOpen => 'مفتوحة';
+
+  @override
+  String get statusPending => 'معلقة';
+
+  @override
+  String get statusDelayed => 'متأخرة';
+
+  @override
+  String get statusWaiting => 'في الانتظار';
+
+  @override
+  String get statusResolved => 'تم الحل';
+
+  @override
+  String get statusClosed => 'مغلقة';
+
+  @override
+  String get priorityUrgent => 'عاجل';
+
+  @override
+  String get priorityHigh => 'مرتفع';
+
+  @override
+  String get priorityMedium => 'متوسط';
+
+  @override
+  String get priorityLow => 'منخفض';
+
+  @override
+  String get endOfActiveTickets => 'نهاية التذاكر النشطة';
+
+  @override
+  String get navMyTickets => 'تذاكري';
+
+  @override
+  String get navNewTicket => 'تذكرة جديدة';
+
+  @override
+  String get navQueue => 'قائمة الانتظار';
+
+  @override
+  String get navOverview => 'نظرة عامة';
+
+  @override
+  String get navSupport => 'الدعم';
+
+  @override
+  String get navArchive => 'الأرشيف';
+
+  @override
+  String get tableHeaderId => 'المعرف';
+
+  @override
+  String get tableHeaderSubject => 'الموضوع';
+
+  @override
+  String get tableHeaderStatus => 'الحالة';
+
+  @override
+  String get tableHeaderPriority => 'الأولوية';
+
+  @override
+  String get tableHeaderUpdated => 'آخر تحديث';
+
+  @override
+  String get internalOps => 'العمليات الداخلية';
 }

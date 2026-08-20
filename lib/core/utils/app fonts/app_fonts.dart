@@ -388,5 +388,372 @@ class AppFonts {
         letterSpacing: 1.5,
         color: color,
       );
+
+  // --- Mobile My Tickets Styles ---
+
+  TextStyle mobileMyTicketsAppBarTitleInter18SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsTitleInter24SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.24,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsSubtitleInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsSearchInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsFilterActiveInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsFilterInactiveInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsCardIdInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsCardTimeInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsCardTitleInter16Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsBadgeInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.33,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsEndLabelInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileMyTicketsNavLabelInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  // --- Desktop My Tickets Styles ---
+
+  TextStyle desktopMyTicketsBrandTitleInter20Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsBrandSubtitleInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.33,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsSidebarItemInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsSidebarItemActiveInter12SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsSearchInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsTitleInter30SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 30,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.6,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsSubtitleInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsFilterActiveInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsFilterInactiveInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsTableHeaderInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.5,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsTableRowIdInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsTableRowSubjectInter14Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsTableRowTimeInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopMyTicketsBadgeInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.33,
+        color: color,
+      );
+
+  // --- Desktop Drawer Styles ---
+
+  TextStyle desktopDesktopDrawerBrandTitleInter20Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle desktopDesktopDrawerBrandSubtitleInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.33,
+        color: color,
+      );
+
+  TextStyle desktopDesktopDrawerSidebarItemInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle desktopDesktopDrawerSidebarItemActiveInter12SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  // --- Mobile Bottom Navigation Bar Styles ---
+
+  TextStyle mobileMobileBottomNavigationBarNavLabelInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
 }
 

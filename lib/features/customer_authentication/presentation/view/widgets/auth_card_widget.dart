@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
@@ -49,13 +50,13 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
   void _handleSubmit() {
     if (_formKey.currentState?.validate() ?? false) {
       //! <Where authentication submission should be handled>
+      context.push('/my-tickets');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final widgetColors =
-        Theme.of(context).extension<AppThemeColors>()!.colors;
+    final widgetColors = Theme.of(context).extension<AppThemeColors>()!.colors;
 
     final forgotStyle = widget.isDesktop
         ? AppFonts().desktopCustomerAuthenticationLabelInter12SemiBold(

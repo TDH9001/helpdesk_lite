@@ -265,6 +265,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ready'**
   String get splashReady;
+
+  /// No description provided for @yourTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Tickets'**
+  String get yourTickets;
+
+  /// No description provided for @yourTicketsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage and track your active support requests.'**
+  String get yourTicketsSubtitle;
+
+  /// No description provided for @manageAssignedIssues.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage and respond to your assigned issues.'**
+  String get manageAssignedIssues;
+
+  /// No description provided for @searchTicketsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Search tickets, IDs, or keywords...'**
+  String get searchTicketsPlaceholder;
+
+  /// No description provided for @searchTicketsDesktopPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Search tickets, IDs, or users...'**
+  String get searchTicketsDesktopPlaceholder;
+
+  /// No description provided for @filterAllActive.
+  ///
+  /// In en, this message translates to:
+  /// **'All Active'**
+  String get filterAllActive;
+
+  /// No description provided for @filterOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get filterOpen;
+
+  /// No description provided for @filterPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get filterPending;
+
+  /// No description provided for @filterWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get filterWaiting;
+
+  /// No description provided for @filterDelayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delayed'**
+  String get filterDelayed;
+
+  /// No description provided for @filterDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get filterDate;
+
+  /// No description provided for @statusOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get statusOpen;
+
+  /// No description provided for @statusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get statusPending;
+
+  /// No description provided for @statusDelayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delayed'**
+  String get statusDelayed;
+
+  /// No description provided for @statusWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get statusWaiting;
+
+  /// No description provided for @statusResolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved'**
+  String get statusResolved;
+
+  /// No description provided for @statusClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get statusClosed;
+
+  /// No description provided for @priorityUrgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent'**
+  String get priorityUrgent;
+
+  /// No description provided for @priorityHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get priorityHigh;
+
+  /// No description provided for @priorityMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get priorityMedium;
+
+  /// No description provided for @priorityLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get priorityLow;
+
+  /// No description provided for @endOfActiveTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'End of active tickets'**
+  String get endOfActiveTickets;
+
+  /// No description provided for @navMyTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'My Tickets'**
+  String get navMyTickets;
+
+  /// No description provided for @navNewTicket.
+  ///
+  /// In en, this message translates to:
+  /// **'New Ticket'**
+  String get navNewTicket;
+
+  /// No description provided for @navQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'Queue'**
+  String get navQueue;
+
+  /// No description provided for @navOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get navOverview;
+
+  /// No description provided for @navSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get navSupport;
+
+  /// No description provided for @navArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get navArchive;
+
+  /// No description provided for @tableHeaderId.
+  ///
+  /// In en, this message translates to:
+  /// **'ID'**
+  String get tableHeaderId;
+
+  /// No description provided for @tableHeaderSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject'**
+  String get tableHeaderSubject;
+
+  /// No description provided for @tableHeaderStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get tableHeaderStatus;
+
+  /// No description provided for @tableHeaderPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get tableHeaderPriority;
+
+  /// No description provided for @tableHeaderUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated'**
+  String get tableHeaderUpdated;
+
+  /// No description provided for @internalOps.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal Ops'**
+  String get internalOps;
 }
 
 class _AppLocalizationsDelegate

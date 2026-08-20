@@ -91,4 +91,109 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get splashReady => 'Ready';
+
+  @override
+  String get yourTickets => 'Your Tickets';
+
+  @override
+  String get yourTicketsSubtitle =>
+      'Manage and track your active support requests.';
+
+  @override
+  String get manageAssignedIssues =>
+      'Manage and respond to your assigned issues.';
+
+  @override
+  String get searchTicketsPlaceholder => 'Search tickets, IDs, or keywords...';
+
+  @override
+  String get searchTicketsDesktopPlaceholder =>
+      'Search tickets, IDs, or users...';
+
+  @override
+  String get filterAllActive => 'All Active';
+
+  @override
+  String get filterOpen => 'Open';
+
+  @override
+  String get filterPending => 'Pending';
+
+  @override
+  String get filterWaiting => 'Waiting';
+
+  @override
+  String get filterDelayed => 'Delayed';
+
+  @override
+  String get filterDate => 'Date';
+
+  @override
+  String get statusOpen => 'Open';
+
+  @override
+  String get statusPending => 'Pending';
+
+  @override
+  String get statusDelayed => 'Delayed';
+
+  @override
+  String get statusWaiting => 'Waiting';
+
+  @override
+  String get statusResolved => 'Resolved';
+
+  @override
+  String get statusClosed => 'Closed';
+
+  @override
+  String get priorityUrgent => 'Urgent';
+
+  @override
+  String get priorityHigh => 'High';
+
+  @override
+  String get priorityMedium => 'Medium';
+
+  @override
+  String get priorityLow => 'Low';
+
+  @override
+  String get endOfActiveTickets => 'End of active tickets';
+
+  @override
+  String get navMyTickets => 'My Tickets';
+
+  @override
+  String get navNewTicket => 'New Ticket';
+
+  @override
+  String get navQueue => 'Queue';
+
+  @override
+  String get navOverview => 'Overview';
+
+  @override
+  String get navSupport => 'Support';
+
+  @override
+  String get navArchive => 'Archive';
+
+  @override
+  String get tableHeaderId => 'ID';
+
+  @override
+  String get tableHeaderSubject => 'Subject';
+
+  @override
+  String get tableHeaderStatus => 'Status';
+
+  @override
+  String get tableHeaderPriority => 'Priority';
+
+  @override
+  String get tableHeaderUpdated => 'Updated';
+
+  @override
+  String get internalOps => 'Internal Ops';
 }
