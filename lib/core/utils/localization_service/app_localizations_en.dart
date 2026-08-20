@@ -73,4 +73,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String get splashTitle => 'HelpDesk';
+
+  @override
+  String get splashTitleAccent => 'Lite';
+
+  @override
+  String get splashSubtitle => 'IT support, simplified.';
+
+  @override
+  String get splashStartingUp => 'Starting up';
+
+  @override
+  String get splashConnecting => 'Connecting';
+
+  @override
+  String get splashReady => 'Ready';
 }

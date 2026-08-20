@@ -229,6 +229,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Passwords do not match'**
   String get passwordsDoNotMatch;
+
+  /// No description provided for @splashTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'HelpDesk'**
+  String get splashTitle;
+
+  /// No description provided for @splashTitleAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'Lite'**
+  String get splashTitleAccent;
+
+  /// No description provided for @splashSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'IT support, simplified.'**
+  String get splashSubtitle;
+
+  /// No description provided for @splashStartingUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting up'**
+  String get splashStartingUp;
+
+  /// No description provided for @splashConnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting'**
+  String get splashConnecting;
+
+  /// No description provided for @splashReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get splashReady;
 }
 
 class _AppLocalizationsDelegate

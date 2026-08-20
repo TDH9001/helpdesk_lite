@@ -290,4 +290,103 @@ class AppFonts {
         fontWeight: FontWeight.w400,
         color: color,
       );
+
+  // --- Mobile Splash Screen Styles ---
+
+  TextStyle mobileSplashTitleInter30SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 30,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.6,
+        color: color,
+      );
+
+  TextStyle mobileSplashTitleAccentInter30Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 30,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.6,
+        color: color,
+      );
+
+  TextStyle mobileSplashSubtitleInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileSplashStatusLabelInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1.2,
+        color: color,
+      );
+
+  // --- Desktop Splash Screen Styles ---
+
+  TextStyle desktopSplashTitleInter36SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 36,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.8,
+        color: color,
+      );
+
+  TextStyle desktopSplashTitleAccentInter36Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 36,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.8,
+        color: color,
+      );
+
+  TextStyle desktopSplashSubtitleInter16Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopSplashStatusLabelInter12SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1.5,
+        color: color,
+      );
 }
+

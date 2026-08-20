@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
+import 'package:helpdesk_lite/features/splash/presentation/view/splash_screen.dart';
 
 class RoutingService {
   static final GoRouter router = GoRouter(
@@ -7,7 +8,11 @@ class RoutingService {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const CustomerAuthenticationScreen(),
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: '/splash',
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: '/customer-auth',

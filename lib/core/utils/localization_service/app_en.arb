@@ -21,5 +21,11 @@
   "passwordRequired": "Please enter your password",
   "passwordTooShort": "Password must be at least 6 characters",
   "confirmPasswordRequired": "Please confirm your password",
-  "passwordsDoNotMatch": "Passwords do not match"
+  "passwordsDoNotMatch": "Passwords do not match",
+  "splashTitle": "HelpDesk",
+  "splashTitleAccent": "Lite",
+  "splashSubtitle": "IT support, simplified.",
+  "splashStartingUp": "Starting up",
+  "splashConnecting": "Connecting",
+  "splashReady": "Ready"
 }

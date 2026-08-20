@@ -21,5 +21,11 @@
   "passwordRequired": "يرجى إدخال كلمة المرور",
   "passwordTooShort": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
   "confirmPasswordRequired": "يرجى تأكيد كلمة المرور",
-  "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين"
+  "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين",
+  "splashTitle": "HelpDesk",
+  "splashTitleAccent": "Lite",
+  "splashSubtitle": "الدعم الفني، بكل بساطة.",
+  "splashStartingUp": "جاري بدء التشغيل",
+  "splashConnecting": "جاري الاتصال",
+  "splashReady": "جاهز"
 }

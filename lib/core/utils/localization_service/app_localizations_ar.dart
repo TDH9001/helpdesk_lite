@@ -73,4 +73,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get passwordsDoNotMatch => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get splashTitle => 'HelpDesk';
+
+  @override
+  String get splashTitleAccent => 'Lite';
+
+  @override
+  String get splashSubtitle => 'الدعم الفني، بكل بساطة.';
+
+  @override
+  String get splashStartingUp => 'جاري بدء التشغيل';
+
+  @override
+  String get splashConnecting => 'جاري الاتصال';
+
+  @override
+  String get splashReady => 'جاهز';
 }
