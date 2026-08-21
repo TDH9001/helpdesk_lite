@@ -3,8 +3,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 abstract class SupabaseDeclaration {
   static Future<void> initSupabase() async {
     await Supabase.initialize(
-      url: 'https://uuoqwovbmdnukfaqkucc.supabase.co',
-      publishableKey: 'sb_publishable__N4w9yF4csosA0s3TsMVMA_3ZfDPiz8',
+      url: 'https://kiuzkdhrboswdwcyiqbu.supabase.co',
+      publishableKey: 'sb_publishable_AmVpCd4_5tKub4r3JD9jqA_-GB6tmN-',
     );
   }
 
