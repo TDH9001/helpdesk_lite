@@ -86,10 +86,13 @@
   "totalSizeExceededError": "إجمالي حجم المرفقات يتجاوز الحد الأقصى 25 ميجابايت",
   "ticketSubmittedSuccess": "تم إرسال التذكرة بنجاح",
   "loginSuccess": "تم تسجيل الدخول بنجاح",
+  "signupSuccess": "تم إنشاء الحساب بنجاح!",
   "authErrorInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
   "authErrorEmailNotConfirmed": "لم يتم تأكيد البريد الإلكتروني بعد. يرجى التحقق من بريدك الوارد.",
   "authErrorRateLimit": "تم تجاوز عدد المحاولات المسموح به. يرجى الانتظار قليلاً ثم المحاولة مرة أخرى.",
   "authErrorNetwork": "خطأ في الشبكة. يرجى التحقق من اتصالك بالإنترنت.",
+  "authErrorUserAlreadyExists": "يوجد حساب مسجل بهذا البريد الإلكتروني بالفعل.",
+  "authErrorWeakPassword": "كلمة المرور ضعيفة جداً. يرجى استخدام 6 أحرف على الأقل.",
   "authErrorGeneric": "فشلت عملية تسجيل الدخول. يرجى المحاولة مرة أخرى.",
   "buttonErrorFixFields": "يرجى تصحيح أخطاء النموذج"
 }

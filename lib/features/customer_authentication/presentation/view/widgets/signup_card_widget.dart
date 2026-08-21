@@ -174,15 +174,17 @@ class _SignupCardWidgetState extends State<SignupCardWidget> {
                       ),
                       const SizedBox(height: 24),
                       // Submit button
-                      AuthSubmitButtonWidget(
-                        text: widget.staticData.signupButtonText,
-                        isDesktop: widget.isDesktop,
-                        onPressed: () =>
-                            context.read<SignupCubit>().handleSubmit(
-                              context: context,
+                      state is SignupLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : AuthSubmitButtonWidget(
+                              text: widget.staticData.signupButtonText,
                               isDesktop: widget.isDesktop,
+                              onPressed: () =>
+                                  context.read<SignupCubit>().handleSubmit(
+                                    context: context,
+                                    isDesktop: widget.isDesktop,
+                                  ),
                             ),
-                      ),
                     ],
                   ),
                 ),

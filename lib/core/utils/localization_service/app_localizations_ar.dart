@@ -273,6 +273,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get loginSuccess => 'تم تسجيل الدخول بنجاح';
 
   @override
+  String get signupSuccess => 'تم إنشاء الحساب بنجاح!';
+
+  @override
   String get authErrorInvalidCredentials =>
       'البريد الإلكتروني أو كلمة المرور غير صحيحة';
 
@@ -287,6 +290,14 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorNetwork =>
       'خطأ في الشبكة. يرجى التحقق من اتصالك بالإنترنت.';
+
+  @override
+  String get authErrorUserAlreadyExists =>
+      'يوجد حساب مسجل بهذا البريد الإلكتروني بالفعل.';
+
+  @override
+  String get authErrorWeakPassword =>
+      'كلمة المرور ضعيفة جداً. يرجى استخدام 6 أحرف على الأقل.';
 
   @override
   String get authErrorGeneric =>

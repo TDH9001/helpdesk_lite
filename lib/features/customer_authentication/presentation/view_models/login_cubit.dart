@@ -29,7 +29,6 @@ class LoginCubit extends Cubit<LoginStates> {
     if (state is LoginLoading) return;
     if (formKey.currentState?.validate() ?? false) {
       final l10n = AppLocalizations.of(context)!;
-      //! <Where login authentication submission should be handled>
       try {
         //start by laoding in the data
         emit(LoginLoading());

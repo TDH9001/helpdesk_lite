@@ -275,6 +275,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginSuccess => 'Logged in successfully';
 
   @override
+  String get signupSuccess => 'Account created successfully!';
+
+  @override
   String get authErrorInvalidCredentials => 'Invalid email or password';
 
   @override
@@ -288,6 +291,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorNetwork =>
       'Network error. Please check your internet connection.';
+
+  @override
+  String get authErrorUserAlreadyExists =>
+      'An account with this email already exists.';
+
+  @override
+  String get authErrorWeakPassword =>
+      'Password is too weak. Please use at least 6 characters.';
 
   @override
   String get authErrorGeneric => 'Authentication failed. Please try again.';

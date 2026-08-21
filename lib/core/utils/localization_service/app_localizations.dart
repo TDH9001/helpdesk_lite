@@ -614,6 +614,12 @@ abstract class AppLocalizations {
   /// **'Logged in successfully'**
   String get loginSuccess;
 
+  /// No description provided for @signupSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully!'**
+  String get signupSuccess;
+
   /// No description provided for @authErrorInvalidCredentials.
   ///
   /// In en, this message translates to:
@@ -637,6 +643,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Network error. Please check your internet connection.'**
   String get authErrorNetwork;
+
+  /// No description provided for @authErrorUserAlreadyExists.
+  ///
+  /// In en, this message translates to:
+  /// **'An account with this email already exists.'**
+  String get authErrorUserAlreadyExists;
+
+  /// No description provided for @authErrorWeakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is too weak. Please use at least 6 characters.'**
+  String get authErrorWeakPassword;
 
   /// No description provided for @authErrorGeneric.
   ///
