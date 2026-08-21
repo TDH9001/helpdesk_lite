@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
+import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/desktop_drawer_screen.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/mobile_bottom_navigation_bar_screen.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
 import 'package:helpdesk_lite/features/splash/presentation/view/splash_screen.dart';
@@ -8,10 +9,7 @@ class RoutingService {
   static final GoRouter router = GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const SplashScreen(),
-      ),
+      GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       GoRoute(
         path: '/splash',
         builder: (context, state) => const SplashScreen(),
@@ -27,6 +25,10 @@ class RoutingService {
       GoRoute(
         path: '/bottom-nav',
         builder: (context, state) => const MobileBottomNavigationBarScreen(),
+      ),
+      GoRoute(
+        path: '/desktop-drawer',
+        builder: (context, state) => const DesktopDrawerScreen(),
       ),
     ],
   );
