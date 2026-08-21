@@ -775,6 +775,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No agents found'**
   String get noAgentsFound;
+
+  /// No description provided for @addNewAgentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Agent Account'**
+  String get addNewAgentTitle;
+
+  /// No description provided for @addNewAgentSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Provision a new support agent.'**
+  String get addNewAgentSubtitle;
+
+  /// No description provided for @agentNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name or Nickname'**
+  String get agentNameLabel;
+
+  /// No description provided for @agentNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Jane Doe'**
+  String get agentNameHint;
+
+  /// No description provided for @agentRoleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Role Level'**
+  String get agentRoleLabel;
+
+  /// No description provided for @roleWorker.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Worker'**
+  String get roleWorker;
+
+  /// No description provided for @roleManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Shift Manager'**
+  String get roleManager;
+
+  /// No description provided for @createAgentButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Agent'**
+  String get createAgentButton;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @agentCreatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Agent created successfully'**
+  String get agentCreatedSuccess;
+
+  /// No description provided for @workerCreatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Worker created successfully'**
+  String get workerCreatedSuccess;
+
+  /// No description provided for @managerCreatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Manager created successfully'**
+  String get managerCreatedSuccess;
 }
 
 class _AppLocalizationsDelegate

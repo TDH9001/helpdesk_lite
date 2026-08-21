@@ -119,5 +119,17 @@
       }
     }
   },
-  "noAgentsFound": "No agents found"
+  "noAgentsFound": "No agents found",
+  "addNewAgentTitle": "Create Agent Account",
+  "addNewAgentSubtitle": "Provision a new support agent.",
+  "agentNameLabel": "Name or Nickname",
+  "agentNameHint": "e.g., Jane Doe",
+  "agentRoleLabel": "Role Level",
+  "roleWorker": "Support Worker",
+  "roleManager": "Shift Manager",
+  "createAgentButton": "Create Agent",
+  "cancelButton": "Cancel",
+  "agentCreatedSuccess": "Agent created successfully",
+  "workerCreatedSuccess": "Worker created successfully",
+  "managerCreatedSuccess": "Manager created successfully"
 }

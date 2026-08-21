@@ -13,6 +13,7 @@ class AuthenticationService extends SupabaseDeclaration {
     required String email,
     required String password,
     required UserType type,
+    String? fullName,
   }) async {
     //logs in user, then adds user data to database
     final AuthResponse response = await SupabaseDeclaration.instance.auth
@@ -21,6 +22,7 @@ class AuthenticationService extends SupabaseDeclaration {
       userModel: UserModel(
         id: response.user!.id,
         email: email,
+        fullName: fullName,
         type: type,
         handledTickets: type == UserType.user ? null : 0,
       ),

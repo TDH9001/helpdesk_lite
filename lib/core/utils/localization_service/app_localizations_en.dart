@@ -361,4 +361,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noAgentsFound => 'No agents found';
+
+  @override
+  String get addNewAgentTitle => 'Create Agent Account';
+
+  @override
+  String get addNewAgentSubtitle => 'Provision a new support agent.';
+
+  @override
+  String get agentNameLabel => 'Name or Nickname';
+
+  @override
+  String get agentNameHint => 'e.g., Jane Doe';
+
+  @override
+  String get agentRoleLabel => 'Role Level';
+
+  @override
+  String get roleWorker => 'Support Worker';
+
+  @override
+  String get roleManager => 'Shift Manager';
+
+  @override
+  String get createAgentButton => 'Create Agent';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get agentCreatedSuccess => 'Agent created successfully';
+
+  @override
+  String get workerCreatedSuccess => 'Worker created successfully';
+
+  @override
+  String get managerCreatedSuccess => 'Manager created successfully';
 }

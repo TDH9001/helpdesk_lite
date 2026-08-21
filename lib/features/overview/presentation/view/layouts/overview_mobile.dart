@@ -11,8 +11,13 @@ import 'package:helpdesk_lite/features/overview/presentation/view/widgets/overvi
 /// Mobile layout scaffold for the Overview management dashboard.
 class OverviewMobile extends StatefulWidget {
   final OverviewStaticModel staticData;
+  final VoidCallback? onAddAgent;
 
-  const OverviewMobile({super.key, required this.staticData});
+  const OverviewMobile({
+    super.key,
+    required this.staticData,
+    this.onAddAgent,
+  });
 
   @override
   State<OverviewMobile> createState() => _OverviewMobileState();
@@ -57,6 +62,7 @@ class _OverviewMobileState extends State<OverviewMobile> {
                 title: widget.staticData.title,
                 addAgentLabel: widget.staticData.addNewAgent,
                 isDesktop: false,
+                onAddAgent: widget.onAddAgent,
               ),
               const SizedBox(height: 16.0),
 

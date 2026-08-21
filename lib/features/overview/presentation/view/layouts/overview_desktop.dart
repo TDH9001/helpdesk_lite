@@ -11,8 +11,13 @@ import 'package:helpdesk_lite/features/overview/presentation/view/widgets/overvi
 /// Desktop layout scaffold for the Overview management dashboard.
 class OverviewDesktop extends StatefulWidget {
   final OverviewStaticModel staticData;
+  final VoidCallback? onAddAgent;
 
-  const OverviewDesktop({super.key, required this.staticData});
+  const OverviewDesktop({
+    super.key,
+    required this.staticData,
+    this.onAddAgent,
+  });
 
   @override
   State<OverviewDesktop> createState() => _OverviewDesktopState();
@@ -57,6 +62,7 @@ class _OverviewDesktopState extends State<OverviewDesktop> {
               subtitle: widget.staticData.subtitle,
               addAgentLabel: widget.staticData.addNewAgent,
               isDesktop: true,
+              onAddAgent: widget.onAddAgent,
             ),
             const SizedBox(height: 24.0),
 

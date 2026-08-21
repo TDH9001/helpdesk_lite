@@ -1253,5 +1253,139 @@ class AppFonts {
         fontWeight: FontWeight.w700,
         color: color,
       );
+
+  // --- Add New Agent Styles ---
+
+  TextStyle mobileAddNewAgentHeaderTitleInter20SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileAddNewAgentHeaderSubtitleInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileAddNewAgentFieldLabelInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileAddNewAgentFieldInputInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileAddNewAgentFieldHintInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileAddNewAgentButtonInter14SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle desktopAddNewAgentHeaderTitleInter24Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle desktopAddNewAgentHeaderSubtitleInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopAddNewAgentFieldLabelInter13Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle desktopAddNewAgentFieldInputInter15Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 15,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopAddNewAgentFieldHintInter15Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 15,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopAddNewAgentButtonInter15SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
 }
 

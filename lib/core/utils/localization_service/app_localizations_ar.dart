@@ -361,4 +361,40 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noAgentsFound => 'لم يتم العثور على وكلاء';
+
+  @override
+  String get addNewAgentTitle => 'إنشاء حساب وكيل';
+
+  @override
+  String get addNewAgentSubtitle => 'إضافة وكيل دعم فني جديد للمنظومة.';
+
+  @override
+  String get agentNameLabel => 'الاسم أو اللقب';
+
+  @override
+  String get agentNameHint => 'مثال: سارة أحمد';
+
+  @override
+  String get agentRoleLabel => 'مستوى الدور';
+
+  @override
+  String get roleWorker => 'فني دعم';
+
+  @override
+  String get roleManager => 'مدير وردية';
+
+  @override
+  String get createAgentButton => 'إنشاء الوكيل';
+
+  @override
+  String get cancelButton => 'إلغاء';
+
+  @override
+  String get agentCreatedSuccess => 'تم إنشاء حساب الوكيل بنجاح';
+
+  @override
+  String get workerCreatedSuccess => 'تم إنشاء حساب الفني بنجاح';
+
+  @override
+  String get managerCreatedSuccess => 'تم إنشاء حساب المدير بنجاح';
 }

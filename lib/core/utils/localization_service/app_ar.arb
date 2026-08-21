@@ -119,5 +119,17 @@
       }
     }
   },
-  "noAgentsFound": "لم يتم العثور على وكلاء"
+  "noAgentsFound": "لم يتم العثور على وكلاء",
+  "addNewAgentTitle": "إنشاء حساب وكيل",
+  "addNewAgentSubtitle": "إضافة وكيل دعم فني جديد للمنظومة.",
+  "agentNameLabel": "الاسم أو اللقب",
+  "agentNameHint": "مثال: سارة أحمد",
+  "agentRoleLabel": "مستوى الدور",
+  "roleWorker": "فني دعم",
+  "roleManager": "مدير وردية",
+  "createAgentButton": "إنشاء الوكيل",
+  "cancelButton": "إلغاء",
+  "agentCreatedSuccess": "تم إنشاء حساب الوكيل بنجاح",
+  "workerCreatedSuccess": "تم إنشاء حساب الفني بنجاح",
+  "managerCreatedSuccess": "تم إنشاء حساب المدير بنجاح"
 }

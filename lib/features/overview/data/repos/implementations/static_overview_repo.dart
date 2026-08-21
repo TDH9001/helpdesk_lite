@@ -54,9 +54,7 @@ class StaticOverviewRepository implements OverviewRepo {
         final name =
             (user.fullName != null && user.fullName!.trim().isNotEmpty)
                 ? user.fullName!
-                : (user.email.isNotEmpty
-                    ? user.email.split('@').first
-                    : 'Agent');
+                : user.id;
 
         return OverviewAgentItemModel(
           id: user.id,
