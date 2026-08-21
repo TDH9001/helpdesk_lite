@@ -1,11 +1,11 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
-import 'package:helpdesk_lite/core/utils/file_picker_service/file_picker_service.dart';
 import 'package:helpdesk_lite/core/utils/snackbar_service/snackbar_service.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/model/create_ticket_static_model.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/model/ticket_attachment_item.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/model/ticket_category.dart';
+import 'package:helpdesk_lite/features/create_ticket/data/repos/create_ticket_repo.dart';
+import 'package:helpdesk_lite/features/create_ticket/data/repos/implementations/static_create_ticket_repo.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/create_ticket_attachments_section_widget.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/create_ticket_category_field_widget.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/create_ticket_description_field_widget.dart';
@@ -15,11 +15,13 @@ import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/c
 /// Form card container handling inputs, file attachments, and submission.
 class CreateTicketFormCardWidget extends StatefulWidget {
   final CreateTicketStaticModel staticData;
+  final CreateTicketRepo repository;
   final bool isDesktop;
 
   const CreateTicketFormCardWidget({
     super.key,
     required this.staticData,
+    this.repository = const StaticCreateTicketRepository(),
     this.isDesktop = false,
   });
 
@@ -52,56 +54,38 @@ class _CreateTicketFormCardWidgetState
   }
 
   Future<void> _pickFiles() async {
-    try {
-      final List<PlatformFile> files =
-          await FilePickerService.pickMultipleFiles();
+    final newItems = await widget.repository.pickAttachments();
+    if (newItems.isEmpty) {
+      return;
+    }
 
-      if (files.isEmpty) {
-        return;
-      }
-
-      int newBatchSize = 0;
-      final List<TicketAttachmentItem> validNewItems = [];
-
-      for (final file in files) {
-        final int fileSize = await file.length();
-
-        if (fileSize > _maxSingleFileSize) {
-          if (mounted) {
-            SnackBarService.showError(
-              context,
-              widget.staticData.fileSizeExceededError,
-            );
-          }
-          return;
-        }
-
-        newBatchSize += fileSize;
-        validNewItems.add(
-          TicketAttachmentItem(
-            file: file,
-            name: file.name,
-            size: fileSize,
-          ),
-        );
-      }
-
-      if (_currentTotalBytes + newBatchSize > _maxTotalFileSize) {
+    int newBatchSize = 0;
+    for (final item in newItems) {
+      if (item.size > _maxSingleFileSize) {
         if (mounted) {
           SnackBarService.showError(
             context,
-            widget.staticData.totalSizeExceededError,
+            widget.staticData.fileSizeExceededError,
           );
         }
         return;
       }
-
-      setState(() {
-        _attachments.addAll(validNewItems);
-      });
-    } catch (_) {
-      // User cancelled or platform picker closed without selection
+      newBatchSize += item.size;
     }
+
+    if (_currentTotalBytes + newBatchSize > _maxTotalFileSize) {
+      if (mounted) {
+        SnackBarService.showError(
+          context,
+          widget.staticData.totalSizeExceededError,
+        );
+      }
+      return;
+    }
+
+    setState(() {
+      _attachments.addAll(newItems);
+    });
   }
 
   void _removeAttachment(int index) {

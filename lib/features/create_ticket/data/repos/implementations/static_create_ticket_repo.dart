@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
+import 'package:helpdesk_lite/core/utils/file_picker_service/file_picker_service.dart';
 import 'package:helpdesk_lite/core/utils/localization_service/app_localizations.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/model/create_ticket_static_model.dart';
+import 'package:helpdesk_lite/features/create_ticket/data/model/ticket_attachment_item.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/model/ticket_category.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/repos/create_ticket_repo.dart';
 
-/// Concrete static repository resolving localized text for Create Ticket feature.
+/// Concrete static repository resolving localized text and file operations.
 class StaticCreateTicketRepository implements CreateTicketRepo {
   const StaticCreateTicketRepository();
 
@@ -63,5 +65,20 @@ class StaticCreateTicketRepository implements CreateTicketRepo {
     BuildContext context,
   ) async {
     return getStaticData(context);
+  }
+
+  @override
+  Future<List<TicketAttachmentItem>> pickAttachments() async {
+    final files = await FilePickerService.pickMultipleFiles();
+    if (files.isEmpty) {
+      return const [];
+    }
+
+    final List<TicketAttachmentItem> items = [];
+    for (final file in files) {
+      final size = await file.length();
+      items.add(TicketAttachmentItem(file: file, name: file.name, size: size));
+    }
+    return items;
   }
 }
