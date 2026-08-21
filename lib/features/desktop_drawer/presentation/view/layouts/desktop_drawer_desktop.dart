@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ticket_screen.dart';
 import 'package:helpdesk_lite/features/desktop_drawer/data/model/desktop_drawer_static_model.dart';
 import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/widgets/desktop_drawer_sidebar_widget.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
@@ -21,7 +22,7 @@ class _DesktopDrawerDesktopState extends State<DesktopDrawerDesktop> {
 
   final List<WidgetBuilder> _screens = [
     (context) => const MyTicketsScreen(),
-    (context) => const SizedBox.shrink(),
+    (context) => const CreateTicketScreen(),
     (context) => const SizedBox.shrink(),
     (context) => const SizedBox.shrink(),
   ];

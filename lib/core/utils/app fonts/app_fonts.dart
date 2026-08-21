@@ -766,5 +766,213 @@ class AppFonts {
         letterSpacing: 0.12,
         color: color,
       );
+
+  // --- Core SnackBar Styles ---
+
+  TextStyle mobileCoreSnackBarInter14Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  // --- Mobile Create Ticket Styles ---
+
+  TextStyle mobileCreateTicketHeaderTitleInter24SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.24,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketHeaderSubtitleInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketFormLabelInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketInputInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketDropdownInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketPriorityInter13Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketPriorityActiveInter13SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketAttachmentHintInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketAttachmentFileNameInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketAttachmentFileSizeInter11Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketButtonInter14Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileCreateTicketErrorInter11Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  // --- Desktop Create Ticket Styles ---
+
+  TextStyle desktopCreateTicketHeaderTitleInter30SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 30,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.6,
+        color: color,
+      );
+
+  TextStyle desktopCreateTicketHeaderSubtitleInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopCreateTicketFormLabelInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.12,
+        color: color,
+      );
+
+  TextStyle desktopCreateTicketInputInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopCreateTicketButtonInter14Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
 }
 

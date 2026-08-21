@@ -195,4 +195,80 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get internalOps => 'العمليات الداخلية';
+
+  @override
+  String get createTicketTitle => 'تقديم طلب';
+
+  @override
+  String get createTicketSubtitle =>
+      'يرجى تقديم أكبر قدر ممكن من التفاصيل لمساعدتك بالشكل الأفضل.';
+
+  @override
+  String get ticketSubject => 'الموضوع';
+
+  @override
+  String get ticketSubjectPlaceholder => 'ملخص موجز لمشكلتك';
+
+  @override
+  String get ticketCategory => 'الفئة';
+
+  @override
+  String get ticketSelectCategory => 'اختر الفئة';
+
+  @override
+  String get categoryTechnical => 'الدعم الفني';
+
+  @override
+  String get categoryBilling => 'الفواتير والاشتراكات';
+
+  @override
+  String get categoryAccount => 'إدارة الحساب';
+
+  @override
+  String get categoryGeneral => 'استفسار عام';
+
+  @override
+  String get ticketPriority => 'الأولوية';
+
+  @override
+  String get ticketDescription => 'الوصف';
+
+  @override
+  String get ticketDescriptionPlaceholder => 'يرجى وصف مشكلتك بالتفصيل...';
+
+  @override
+  String get ticketAttachments => 'المرفقات';
+
+  @override
+  String get ticketUploadZoneHint =>
+      'انقر لتحميل الصور أو الملفات\n(الحد الأقصى 5 ميجابايت للملف، 25 ميجابايت إجمالي)';
+
+  @override
+  String get submitTicket => 'إرسال التذكرة';
+
+  @override
+  String get subjectRequired => 'يرجى إدخال الموضوع';
+
+  @override
+  String get categoryRequired => 'يرجى اختيار الفئة';
+
+  @override
+  String get descriptionRequired => 'يرجى إدخال الوصف';
+
+  @override
+  String get descriptionTooShort => 'يجب أن يتكون الوصف من 10 أحرف على الأقل';
+
+  @override
+  String get fileSizeExceededError =>
+      'أحد الملفات المحددة يتجاوز الحد الأقصى 5 ميجابايت';
+
+  @override
+  String get totalSizeExceededError =>
+      'إجمالي حجم المرفقات يتجاوز الحد الأقصى 25 ميجابايت';
+
+  @override
+  String get ticketSubmittedSuccess => 'تم إرسال التذكرة بنجاح';
+
+  @override
+  String get buttonErrorFixFields => 'يرجى تصحيح أخطاء النموذج';
 }

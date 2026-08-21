@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ticket_screen.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/data/model/mobile_bottom_nav_static_model.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_bottom_nav_bar_widget.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_primary_appbar.dart';
@@ -20,10 +21,25 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
 
   final List<WidgetBuilder> _screens = [
     (context) => const MyTicketsScreen(),
-    (context) => const SizedBox.shrink(),
+    (context) => const CreateTicketScreen(),
     (context) => const SizedBox.shrink(),
     (context) => const SizedBox.shrink(),
   ];
+
+  String _getTitleForIndex(int index) {
+    switch (index) {
+      case 0:
+        return widget.staticData.navMyTickets;
+      case 1:
+        return widget.staticData.navNewTicket;
+      case 2:
+        return widget.staticData.navQueue;
+      case 3:
+        return widget.staticData.navOverview;
+      default:
+        return widget.staticData.title;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +47,7 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
 
     return Scaffold(
       backgroundColor: widgetColors.background,
-      appBar: MobilePrimaryAppBar(title: widget.staticData.title),
+      appBar: MobilePrimaryAppBar(title: _getTitleForIndex(_selectedIndex)),
       body: _screens[_selectedIndex](context),
       bottomNavigationBar: MobileBottomNavBarWidget(
         myTicketsLabel: widget.staticData.navMyTickets,
@@ -44,3 +60,4 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
     );
   }
 }
+

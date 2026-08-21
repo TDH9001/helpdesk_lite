@@ -196,4 +196,81 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get internalOps => 'Internal Ops';
+
+  @override
+  String get createTicketTitle => 'Submit a Request';
+
+  @override
+  String get createTicketSubtitle =>
+      'Provide as much detail as possible so we can best assist you.';
+
+  @override
+  String get ticketSubject => 'Subject';
+
+  @override
+  String get ticketSubjectPlaceholder => 'Brief summary of your issue';
+
+  @override
+  String get ticketCategory => 'Category';
+
+  @override
+  String get ticketSelectCategory => 'Select a category';
+
+  @override
+  String get categoryTechnical => 'Technical Support';
+
+  @override
+  String get categoryBilling => 'Billing & Subscriptions';
+
+  @override
+  String get categoryAccount => 'Account Management';
+
+  @override
+  String get categoryGeneral => 'General Inquiry';
+
+  @override
+  String get ticketPriority => 'Priority';
+
+  @override
+  String get ticketDescription => 'Description';
+
+  @override
+  String get ticketDescriptionPlaceholder =>
+      'Please describe your issue in detail...';
+
+  @override
+  String get ticketAttachments => 'Attachments';
+
+  @override
+  String get ticketUploadZoneHint =>
+      'Tap to upload images or drop files here\n(Max 5MB per file, 25MB total)';
+
+  @override
+  String get submitTicket => 'Submit Ticket';
+
+  @override
+  String get subjectRequired => 'Please enter a subject';
+
+  @override
+  String get categoryRequired => 'Please select a category';
+
+  @override
+  String get descriptionRequired => 'Please enter a description';
+
+  @override
+  String get descriptionTooShort =>
+      'Description must be at least 10 characters';
+
+  @override
+  String get fileSizeExceededError => 'A selected file exceeds the 5MB limit';
+
+  @override
+  String get totalSizeExceededError =>
+      'Total attachments size exceeds the 25MB limit';
+
+  @override
+  String get ticketSubmittedSuccess => 'Ticket submitted successfully';
+
+  @override
+  String get buttonErrorFixFields => 'Please fix form errors';
 }

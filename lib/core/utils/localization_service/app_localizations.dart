@@ -469,6 +469,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Internal Ops'**
   String get internalOps;
+
+  /// No description provided for @createTicketTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit a Request'**
+  String get createTicketTitle;
+
+  /// No description provided for @createTicketSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide as much detail as possible so we can best assist you.'**
+  String get createTicketSubtitle;
+
+  /// No description provided for @ticketSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject'**
+  String get ticketSubject;
+
+  /// No description provided for @ticketSubjectPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Brief summary of your issue'**
+  String get ticketSubjectPlaceholder;
+
+  /// No description provided for @ticketCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get ticketCategory;
+
+  /// No description provided for @ticketSelectCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a category'**
+  String get ticketSelectCategory;
+
+  /// No description provided for @categoryTechnical.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical Support'**
+  String get categoryTechnical;
+
+  /// No description provided for @categoryBilling.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing & Subscriptions'**
+  String get categoryBilling;
+
+  /// No description provided for @categoryAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Management'**
+  String get categoryAccount;
+
+  /// No description provided for @categoryGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General Inquiry'**
+  String get categoryGeneral;
+
+  /// No description provided for @ticketPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get ticketPriority;
+
+  /// No description provided for @ticketDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get ticketDescription;
+
+  /// No description provided for @ticketDescriptionPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Please describe your issue in detail...'**
+  String get ticketDescriptionPlaceholder;
+
+  /// No description provided for @ticketAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachments'**
+  String get ticketAttachments;
+
+  /// No description provided for @ticketUploadZoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to upload images or drop files here\n(Max 5MB per file, 25MB total)'**
+  String get ticketUploadZoneHint;
+
+  /// No description provided for @submitTicket.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Ticket'**
+  String get submitTicket;
+
+  /// No description provided for @subjectRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a subject'**
+  String get subjectRequired;
+
+  /// No description provided for @categoryRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a category'**
+  String get categoryRequired;
+
+  /// No description provided for @descriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a description'**
+  String get descriptionRequired;
+
+  /// No description provided for @descriptionTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Description must be at least 10 characters'**
+  String get descriptionTooShort;
+
+  /// No description provided for @fileSizeExceededError.
+  ///
+  /// In en, this message translates to:
+  /// **'A selected file exceeds the 5MB limit'**
+  String get fileSizeExceededError;
+
+  /// No description provided for @totalSizeExceededError.
+  ///
+  /// In en, this message translates to:
+  /// **'Total attachments size exceeds the 25MB limit'**
+  String get totalSizeExceededError;
+
+  /// No description provided for @ticketSubmittedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket submitted successfully'**
+  String get ticketSubmittedSuccess;
+
+  /// No description provided for @buttonErrorFixFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fix form errors'**
+  String get buttonErrorFixFields;
 }
 
 class _AppLocalizationsDelegate

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ticket_screen.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
 import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/desktop_drawer_screen.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/mobile_bottom_navigation_bar_screen.dart';
@@ -21,6 +22,10 @@ class RoutingService {
       GoRoute(
         path: '/my-tickets',
         builder: (context, state) => const MyTicketsScreen(),
+      ),
+      GoRoute(
+        path: '/create-ticket',
+        builder: (context, state) => const CreateTicketScreen(),
       ),
       GoRoute(
         path: '/bottom-nav',
