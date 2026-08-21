@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/core/widgets/language_toggle_widget.dart';
 import 'package:helpdesk_lite/core/widgets/theme_toggle_widget.dart';
@@ -6,15 +7,14 @@ import 'package:helpdesk_lite/features/customer_authentication/data/model/custom
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/login_card_widget.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/signup_card_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view_models/login_cubit.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view_models/signup_cubit.dart';
 
 /// Mobile layout for customer authentication with top branding bar and scrollable auth card.
 class CustomerAuthenticationMobile extends StatefulWidget {
   final CustomerAuthStaticModel staticData;
 
-  const CustomerAuthenticationMobile({
-    super.key,
-    required this.staticData,
-  });
+  const CustomerAuthenticationMobile({super.key, required this.staticData});
 
   @override
   State<CustomerAuthenticationMobile> createState() =>
@@ -27,8 +27,7 @@ class _CustomerAuthenticationMobileState
 
   @override
   Widget build(BuildContext context) {
-    final widgetColors =
-        Theme.of(context).extension<AppThemeColors>()!.colors;
+    final widgetColors = Theme.of(context).extension<AppThemeColors>()!.colors;
 
     return Scaffold(
       backgroundColor: widgetColors.background,
@@ -52,23 +51,29 @@ class _CustomerAuthenticationMobileState
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _isLogin
-                          ? LoginCardWidget(
-                              staticData: widget.staticData,
-                              isDesktop: false,
-                              onSwitchToSignup: () {
-                                setState(() {
-                                  _isLogin = false;
-                                });
-                              },
+                          ? BlocProvider<LoginCubit>(
+                              create: (context) => LoginCubit(),
+                              child: LoginCardWidget(
+                                staticData: widget.staticData,
+                                isDesktop: false,
+                                onSwitchToSignup: () {
+                                  setState(() {
+                                    _isLogin = false;
+                                  });
+                                },
+                              ),
                             )
-                          : SignupCardWidget(
-                              staticData: widget.staticData,
-                              isDesktop: false,
-                              onSwitchToLogin: () {
-                                setState(() {
-                                  _isLogin = true;
-                                });
-                              },
+                          : BlocProvider<SignupCubit>(
+                              create: (context) => SignupCubit(),
+                              child: SignupCardWidget(
+                                staticData: widget.staticData,
+                                isDesktop: false,
+                                onSwitchToLogin: () {
+                                  setState(() {
+                                    _isLogin = true;
+                                  });
+                                },
+                              ),
                             ),
                       const SizedBox(height: 16),
                       // Quick preference toggles (Language & Theme)
@@ -76,10 +81,7 @@ class _CustomerAuthenticationMobileState
                         alignment: WrapAlignment.center,
                         spacing: 12,
                         runSpacing: 10,
-                        children: [
-                          LanguageToggleWidget(),
-                          ThemeToggleWidget(),
-                        ],
+                        children: [LanguageToggleWidget(), ThemeToggleWidget()],
                       ),
                     ],
                   ),
