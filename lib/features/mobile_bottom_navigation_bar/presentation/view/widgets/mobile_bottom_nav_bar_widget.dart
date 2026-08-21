@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
@@ -32,31 +34,28 @@ class MobileBottomNavBarWidget extends StatelessWidget {
       required int index,
     }) {
       final isSelected = selectedIndex == index;
-      final color =
-          isSelected ? widgetColors.primary : widgetColors.onSurfaceVariant;
+      final color = isSelected
+          ? widgetColors.primary
+          : widgetColors.onSurfaceVariant;
 
       return InkWell(
         onTap: () {
-          //! <Where mobile bottom navigation state should be handled>
           onTabSelected?.call(index);
+          dev.log(index.toString());
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 22.0,
-              color: color,
-            ),
+            Icon(icon, size: 22.0, color: color),
             const SizedBox(height: 4.0),
             Text(
               label,
               style: AppFonts()
                   .mobileMobileBottomNavigationBarNavLabelInter12Medium(
-                context,
-                color: color,
-              ),
+                    context,
+                    color: color,
+                  ),
             ),
           ],
         ),
@@ -64,7 +63,6 @@ class MobileBottomNavBarWidget extends StatelessWidget {
     }
 
     return Container(
-      height: 64.0,
       decoration: BoxDecoration(
         color: widgetColors.surface,
         border: Border(
@@ -83,30 +81,33 @@ class MobileBottomNavBarWidget extends StatelessWidget {
       ),
       child: SafeArea(
         top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            buildNavItem(
-              icon: Icons.confirmation_number_outlined,
-              label: myTicketsLabel,
-              index: 0,
-            ),
-            buildNavItem(
-              icon: Icons.add_circle_outline_rounded,
-              label: newTicketLabel,
-              index: 1,
-            ),
-            buildNavItem(
-              icon: Icons.alt_route_rounded,
-              label: queueLabel,
-              index: 2,
-            ),
-            buildNavItem(
-              icon: Icons.dashboard_outlined,
-              label: overviewLabel,
-              index: 3,
-            ),
-          ],
+        child: SizedBox(
+          height: 64.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              buildNavItem(
+                icon: Icons.confirmation_number_outlined,
+                label: myTicketsLabel,
+                index: 0,
+              ),
+              buildNavItem(
+                icon: Icons.add_circle_outline_rounded,
+                label: newTicketLabel,
+                index: 1,
+              ),
+              buildNavItem(
+                icon: Icons.alt_route_rounded,
+                label: queueLabel,
+                index: 2,
+              ),
+              buildNavItem(
+                icon: Icons.dashboard_outlined,
+                label: overviewLabel,
+                index: 3,
+              ),
+            ],
+          ),
         ),
       ),
     );

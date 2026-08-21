@@ -3,7 +3,6 @@ import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/features/my_tickets/data/model/my_tickets_static_model.dart';
 import 'package:helpdesk_lite/features/my_tickets/data/model/ticket_model.dart';
-import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_app_bar_mobile.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_end_indicator.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_filter_chips.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_search_bar.dart';
@@ -142,8 +141,8 @@ class _MyTicketsMobileState extends State<MyTicketsMobile> {
 
     return Scaffold(
       backgroundColor: widgetColors.background,
-      appBar: MyTicketsAppBarMobile(title: widget.staticData.myTicketsTitle),
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 32.0),

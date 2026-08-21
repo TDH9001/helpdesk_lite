@@ -4,20 +4,12 @@ import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation
 
 /// Screen entry point for Mobile Bottom Navigation Bar feature.
 class MobileBottomNavigationBarScreen extends StatelessWidget {
-  final Widget? body;
-
-  const MobileBottomNavigationBarScreen({
-    super.key,
-    this.body,
-  });
+  const MobileBottomNavigationBarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final staticData = StaticMobileBottomNavRepository.getStaticData(context);
 
-    return MobileBottomNavMobile(
-      staticData: staticData,
-      body: body,
-    );
+    return MobileBottomNavMobile(staticData: staticData);
   }
 }

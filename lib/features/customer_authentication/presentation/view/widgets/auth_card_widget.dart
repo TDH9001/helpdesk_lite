@@ -50,7 +50,7 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
   void _handleSubmit() {
     if (_formKey.currentState?.validate() ?? false) {
       //! <Where authentication submission should be handled>
-      context.push('/my-tickets');
+      context.push('/bottom-nav');
     }
   }
 

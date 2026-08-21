@@ -10,6 +10,7 @@ class StaticMobileBottomNavRepository implements MobileBottomNavRepo {
   static MobileBottomNavStaticModel getStaticData(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return MobileBottomNavStaticModel(
+      title: l10n.myTickets,
       navMyTickets: l10n.navMyTickets,
       navNewTicket: l10n.navNewTicket,
       navQueue: l10n.navQueue,

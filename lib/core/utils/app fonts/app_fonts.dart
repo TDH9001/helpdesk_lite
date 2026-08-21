@@ -744,6 +744,17 @@ class AppFonts {
 
   // --- Mobile Bottom Navigation Bar Styles ---
 
+  TextStyle mobileMobileBottomNavigationBarAppBarTitleInter18SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
   TextStyle mobileMobileBottomNavigationBarNavLabelInter12Medium(
     BuildContext context, {
     Color? color,
