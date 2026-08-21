@@ -608,6 +608,36 @@ abstract class AppLocalizations {
   /// **'Ticket submitted successfully'**
   String get ticketSubmittedSuccess;
 
+  /// No description provided for @loginSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in successfully'**
+  String get loginSuccess;
+
+  /// No description provided for @authErrorInvalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email or password'**
+  String get authErrorInvalidCredentials;
+
+  /// No description provided for @authErrorEmailNotConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is not confirmed yet. Please check your inbox.'**
+  String get authErrorEmailNotConfirmed;
+
+  /// No description provided for @authErrorRateLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Please wait a moment and try again.'**
+  String get authErrorRateLimit;
+
+  /// No description provided for @authErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication failed. Please try again.'**
+  String get authErrorGeneric;
+
   /// No description provided for @buttonErrorFixFields.
   ///
   /// In en, this message translates to:

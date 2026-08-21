@@ -270,5 +270,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ticketSubmittedSuccess => 'تم إرسال التذكرة بنجاح';
 
   @override
+  String get loginSuccess => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get authErrorInvalidCredentials =>
+      'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+
+  @override
+  String get authErrorEmailNotConfirmed =>
+      'لم يتم تأكيد البريد الإلكتروني بعد. يرجى التحقق من بريدك الوارد.';
+
+  @override
+  String get authErrorRateLimit =>
+      'تم تجاوز عدد المحاولات المسموح به. يرجى الانتظار قليلاً ثم المحاولة مرة أخرى.';
+
+  @override
+  String get authErrorGeneric =>
+      'فشلت عملية تسجيل الدخول. يرجى المحاولة مرة أخرى.';
+
+  @override
   String get buttonErrorFixFields => 'يرجى تصحيح أخطاء النموذج';
 }

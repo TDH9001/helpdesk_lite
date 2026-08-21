@@ -1,18 +1,28 @@
 import 'package:helpdesk_lite/core/utils/supabase_service/Supabase_servic.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthenticationService extends SupabaseDeclaration {
-  Future<void> signup({required String email, required String password}) async {
-    final response = await SupabaseDeclaration.instance.auth.signUp(
-      email: email,
-      password: password,
-    );
+  User? getCurrentUser() {
+    final user = SupabaseDeclaration.instance.auth.currentUser;
+    return user;
   }
 
-  Future<void> login({required String email, required String password}) async {
-    final response = await SupabaseDeclaration.instance.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
+  Future<AuthResponse> signup({
+    required String email,
+    required String password,
+  }) async {
+    final AuthResponse response = await SupabaseDeclaration.instance.auth
+        .signUp(email: email, password: password);
+    return response;
+  }
+
+  Future<AuthResponse> login({
+    required String email,
+    required String password,
+  }) async {
+    final AuthResponse response = await SupabaseDeclaration.instance.auth
+        .signInWithPassword(email: email, password: password);
+    return response;
   }
 
   Future<void> logout() async {

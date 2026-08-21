@@ -272,5 +272,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ticketSubmittedSuccess => 'Ticket submitted successfully';
 
   @override
+  String get loginSuccess => 'Logged in successfully';
+
+  @override
+  String get authErrorInvalidCredentials => 'Invalid email or password';
+
+  @override
+  String get authErrorEmailNotConfirmed =>
+      'Email is not confirmed yet. Please check your inbox.';
+
+  @override
+  String get authErrorRateLimit =>
+      'Too many attempts. Please wait a moment and try again.';
+
+  @override
+  String get authErrorGeneric => 'Authentication failed. Please try again.';
+
+  @override
   String get buttonErrorFixFields => 'Please fix form errors';
 }

@@ -53,7 +53,12 @@ class _LoginCardWidgetState extends State<LoginCardWidget> {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         switch (state) {
-          case LoginLoading:
+          case LoginLoading _:
+          case LoginSuccess _:
+          case LoginFailure _:
+          case AlreadyLoggedIn _:
+          default:
+            break;
         }
       },
       builder: (context, state) => Container(
@@ -166,16 +171,18 @@ class _LoginCardWidgetState extends State<LoginCardWidget> {
                       ),
                       const SizedBox(height: 24),
                       // Submit button
-                      AuthSubmitButtonWidget(
-                        text: widget.staticData.loginButtonText,
-                        isDesktop: widget.isDesktop,
-                        onPressed: () {
-                          context.read<LoginCubit>().handleSubmit(
-                            isDesktop: widget.isDesktop,
-                            context: context,
-                          );
-                        },
-                      ),
+                      state is LoginLoading
+                          ? CircularProgressIndicator()
+                          : AuthSubmitButtonWidget(
+                              text: widget.staticData.loginButtonText,
+                              isDesktop: widget.isDesktop,
+                              onPressed: () {
+                                context.read<LoginCubit>().handleSubmit(
+                                  isDesktop: widget.isDesktop,
+                                  context: context,
+                                );
+                              },
+                            ),
                     ],
                   ),
                 ),

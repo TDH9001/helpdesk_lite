@@ -85,5 +85,10 @@
   "fileSizeExceededError": "A selected file exceeds the 5MB limit",
   "totalSizeExceededError": "Total attachments size exceeds the 25MB limit",
   "ticketSubmittedSuccess": "Ticket submitted successfully",
+  "loginSuccess": "Logged in successfully",
+  "authErrorInvalidCredentials": "Invalid email or password",
+  "authErrorEmailNotConfirmed": "Email is not confirmed yet. Please check your inbox.",
+  "authErrorRateLimit": "Too many attempts. Please wait a moment and try again.",
+  "authErrorGeneric": "Authentication failed. Please try again.",
   "buttonErrorFixFields": "Please fix form errors"
 }
