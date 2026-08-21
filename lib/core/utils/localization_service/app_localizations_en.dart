@@ -286,6 +286,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Too many attempts. Please wait a moment and try again.';
 
   @override
+  String get authErrorNetwork =>
+      'Network error. Please check your internet connection.';
+
+  @override
   String get authErrorGeneric => 'Authentication failed. Please try again.';
 
   @override

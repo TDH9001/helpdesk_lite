@@ -285,6 +285,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'تم تجاوز عدد المحاولات المسموح به. يرجى الانتظار قليلاً ثم المحاولة مرة أخرى.';
 
   @override
+  String get authErrorNetwork =>
+      'خطأ في الشبكة. يرجى التحقق من اتصالك بالإنترنت.';
+
+  @override
   String get authErrorGeneric =>
       'فشلت عملية تسجيل الدخول. يرجى المحاولة مرة أخرى.';
 

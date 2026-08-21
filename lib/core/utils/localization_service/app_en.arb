@@ -89,6 +89,7 @@
   "authErrorInvalidCredentials": "Invalid email or password",
   "authErrorEmailNotConfirmed": "Email is not confirmed yet. Please check your inbox.",
   "authErrorRateLimit": "Too many attempts. Please wait a moment and try again.",
+  "authErrorNetwork": "Network error. Please check your internet connection.",
   "authErrorGeneric": "Authentication failed. Please try again.",
   "buttonErrorFixFields": "Please fix form errors"
 }

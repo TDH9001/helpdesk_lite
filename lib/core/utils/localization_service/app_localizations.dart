@@ -632,6 +632,12 @@ abstract class AppLocalizations {
   /// **'Too many attempts. Please wait a moment and try again.'**
   String get authErrorRateLimit;
 
+  /// No description provided for @authErrorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Network error. Please check your internet connection.'**
+  String get authErrorNetwork;
+
   /// No description provided for @authErrorGeneric.
   ///
   /// In en, this message translates to:
