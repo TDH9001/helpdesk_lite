@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/utils/local_storage_service/user_hive_box.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ticket_screen.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/data/model/mobile_bottom_nav_static_model.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_bottom_nav_bar_widget.dart';
@@ -19,6 +21,22 @@ class MobileBottomNavMobile extends StatefulWidget {
 
 class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
   int _selectedIndex = 0;
+  UserModel? _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final user = await UserHiveBox.getUserData();
+    if (mounted) {
+      setState(() {
+        _currentUser = user;
+      });
+    }
+  }
 
   late final List<WidgetBuilder> _screens = [
     (context) => const MyTicketsScreen(),
@@ -49,6 +67,9 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
   Widget build(BuildContext context) {
     final widgetColors = Theme.of(context).extension<AppThemeColors>()!.colors;
 
+    final isManager = _currentUser?.isManager == true;
+    final isWorkerOrManager = _currentUser?.isWorker == true || isManager;
+
     return Scaffold(
       backgroundColor: widgetColors.background,
       appBar: MobilePrimaryAppBar(title: _getTitleForIndex(_selectedIndex)),
@@ -60,6 +81,8 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
         overviewLabel: widget.staticData.navOverview,
         settingsLabel: widget.staticData.navSettings,
         selectedIndex: _selectedIndex,
+        showQueue: isWorkerOrManager,
+        showOverview: isManager,
         onTabSelected: (index) => setState(() => _selectedIndex = index),
       ),
     );

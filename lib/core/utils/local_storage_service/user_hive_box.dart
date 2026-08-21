@@ -6,7 +6,7 @@ import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 
 class UserHiveBox extends HiveDatabases {
   static const String _boxName = 'user';
-  static Future<UserModel?> getUserData({required String id}) async {
+  static Future<UserModel?> getUserData() async {
     final target_data = HiveDatabases.userDataBox.get(_boxName);
     if (target_data != null && target_data is Map) {
       return UserModel.fromJson(Map<String, dynamic>.from(target_data));

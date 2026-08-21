@@ -46,12 +46,20 @@ class LoginCubit extends Cubit<LoginStates> {
           );
           emit(LoginSuccess());
           dev.log(response.user!.id);
-          //* adding the data of the user when they login 
+          //* adding the data of the user when they login
           await UserHiveBox.addUserDataToBox(model: userData);
+          final storedUserData = UserHiveBox.getUserData();
           SnackBarService.showInfo(context, l10n.loginSuccess);
 
           if (userData.type == UserType.user) {
             dev.log("user" + userData.id);
+            if (isDesktop) {
+              context.pushReplacement('/desktop-drawer');
+            } else {
+              context.pushReplacement('/bottom-nav');
+            }
+          } else if (userData.type != UserType.user) {
+            //! make this navigate to the handler's screen
             if (isDesktop) {
               context.pushReplacement('/desktop-drawer');
             } else {

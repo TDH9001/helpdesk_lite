@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/core/utils/authentication_service/authentication_service.dart';
+import 'package:helpdesk_lite/core/utils/local_storage_service/user_hive_box.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ticket_screen.dart';
 import 'package:helpdesk_lite/features/desktop_drawer/data/model/desktop_drawer_static_model.dart';
 import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/widgets/desktop_drawer_sidebar_widget.dart';
@@ -21,6 +23,22 @@ class DesktopDrawerDesktop extends StatefulWidget {
 
 class _DesktopDrawerDesktopState extends State<DesktopDrawerDesktop> {
   int _selectedIndex = 0;
+  UserModel? _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final user = await UserHiveBox.getUserData();
+    if (mounted) {
+      setState(() {
+        _currentUser = user;
+      });
+    }
+  }
 
   final List<WidgetBuilder> _screens = [
     (context) => const MyTicketsScreen(),
@@ -32,6 +50,9 @@ class _DesktopDrawerDesktopState extends State<DesktopDrawerDesktop> {
   @override
   Widget build(BuildContext context) {
     final widgetColors = Theme.of(context).extension<AppThemeColors>()!.colors;
+
+    final isManager = _currentUser?.isManager == true;
+    final isWorkerOrManager = _currentUser?.isWorker == true || isManager;
 
     return Scaffold(
       backgroundColor: widgetColors.background,
@@ -48,6 +69,8 @@ class _DesktopDrawerDesktopState extends State<DesktopDrawerDesktop> {
             archiveLabel: widget.staticData.navArchive,
             signOutLabel: widget.staticData.signOut,
             selectedIndex: _selectedIndex,
+            showQueue: isWorkerOrManager,
+            showOverview: isManager,
             onTabSelected: (index) => setState(() => _selectedIndex = index),
             onSignOut: () async {
               await AuthenticationService().logout();
@@ -56,7 +79,7 @@ class _DesktopDrawerDesktopState extends State<DesktopDrawerDesktop> {
               }
             },
           ),
-          Expanded(child: _screens[_selectedIndex](context)),
+          Expanded(child: widget.body ?? _screens[_selectedIndex](context)),
         ],
       ),
     );

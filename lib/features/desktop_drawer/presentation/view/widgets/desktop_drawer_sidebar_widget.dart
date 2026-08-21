@@ -16,6 +16,8 @@ class DesktopDrawerSidebarWidget extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int>? onTabSelected;
   final VoidCallback? onSignOut;
+  final bool showQueue;
+  final bool showOverview;
 
   const DesktopDrawerSidebarWidget({
     super.key,
@@ -31,6 +33,8 @@ class DesktopDrawerSidebarWidget extends StatelessWidget {
     this.selectedIndex = 0,
     this.onTabSelected,
     this.onSignOut,
+    this.showQueue = false,
+    this.showOverview = false,
   });
 
   @override
@@ -95,20 +99,22 @@ class DesktopDrawerSidebarWidget extends StatelessWidget {
               isSelected: selectedIndex == 1,
               onTap: () => onTabSelected?.call(1),
             ),
-            const SizedBox(height: 4.0),
-            _DesktopDrawerNavItem(
-              icon: Icons.alt_route_rounded,
-              label: queueLabel,
-              isSelected: selectedIndex == 2,
-              onTap: () => onTabSelected?.call(2),
-            ),
-            const SizedBox(height: 4.0),
-            _DesktopDrawerNavItem(
-              icon: Icons.dashboard_outlined,
-              label: overviewLabel,
-              isSelected: selectedIndex == 3,
-              onTap: () => onTabSelected?.call(3),
-            ),
+            if (showQueue) const SizedBox(height: 4.0),
+            if (showQueue)
+              _DesktopDrawerNavItem(
+                icon: Icons.alt_route_rounded,
+                label: queueLabel,
+                isSelected: selectedIndex == 2,
+                onTap: () => onTabSelected?.call(2),
+              ),
+            if (showOverview) const SizedBox(height: 4.0),
+            if (showOverview)
+              _DesktopDrawerNavItem(
+                icon: Icons.dashboard_outlined,
+                label: overviewLabel,
+                isSelected: selectedIndex == 3,
+                onTap: () => onTabSelected?.call(3),
+              ),
           ],
         ),
       ),
