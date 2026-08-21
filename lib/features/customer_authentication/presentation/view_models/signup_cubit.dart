@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/authentication_service/authentication_service.dart';
 import 'package:helpdesk_lite/core/utils/localization_service/app_localizations.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 import 'package:helpdesk_lite/core/utils/snackbar_service/snackbar_service.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view_models/signup_states.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -33,11 +34,11 @@ class SignupCubit extends Cubit<SignupStates> {
     if (state is SignupLoading) return;
     if (formKey.currentState?.validate() ?? false) {
       final l10n = AppLocalizations.of(context)!;
-      //! <Where signup authentication submission should be handled>
       try {
         //start by loading in the data
         emit(SignupLoading());
         AuthResponse response = await AuthenticationService().signup(
+          type: UserType.user,
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
@@ -65,8 +66,7 @@ class SignupCubit extends Cubit<SignupStates> {
             messageLower.contains('already exists') ||
             e.code == 'user_already_exists') {
           errorMessage = l10n.authErrorUserAlreadyExists;
-        } else if (messageLower.contains('weak') ||
-            e.code == 'weak_password') {
+        } else if (messageLower.contains('weak') || e.code == 'weak_password') {
           errorMessage = l10n.authErrorWeakPassword;
         } else if (e.statusCode == '429' ||
             messageLower.contains('rate limit') ||

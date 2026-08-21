@@ -1,3 +1,5 @@
+import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 import 'package:helpdesk_lite/core/utils/supabase_service/Supabase_servic.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -10,9 +12,14 @@ class AuthenticationService extends SupabaseDeclaration {
   Future<AuthResponse> signup({
     required String email,
     required String password,
+    required UserType type,
   }) async {
+    //logs in user, then adds user data to database
     final AuthResponse response = await SupabaseDeclaration.instance.auth
         .signUp(email: email, password: password);
+    await DatabaseService().addNewUser(
+      userModel: UserModel(id: response.user!.id, email: email, type: type),
+    );
     return response;
   }
 
