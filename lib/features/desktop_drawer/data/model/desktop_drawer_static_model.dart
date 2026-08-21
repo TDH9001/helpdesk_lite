@@ -8,6 +8,7 @@ class DesktopDrawerStaticModel {
   final String navOverview;
   final String navSupport;
   final String navArchive;
+  final String signOut;
 
   const DesktopDrawerStaticModel({
     required this.appName,
@@ -18,5 +19,6 @@ class DesktopDrawerStaticModel {
     required this.navOverview,
     required this.navSupport,
     required this.navArchive,
+    required this.signOut,
   });
 }

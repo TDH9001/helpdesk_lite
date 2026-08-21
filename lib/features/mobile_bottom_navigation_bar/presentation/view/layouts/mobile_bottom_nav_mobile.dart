@@ -4,6 +4,7 @@ import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ti
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/data/model/mobile_bottom_nav_static_model.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_bottom_nav_bar_widget.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_primary_appbar.dart';
+import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_settings_widget.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
 
 /// Mobile layout scaffold with top app bar, bottom navigation bar, and tab screens.
@@ -19,11 +20,12 @@ class MobileBottomNavMobile extends StatefulWidget {
 class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
   int _selectedIndex = 0;
 
-  final List<WidgetBuilder> _screens = [
+  late final List<WidgetBuilder> _screens = [
     (context) => const MyTicketsScreen(),
     (context) => const CreateTicketScreen(),
     (context) => const SizedBox.shrink(),
     (context) => const SizedBox.shrink(),
+    (context) => MobileSettingsWidget(staticData: widget.staticData),
   ];
 
   String _getTitleForIndex(int index) {
@@ -36,6 +38,8 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
         return widget.staticData.navQueue;
       case 3:
         return widget.staticData.navOverview;
+      case 4:
+        return widget.staticData.navSettings;
       default:
         return widget.staticData.title;
     }
@@ -54,10 +58,10 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
         newTicketLabel: widget.staticData.navNewTicket,
         queueLabel: widget.staticData.navQueue,
         overviewLabel: widget.staticData.navOverview,
+        settingsLabel: widget.staticData.navSettings,
         selectedIndex: _selectedIndex,
         onTabSelected: (index) => setState(() => _selectedIndex = index),
       ),
     );
   }
 }
-

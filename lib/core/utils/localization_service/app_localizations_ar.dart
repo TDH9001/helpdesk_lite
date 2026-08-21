@@ -179,6 +179,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get navArchive => 'الأرشيف';
 
   @override
+  String get navSettings => 'الإعدادات';
+
+  @override
+  String get signOut => 'تسجيل الخروج';
+
+  @override
+  String get settingsTitle => 'الإعدادات';
+
+  @override
+  String get settingsSubtitle => 'إدارة المظهر واللغة وجلسة الحساب.';
+
+  @override
+  String get appearanceSection => 'المظهر';
+
+  @override
+  String get languageSection => 'اللغة';
+
+  @override
+  String get accountSection => 'الحساب';
+
+  @override
   String get tableHeaderId => 'المعرف';
 
   @override

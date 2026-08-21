@@ -1,15 +1,14 @@
-import 'dart:developer' as dev;
-
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 
-/// 4-tab bottom navigation bar widget for mobile layouts.
+/// 5-tab bottom navigation bar widget for mobile layouts.
 class MobileBottomNavBarWidget extends StatelessWidget {
   final String myTicketsLabel;
   final String newTicketLabel;
   final String queueLabel;
   final String overviewLabel;
+  final String settingsLabel;
   final int selectedIndex;
   final ValueChanged<int>? onTabSelected;
 
@@ -19,6 +18,7 @@ class MobileBottomNavBarWidget extends StatelessWidget {
     required this.newTicketLabel,
     required this.queueLabel,
     required this.overviewLabel,
+    required this.settingsLabel,
     this.selectedIndex = 0,
     this.onTabSelected,
   });
@@ -40,8 +40,8 @@ class MobileBottomNavBarWidget extends StatelessWidget {
 
       return InkWell(
         onTap: () {
+          //! <Where mobile bottom nav tab change should be handled>
           onTabSelected?.call(index);
-          dev.log(index.toString());
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -105,6 +105,11 @@ class MobileBottomNavBarWidget extends StatelessWidget {
                 icon: Icons.dashboard_outlined,
                 label: overviewLabel,
                 index: 3,
+              ),
+              buildNavItem(
+                icon: Icons.settings_outlined,
+                label: settingsLabel,
+                index: 4,
               ),
             ],
           ),

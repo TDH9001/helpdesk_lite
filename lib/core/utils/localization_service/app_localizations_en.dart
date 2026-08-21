@@ -180,6 +180,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navArchive => 'Archive';
 
   @override
+  String get navSettings => 'Settings';
+
+  @override
+  String get signOut => 'Sign Out';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsSubtitle => 'Manage appearance, language, and session.';
+
+  @override
+  String get appearanceSection => 'Appearance';
+
+  @override
+  String get languageSection => 'Language';
+
+  @override
+  String get accountSection => 'Account';
+
+  @override
   String get tableHeaderId => 'ID';
 
   @override

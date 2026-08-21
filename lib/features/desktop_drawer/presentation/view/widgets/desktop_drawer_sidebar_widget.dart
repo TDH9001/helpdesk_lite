@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 
-/// Side rail drawer navigation widget for desktop layouts.
+/// Side rail drawer navigation widget for desktop layouts with bottom sign out action.
 class DesktopDrawerSidebarWidget extends StatelessWidget {
   final String appName;
   final String internalOpsLabel;
@@ -12,8 +12,10 @@ class DesktopDrawerSidebarWidget extends StatelessWidget {
   final String overviewLabel;
   final String supportLabel;
   final String archiveLabel;
+  final String signOutLabel;
   final int selectedIndex;
   final ValueChanged<int>? onTabSelected;
+  final VoidCallback? onSignOut;
 
   const DesktopDrawerSidebarWidget({
     super.key,
@@ -25,8 +27,10 @@ class DesktopDrawerSidebarWidget extends StatelessWidget {
     required this.overviewLabel,
     required this.supportLabel,
     required this.archiveLabel,
+    required this.signOutLabel,
     this.selectedIndex = 0,
     this.onTabSelected,
+    this.onSignOut,
   });
 
   @override
@@ -110,27 +114,23 @@ class DesktopDrawerSidebarWidget extends StatelessWidget {
       ),
     );
 
-    // // Footer utilities section
-    // final footerSection = Padding(
-    //   padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
-    //   child: Column(
-    //     children: [
-    //       _DesktopDrawerNavItem(
-    //         icon: Icons.help_outline_rounded,
-    //         label: supportLabel,
-    //         isSelected: selectedIndex == 4,
-    //         onTap: () => onTabSelected?.call(4),
-    //       ),
-    //       const SizedBox(height: 4.0),
-    //       _DesktopDrawerNavItem(
-    //         icon: Icons.inventory_2_outlined,
-    //         label: archiveLabel,
-    //         isSelected: selectedIndex == 5,
-    //         onTap: () => onTabSelected?.call(5),
-    //       ),
-    //     ],
-    //   ),
-    // );
+    // Footer section with Sign Out button
+    final footerSection = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+      child: Column(
+        children: [
+          const Divider(height: 1.0, thickness: 1.0),
+          const SizedBox(height: 12.0),
+          _DesktopDrawerNavItem(
+            icon: Icons.logout_rounded,
+            label: signOutLabel,
+            isSelected: false,
+            isDestructive: true,
+            onTap: () => onSignOut?.call(),
+          ),
+        ],
+      ),
+    );
 
     return Container(
       width: 240.0,
@@ -150,6 +150,7 @@ class DesktopDrawerSidebarWidget extends StatelessWidget {
           const Divider(height: 1.0, thickness: 1.0),
           const SizedBox(height: 12.0),
           mainNavSection,
+          footerSection,
         ],
       ),
     );
@@ -161,12 +162,14 @@ class _DesktopDrawerNavItem extends StatelessWidget {
   final IconData icon;
   final String label;
   final bool isSelected;
+  final bool isDestructive;
   final VoidCallback onTap;
 
   const _DesktopDrawerNavItem({
     required this.icon,
     required this.label,
     required this.isSelected,
+    this.isDestructive = false,
     required this.onTap,
   });
 
@@ -174,14 +177,18 @@ class _DesktopDrawerNavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgetColors = Theme.of(context).extension<AppThemeColors>()!.colors;
 
+    final itemColor = isDestructive
+        ? widgetColors.error
+        : (isSelected ? widgetColors.primary : widgetColors.onSurfaceVariant);
+
     final textStyle = isSelected
         ? AppFonts().desktopDesktopDrawerSidebarItemActiveInter12SemiBold(
             context,
-            color: widgetColors.primary,
+            color: itemColor,
           )
         : AppFonts().desktopDesktopDrawerSidebarItemInter12Medium(
             context,
-            color: widgetColors.onSurfaceVariant,
+            color: itemColor,
           );
 
     return InkWell(
@@ -195,18 +202,14 @@ class _DesktopDrawerNavItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? widgetColors.primary.withValues(alpha: 0.08)
-              : Colors.transparent,
+              : (isDestructive
+                    ? widgetColors.error.withValues(alpha: 0.04)
+                    : Colors.transparent),
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 20.0,
-              color: isSelected
-                  ? widgetColors.primary
-                  : widgetColors.onSurfaceVariant,
-            ),
+            Icon(icon, size: 20.0, color: itemColor),
             const SizedBox(width: 12.0),
             Text(label, style: textStyle),
           ],

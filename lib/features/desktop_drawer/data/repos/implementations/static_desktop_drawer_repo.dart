@@ -18,6 +18,7 @@ class StaticDesktopDrawerRepository implements DesktopDrawerRepo {
       navOverview: l10n.navOverview,
       navSupport: l10n.navSupport,
       navArchive: l10n.navArchive,
+      signOut: l10n.signOut,
     );
   }
 

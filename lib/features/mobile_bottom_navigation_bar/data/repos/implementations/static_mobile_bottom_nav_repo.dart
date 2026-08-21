@@ -15,6 +15,12 @@ class StaticMobileBottomNavRepository implements MobileBottomNavRepo {
       navNewTicket: l10n.navNewTicket,
       navQueue: l10n.navQueue,
       navOverview: l10n.navOverview,
+      navSettings: l10n.navSettings,
+      settingsTitle: l10n.settingsTitle,
+      settingsSubtitle: l10n.settingsSubtitle,
+      appearanceSection: l10n.appearanceSection,
+      languageSection: l10n.languageSection,
+      signOut: l10n.signOut,
     );
   }
 
