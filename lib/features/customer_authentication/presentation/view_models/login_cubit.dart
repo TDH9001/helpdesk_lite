@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/authentication_service/authentication_service.dart';
 import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
+import 'package:helpdesk_lite/core/utils/local_storage_service/user_hive_box.dart';
 import 'package:helpdesk_lite/core/utils/localization_service/app_localizations.dart';
 import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 import 'package:helpdesk_lite/core/utils/snackbar_service/snackbar_service.dart';
@@ -45,6 +46,8 @@ class LoginCubit extends Cubit<LoginStates> {
           );
           emit(LoginSuccess());
           dev.log(response.user!.id);
+          //* adding the data of the user when they login 
+          await UserHiveBox.addUserDataToBox(model: userData);
           SnackBarService.showInfo(context, l10n.loginSuccess);
 
           if (userData.type == UserType.user) {

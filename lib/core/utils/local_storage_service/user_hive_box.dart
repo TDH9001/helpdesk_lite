@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:helpdesk_lite/core/utils/local_storage_service/hive_databases.dart';
 
 import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
@@ -14,6 +16,7 @@ class UserHiveBox extends HiveDatabases {
 
   static Future<void> addUserDataToBox({required UserModel model}) async {
     await HiveDatabases.userDataBox.put(_boxName, model.toJson());
+    dev.log('user daata added to box ' + model.toJson().toString());
   }
 
   static Future<void> removeUserDataFromBox() async {
