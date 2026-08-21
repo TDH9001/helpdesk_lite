@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/authentication_service/authentication_service.dart';
+import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
 import 'package:helpdesk_lite/core/utils/localization_service/app_localizations.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 import 'package:helpdesk_lite/core/utils/snackbar_service/snackbar_service.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view_models/login_states.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -38,13 +40,19 @@ class LoginCubit extends Cubit<LoginStates> {
         );
         if (response.session != null && response.user != null) {
           //meaning a session exists and a user exists
+          final userData = await DatabaseService().getUserData(
+            userId: response.user!.id,
+          );
           emit(LoginSuccess());
           dev.log(response.user!.id);
           SnackBarService.showInfo(context, l10n.loginSuccess);
-          if (isDesktop) {
-            context.pushReplacement('/desktop-drawer');
-          } else {
-            context.pushReplacement('/bottom-nav');
+
+          if (userData.type == UserType.user) {
+            if (isDesktop) {
+              context.pushReplacement('/desktop-drawer');
+            } else {
+              context.pushReplacement('/bottom-nav');
+            }
           }
         } else {
           emit(LoginFailure());
