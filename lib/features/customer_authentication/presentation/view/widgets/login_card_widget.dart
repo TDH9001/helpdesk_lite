@@ -3,37 +3,35 @@ import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
-// import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_footer_widget.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_header_widget.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_submit_button_widget.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_tabs_widget.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_text_field_widget.dart';
 
-class AuthCardWidget extends StatefulWidget {
+/// Self-contained card widget for customer login form inputs and validations.
+class LoginCardWidget extends StatefulWidget {
   final CustomerAuthStaticModel staticData;
   final bool isDesktop;
+  final VoidCallback onSwitchToSignup;
 
-  const AuthCardWidget({
+  const LoginCardWidget({
     super.key,
     required this.staticData,
+    required this.onSwitchToSignup,
     this.isDesktop = false,
   });
 
   @override
-  State<AuthCardWidget> createState() => _AuthCardWidgetState();
+  State<LoginCardWidget> createState() => _LoginCardWidgetState();
 }
 
-class _AuthCardWidgetState extends State<AuthCardWidget> {
+class _LoginCardWidgetState extends State<LoginCardWidget> {
   final _formKey = GlobalKey<FormState>();
 
-  bool _isLogin = true;
   bool _isPasswordObscured = true;
-  bool _isConfirmPasswordObscured = true;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
 
   static final RegExp _emailRegExp = RegExp(
     r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
@@ -43,13 +41,12 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 
   void _handleSubmit() {
     if (_formKey.currentState?.validate() ?? false) {
-      //! <Where authentication submission should be handled>
+      //! <Where login authentication submission should be handled>
       if (widget.isDesktop) {
         context.pushReplacement('/desktop-drawer');
       } else {
@@ -60,7 +57,8 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final widgetColors = Theme.of(context).extension<AppThemeColors>()!.colors;
+    final widgetColors =
+        Theme.of(context).extension<AppThemeColors>()!.colors;
 
     final forgotStyle = widget.isDesktop
         ? AppFonts().desktopCustomerAuthenticationLabelInter12SemiBold(
@@ -94,20 +92,19 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Top login / sign-up navigation tabs
             AuthTabsWidget(
-              isLogin: _isLogin,
+              isLogin: true,
               loginText: widget.staticData.loginTab,
               signupText: widget.staticData.signupTab,
               isDesktop: widget.isDesktop,
               onTabChanged: (isLoginTab) {
-                if (_isLogin != isLoginTab) {
-                  setState(() {
-                    _isLogin = isLoginTab;
-                    _formKey.currentState?.reset();
-                  });
+                if (!isLoginTab) {
+                  widget.onSwitchToSignup();
                 }
               },
             ),
+            // Login Form Body
             Padding(
               padding: const EdgeInsets.all(24),
               child: Form(
@@ -116,15 +113,12 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     AuthHeaderWidget(
-                      title: _isLogin
-                          ? widget.staticData.loginTitle
-                          : widget.staticData.signupTitle,
-                      subtitle: _isLogin
-                          ? widget.staticData.loginSubtitle
-                          : widget.staticData.signupSubtitle,
+                      title: widget.staticData.loginTitle,
+                      subtitle: widget.staticData.loginSubtitle,
                       isDesktop: widget.isDesktop,
                     ),
                     const SizedBox(height: 24),
+                    // Email address input
                     AuthTextFieldWidget(
                       label: widget.staticData.emailLabel,
                       placeholder: widget.staticData.emailPlaceholder,
@@ -145,6 +139,7 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
                       },
                     ),
                     const SizedBox(height: 16),
+                    // Password input with visibility toggle & forgot password
                     AuthTextFieldWidget(
                       label: widget.staticData.passwordLabel,
                       placeholder: widget.staticData.passwordPlaceholder,
@@ -157,22 +152,18 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
                           _isPasswordObscured = !_isPasswordObscured;
                         });
                       },
-                      trailingAction: _isLogin
-                          ? InkWell(
-                              onTap: () {
-                                //! <Where forgot password navigation should be handled>
-                              },
-                              child: Text(
-                                widget.staticData.forgotPasswordText,
-                                style: forgotStyle.copyWith(
-                                  decoration: TextDecoration.underline,
-                                ),
-                              ),
-                            )
-                          : null,
-                      textInputAction: _isLogin
-                          ? TextInputAction.done
-                          : TextInputAction.next,
+                      trailingAction: InkWell(
+                        onTap: () {
+                          //! <Where forgot password navigation should be handled>
+                        },
+                        child: Text(
+                          widget.staticData.forgotPasswordText,
+                          style: forgotStyle.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                      textInputAction: TextInputAction.done,
                       isDesktop: widget.isDesktop,
                       validator: (value) {
                         final password = value ?? '';
@@ -185,49 +176,13 @@ class _AuthCardWidgetState extends State<AuthCardWidget> {
                         return null;
                       },
                     ),
-                    if (!_isLogin) const SizedBox(height: 16),
-                    if (!_isLogin)
-                      AuthTextFieldWidget(
-                        label: widget.staticData.confirmPasswordLabel,
-                        placeholder: widget.staticData.passwordPlaceholder,
-                        prefixIcon: Icons.lock_reset_outlined,
-                        controller: _confirmPasswordController,
-                        isPassword: true,
-                        isObscured: _isConfirmPasswordObscured,
-                        onToggleObscured: () {
-                          setState(() {
-                            _isConfirmPasswordObscured =
-                                !_isConfirmPasswordObscured;
-                          });
-                        },
-                        textInputAction: TextInputAction.done,
-                        isDesktop: widget.isDesktop,
-                        validator: (value) {
-                          final confirmPassword = value ?? '';
-                          if (confirmPassword.isEmpty) {
-                            return widget.staticData.confirmPasswordRequired;
-                          }
-                          if (confirmPassword != _passwordController.text) {
-                            return widget.staticData.passwordsDoNotMatch;
-                          }
-                          return null;
-                        },
-                      ),
                     const SizedBox(height: 24),
+                    // Submit button
                     AuthSubmitButtonWidget(
-                      text: _isLogin
-                          ? widget.staticData.loginButtonText
-                          : widget.staticData.signupButtonText,
+                      text: widget.staticData.loginButtonText,
                       isDesktop: widget.isDesktop,
                       onPressed: _handleSubmit,
                     ),
-                    // AuthFooterWidget is excluded from the current design for now
-                    // const SizedBox(height: 20),
-                    // AuthFooterWidget(
-                    //   havingTroubleText: widget.staticData.havingTroubleText,
-                    //   contactSupportText: widget.staticData.contactSupportText,
-                    //   isDesktop: widget.isDesktop,
-                    // ),
                   ],
                 ),
               ),

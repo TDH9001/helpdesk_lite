@@ -4,17 +4,27 @@ import 'package:helpdesk_lite/core/widgets/language_toggle_widget.dart';
 import 'package:helpdesk_lite/core/widgets/theme_toggle_widget.dart';
 import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_app_bar_widget.dart';
-import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/login_card_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/signup_card_widget.dart';
 
 /// Desktop layout for customer authentication, providing a centered
 /// authentication card with ambient background glow and top branding bar.
-class CustomerAuthenticationDesktop extends StatelessWidget {
+class CustomerAuthenticationDesktop extends StatefulWidget {
   final CustomerAuthStaticModel staticData;
 
   const CustomerAuthenticationDesktop({
     super.key,
     required this.staticData,
   });
+
+  @override
+  State<CustomerAuthenticationDesktop> createState() =>
+      _CustomerAuthenticationDesktopState();
+}
+
+class _CustomerAuthenticationDesktopState
+    extends State<CustomerAuthenticationDesktop> {
+  bool _isLogin = true;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +37,13 @@ class CustomerAuthenticationDesktop extends StatelessWidget {
         children: [
           // Top navigation bar
           AuthAppBarWidget(
-            title: staticData.appTitle,
+            title: widget.staticData.appTitle,
             isDesktop: true,
           ),
           Expanded(
             child: Stack(
               children: [
-                // Subtle decorative background ambient glow / grid
+                // Subtle decorative background ambient glow
                 Positioned.fill(
                   child: Center(
                     child: Container(
@@ -62,10 +72,25 @@ class CustomerAuthenticationDesktop extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        AuthCardWidget(
-                          staticData: staticData,
-                          isDesktop: true,
-                        ),
+                        _isLogin
+                            ? LoginCardWidget(
+                                staticData: widget.staticData,
+                                isDesktop: true,
+                                onSwitchToSignup: () {
+                                  setState(() {
+                                    _isLogin = false;
+                                  });
+                                },
+                              )
+                            : SignupCardWidget(
+                                staticData: widget.staticData,
+                                isDesktop: true,
+                                onSwitchToLogin: () {
+                                  setState(() {
+                                    _isLogin = true;
+                                  });
+                                },
+                              ),
                         const SizedBox(height: 20),
                         // Quick preference toggles (Language & Theme)
                         const Row(

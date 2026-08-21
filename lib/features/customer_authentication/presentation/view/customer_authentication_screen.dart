@@ -4,6 +4,7 @@ import 'package:helpdesk_lite/features/customer_authentication/data/repos/custom
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/layouts/customer_authentication_desktop.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/layouts/customer_authentication_mobile.dart';
 
+/// Screen managing customer authentication across mobile and desktop breakpoints.
 class CustomerAuthenticationScreen extends StatelessWidget {
   const CustomerAuthenticationScreen({super.key});
 

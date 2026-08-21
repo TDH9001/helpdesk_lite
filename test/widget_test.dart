@@ -6,7 +6,8 @@ import 'package:helpdesk_lite/core/utils/localization_service/localization_cubit
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/layouts/customer_authentication_desktop.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/layouts/customer_authentication_mobile.dart';
-import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_card_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/login_card_widget.dart';
+import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/signup_card_widget.dart';
 import 'package:helpdesk_lite/main.dart';
 
 void main() {
@@ -31,7 +32,7 @@ void main() {
     expect(find.byType(CustomerAuthenticationScreen), findsOneWidget);
     expect(find.byType(CustomerAuthenticationMobile), findsOneWidget);
     expect(find.byType(CustomerAuthenticationDesktop), findsNothing);
-    expect(find.byType(AuthCardWidget), findsOneWidget);
+    expect(find.byType(LoginCardWidget), findsOneWidget);
   });
 
   testWidgets('Customer authentication renders desktop layout on large screen', (
@@ -67,6 +68,8 @@ void main() {
     await tester.tap(find.text('Sign Up').first);
     await tester.pumpAndSettle();
 
+    expect(find.byType(SignupCardWidget), findsOneWidget);
+    expect(find.byType(LoginCardWidget), findsNothing);
     expect(find.text('Create Account'), findsOneWidget);
     expect(find.text('Confirm Password'), findsOneWidget);
     expect(find.text('Forgot?'), findsNothing);
