@@ -48,6 +48,7 @@ class LoginCubit extends Cubit<LoginStates> {
           SnackBarService.showInfo(context, l10n.loginSuccess);
 
           if (userData.type == UserType.user) {
+            dev.log("user" + userData.id);
             if (isDesktop) {
               context.pushReplacement('/desktop-drawer');
             } else {

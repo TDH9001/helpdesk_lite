@@ -95,8 +95,7 @@ class UserModel {
   Map<String, dynamic> toJson() => {
     'id': id,
     'email': email,
-    'type': type.name,
-    'type_code': type.toInt(),
+    'type': type.toInt(),
     if (fullName != null) 'full_name': fullName,
     'ticket_ids': ticketIds,
     if (lastSignedIn != null) 'last_signed_in': lastSignedIn!.toIso8601String(),
@@ -107,11 +106,13 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
     id: json['id'] as String? ?? '',
     email: json['email'] as String? ?? '',
-    type: json['type'] != null
-        ? UserType.fromString(json['type'] as String?)
-        : (json['type_code'] != null
-              ? UserType.fromInt(json['type_code'] as int?)
-              : UserType.user),
+    type: json['type'] is int
+        ? UserType.fromInt(json['type'] as int)
+        : (json['type'] is String
+            ? UserType.fromString(json['type'] as String)
+            : (json['type_code'] != null
+                ? UserType.fromInt(json['type_code'] as int?)
+                : UserType.user)),
     fullName: json['full_name'] as String? ?? json['fullName'] as String?,
     ticketIds:
         (json['ticket_ids'] as List<dynamic>?)
