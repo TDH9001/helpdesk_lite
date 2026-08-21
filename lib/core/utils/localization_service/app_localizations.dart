@@ -709,6 +709,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please fix form errors'**
   String get buttonErrorFixFields;
+
+  /// No description provided for @overviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get overviewTitle;
+
+  /// No description provided for @overviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Monitor team productivity and system load.'**
+  String get overviewSubtitle;
+
+  /// No description provided for @addNewAgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Agent'**
+  String get addNewAgent;
+
+  /// No description provided for @totalOpenTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Open Tickets'**
+  String get totalOpenTickets;
+
+  /// No description provided for @totalOpenTicketsBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'+12%'**
+  String get totalOpenTicketsBadge;
+
+  /// No description provided for @createdThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Created This Week'**
+  String get createdThisWeek;
+
+  /// No description provided for @createdThisWeekCount.
+  ///
+  /// In en, this message translates to:
+  /// **'384'**
+  String get createdThisWeekCount;
+
+  /// No description provided for @vsLastWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'vs 412 last week'**
+  String get vsLastWeek;
+
+  /// No description provided for @ticketsPerAgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Tickets per Agent'**
+  String get ticketsPerAgent;
+
+  /// No description provided for @agentTicketsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} tickets'**
+  String agentTicketsCount(int count);
+
+  /// No description provided for @noAgentsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No agents found'**
+  String get noAgentsFound;
 }
 
 class _AppLocalizationsDelegate

@@ -18,7 +18,12 @@ class AuthenticationService extends SupabaseDeclaration {
     final AuthResponse response = await SupabaseDeclaration.instance.auth
         .signUp(email: email, password: password);
     await DatabaseService().addNewUser(
-      userModel: UserModel(id: response.user!.id, email: email, type: type),
+      userModel: UserModel(
+        id: response.user!.id,
+        email: email,
+        type: type,
+        handledTickets: type == UserType.user ? null : 0,
+      ),
     );
     return response;
   }

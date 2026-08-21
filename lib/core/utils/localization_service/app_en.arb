@@ -101,5 +101,23 @@
   "authErrorUserAlreadyExists": "An account with this email already exists.",
   "authErrorWeakPassword": "Password is too weak. Please use at least 6 characters.",
   "authErrorGeneric": "Authentication failed. Please try again.",
-  "buttonErrorFixFields": "Please fix form errors"
+  "buttonErrorFixFields": "Please fix form errors",
+  "overviewTitle": "Overview",
+  "overviewSubtitle": "Monitor team productivity and system load.",
+  "addNewAgent": "Add New Agent",
+  "totalOpenTickets": "Total Open Tickets",
+  "totalOpenTicketsBadge": "+12%",
+  "createdThisWeek": "Created This Week",
+  "createdThisWeekCount": "384",
+  "vsLastWeek": "vs 412 last week",
+  "ticketsPerAgent": "Tickets per Agent",
+  "agentTicketsCount": "{count} tickets",
+  "@agentTicketsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noAgentsFound": "No agents found"
 }

@@ -326,4 +326,39 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get buttonErrorFixFields => 'يرجى تصحيح أخطاء النموذج';
+
+  @override
+  String get overviewTitle => 'نظرة عامة';
+
+  @override
+  String get overviewSubtitle => 'متابعة إنتاجية الفريق وحجم تذاكر النظام.';
+
+  @override
+  String get addNewAgent => 'إضافة وكيل جديد';
+
+  @override
+  String get totalOpenTickets => 'إجمالي التذاكر المفتوحة';
+
+  @override
+  String get totalOpenTicketsBadge => '+12%';
+
+  @override
+  String get createdThisWeek => 'تم إنشاؤها هذا الأسبوع';
+
+  @override
+  String get createdThisWeekCount => '384';
+
+  @override
+  String get vsLastWeek => 'مقارنة بـ 412 الأسبوع الماضي';
+
+  @override
+  String get ticketsPerAgent => 'التذاكر لكل وكيل';
+
+  @override
+  String agentTicketsCount(int count) {
+    return '$count تذكرة';
+  }
+
+  @override
+  String get noAgentsFound => 'لم يتم العثور على وكلاء';
 }

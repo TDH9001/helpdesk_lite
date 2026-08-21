@@ -50,6 +50,7 @@ class UserModel {
   final UserType type;
   final String? fullName;
   final List<String> ticketIds;
+  final int? handledTickets;
   final DateTime? lastSignedIn;
   final DateTime? createdAt;
 
@@ -59,6 +60,7 @@ class UserModel {
     required this.type,
     this.fullName,
     this.ticketIds = const [],
+    this.handledTickets,
     this.lastSignedIn,
     this.createdAt,
   });
@@ -79,6 +81,7 @@ class UserModel {
     UserType? type,
     String? fullName,
     List<String>? ticketIds,
+    int? handledTickets,
     DateTime? lastSignedIn,
     DateTime? createdAt,
   }) => UserModel(
@@ -87,6 +90,7 @@ class UserModel {
     type: type ?? this.type,
     fullName: fullName ?? this.fullName,
     ticketIds: ticketIds ?? this.ticketIds,
+    handledTickets: handledTickets ?? this.handledTickets,
     lastSignedIn: lastSignedIn ?? this.lastSignedIn,
     createdAt: createdAt ?? this.createdAt,
   );
@@ -98,6 +102,7 @@ class UserModel {
     'type': type.toInt(),
     if (fullName != null) 'full_name': fullName,
     'ticket_ids': ticketIds,
+    if (handledTickets != null) 'handled_tickets': handledTickets,
     if (lastSignedIn != null) 'last_signed_in': lastSignedIn!.toIso8601String(),
     if (createdAt != null) 'created_at': createdAt!.toIso8601String(),
   };
@@ -122,6 +127,8 @@ class UserModel {
             ?.map((e) => e.toString())
             .toList() ??
         const [],
+    handledTickets: json['handled_tickets'] as int? ??
+        json['handledTickets'] as int?,
     lastSignedIn: json['last_signed_in'] != null
         ? DateTime.tryParse(json['last_signed_in'] as String)
         : (json['lastSignedIn'] != null

@@ -4,6 +4,7 @@ import 'package:helpdesk_lite/features/customer_authentication/presentation/view
 import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/desktop_drawer_screen.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/mobile_bottom_navigation_bar_screen.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
+import 'package:helpdesk_lite/features/overview/presentation/view/overview_screen.dart';
 import 'package:helpdesk_lite/features/splash/presentation/view/splash_screen.dart';
 
 class RoutingService {
@@ -34,6 +35,10 @@ class RoutingService {
       GoRoute(
         path: '/desktop-drawer',
         builder: (context, state) => const DesktopDrawerScreen(),
+      ),
+      GoRoute(
+        path: '/overview',
+        builder: (context, state) => const OverviewScreen(),
       ),
     ],
   );

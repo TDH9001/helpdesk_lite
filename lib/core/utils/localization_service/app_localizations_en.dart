@@ -326,4 +326,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get buttonErrorFixFields => 'Please fix form errors';
+
+  @override
+  String get overviewTitle => 'Overview';
+
+  @override
+  String get overviewSubtitle => 'Monitor team productivity and system load.';
+
+  @override
+  String get addNewAgent => 'Add New Agent';
+
+  @override
+  String get totalOpenTickets => 'Total Open Tickets';
+
+  @override
+  String get totalOpenTicketsBadge => '+12%';
+
+  @override
+  String get createdThisWeek => 'Created This Week';
+
+  @override
+  String get createdThisWeekCount => '384';
+
+  @override
+  String get vsLastWeek => 'vs 412 last week';
+
+  @override
+  String get ticketsPerAgent => 'Tickets per Agent';
+
+  @override
+  String agentTicketsCount(int count) {
+    return '$count tickets';
+  }
+
+  @override
+  String get noAgentsFound => 'No agents found';
 }

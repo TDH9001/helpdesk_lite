@@ -8,6 +8,7 @@ import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_primary_appbar.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/widgets/mobile_settings_widget.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
+import 'package:helpdesk_lite/features/overview/presentation/view/overview_screen.dart';
 
 /// Mobile layout scaffold with top app bar, bottom navigation bar, and tab screens.
 class MobileBottomNavMobile extends StatefulWidget {
@@ -42,7 +43,7 @@ class _MobileBottomNavMobileState extends State<MobileBottomNavMobile> {
     (context) => const MyTicketsScreen(),
     (context) => const CreateTicketScreen(),
     (context) => const SizedBox.shrink(),
-    (context) => const SizedBox.shrink(),
+    (context) => const OverviewScreen(),
     (context) => MobileSettingsWidget(staticData: widget.staticData),
   ];
 

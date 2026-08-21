@@ -974,5 +974,284 @@ class AppFonts {
         fontWeight: FontWeight.w500,
         color: color,
       );
+
+  // --- Mobile Overview Styles ---
+
+  TextStyle mobileOverviewHeaderTitleInter20SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileOverviewAddAgentButtonInter12SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileOverviewStatCardLabelInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileOverviewStatCardValueInter28SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 28,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileOverviewStatCardBadgeInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileOverviewWeeklyCardTitleInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileOverviewWeeklyCardValueInter22SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileOverviewWeeklyCardSubtitleInter12Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileOverviewAgentsCardHeaderInter18SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileOverviewAgentItemNameInter14Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle mobileOverviewAgentItemCountInter11SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileOverviewAgentItemInitialsInter12Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  // --- Desktop Overview Styles ---
+
+  TextStyle desktopOverviewHeaderTitleInter24Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle desktopOverviewHeaderSubtitleInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopOverviewAddAgentButtonInter13SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle desktopOverviewStatCardLabelInter13Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle desktopOverviewStatCardValueInter32Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 32,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle desktopOverviewStatCardBadgeInter12SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle desktopOverviewWeeklyCardTitleInter13Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle desktopOverviewWeeklyCardValueInter26Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 26,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle desktopOverviewWeeklyCardSubtitleInter13Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopOverviewAgentsCardHeaderInter20Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle desktopOverviewAgentItemNameInter15Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle desktopOverviewAgentItemCountInter12SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle desktopOverviewAgentItemInitialsInter13Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
 }
 

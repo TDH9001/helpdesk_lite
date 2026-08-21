@@ -101,5 +101,23 @@
   "authErrorUserAlreadyExists": "يوجد حساب مسجل بهذا البريد الإلكتروني بالفعل.",
   "authErrorWeakPassword": "كلمة المرور ضعيفة جداً. يرجى استخدام 6 أحرف على الأقل.",
   "authErrorGeneric": "فشلت عملية تسجيل الدخول. يرجى المحاولة مرة أخرى.",
-  "buttonErrorFixFields": "يرجى تصحيح أخطاء النموذج"
+  "buttonErrorFixFields": "يرجى تصحيح أخطاء النموذج",
+  "overviewTitle": "نظرة عامة",
+  "overviewSubtitle": "متابعة إنتاجية الفريق وحجم تذاكر النظام.",
+  "addNewAgent": "إضافة وكيل جديد",
+  "totalOpenTickets": "إجمالي التذاكر المفتوحة",
+  "totalOpenTicketsBadge": "+12%",
+  "createdThisWeek": "تم إنشاؤها هذا الأسبوع",
+  "createdThisWeekCount": "384",
+  "vsLastWeek": "مقارنة بـ 412 الأسبوع الماضي",
+  "ticketsPerAgent": "التذاكر لكل وكيل",
+  "agentTicketsCount": "{count} تذكرة",
+  "@agentTicketsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noAgentsFound": "لم يتم العثور على وكلاء"
 }
