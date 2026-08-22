@@ -300,6 +300,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ticketSubmittedSuccess => 'تم إرسال التذكرة بنجاح';
 
   @override
+  String uploadingAttachments(int percentage) {
+    return 'جارٍ رفع المرفقات... $percentage%';
+  }
+
+  @override
+  String get submittingTicket => 'جارٍ تسجيل التذكرة...';
+
+  @override
+  String get ticketSubmittingError =>
+      'فشل إرسال التذكرة. يرجى المحاولة مرة أخرى.';
+
+  @override
   String get loginSuccess => 'تم تسجيل الدخول بنجاح';
 
   @override

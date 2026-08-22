@@ -38,6 +38,9 @@ class CreateTicketStaticModel {
   final String totalSizeExceededError;
   final String ticketSubmittedSuccess;
   final String buttonErrorFixFields;
+  final String Function(int percentage) uploadingAttachments;
+  final String submittingTicket;
+  final String ticketSubmittingError;
 
   const CreateTicketStaticModel({
     required this.appBarTitle,
@@ -65,5 +68,8 @@ class CreateTicketStaticModel {
     required this.totalSizeExceededError,
     required this.ticketSubmittedSuccess,
     required this.buttonErrorFixFields,
+    required this.uploadingAttachments,
+    required this.submittingTicket,
+    required this.ticketSubmittingError,
   });
 }

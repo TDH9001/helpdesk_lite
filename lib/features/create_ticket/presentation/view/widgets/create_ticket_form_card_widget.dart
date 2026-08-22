@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/utils/cloud_storage_service/cloud_storage_service.dart';
+import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
+import 'package:helpdesk_lite/core/utils/local_storage_service/user_hive_box.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/ticket_attachment_item.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
 import 'package:helpdesk_lite/core/utils/snackbar_service/snackbar_service.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/model/create_ticket_static_model.dart';
-import 'package:helpdesk_lite/features/create_ticket/data/model/ticket_attachment_item.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/model/ticket_category.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/repos/create_ticket_repo.dart';
 import 'package:helpdesk_lite/features/create_ticket/data/repos/implementations/static_create_ticket_repo.dart';
@@ -11,6 +15,7 @@ import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/c
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/create_ticket_description_field_widget.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/create_ticket_subject_field_widget.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/create_ticket_submit_button_widget.dart';
+import 'package:helpdesk_lite/features/create_ticket/presentation/view/widgets/create_ticket_upload_progress_widget.dart';
 
 /// Form card container handling inputs, file attachments, and submission.
 class CreateTicketFormCardWidget extends StatefulWidget {
@@ -35,9 +40,14 @@ class _CreateTicketFormCardWidgetState
   final _formKey = GlobalKey<FormState>();
   final _subjectController = TextEditingController();
   final _descriptionController = TextEditingController();
+  final CloudStorageService _storageService = CloudStorageService();
+  final DatabaseService _databaseService = DatabaseService();
 
   TicketCategory? _selectedCategory;
   final List<TicketAttachmentItem> _attachments = [];
+  bool _isSubmitting = false;
+  double _uploadProgress = 0.0;
+  String _statusMessage = '';
 
   static const int _maxSingleFileSize = 5 * 1024 * 1024; // 5 MB
   static const int _maxTotalFileSize = 25 * 1024 * 1024; // 25 MB
@@ -54,6 +64,8 @@ class _CreateTicketFormCardWidgetState
   }
 
   Future<void> _pickFiles() async {
+    if (_isSubmitting) return;
+
     final newItems = await widget.repository.pickAttachments();
     if (newItems.isEmpty) {
       return;
@@ -89,12 +101,15 @@ class _CreateTicketFormCardWidgetState
   }
 
   void _removeAttachment(int index) {
+    if (_isSubmitting) return;
     setState(() {
       _attachments.removeAt(index);
     });
   }
 
-  void _submitForm() {
+  Future<void> _submitForm() async {
+    if (_isSubmitting) return;
+
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid || _selectedCategory == null) {
@@ -105,17 +120,109 @@ class _CreateTicketFormCardWidgetState
       return;
     }
 
-    //! <Where ticket submission state should be handled >
-
-    SnackBarService.showInfo(context, widget.staticData.ticketSubmittedSuccess);
-
-    _formKey.currentState?.reset();
-    _subjectController.clear();
-    _descriptionController.clear();
     setState(() {
-      _selectedCategory = null;
-      _attachments.clear();
+      _isSubmitting = true;
+      _uploadProgress = 0.0;
+      _statusMessage = _attachments.isNotEmpty
+          ? widget.staticData.uploadingAttachments(0)
+          : widget.staticData.submittingTicket;
     });
+
+    try {
+      final List<String> uploadedUrls = [];
+
+      // Sequentially upload file attachments and report progress percentage
+      if (_attachments.isNotEmpty) {
+        for (int i = 0; i < _attachments.length; i++) {
+          final item = _attachments[i];
+          final url = await _storageService.uploadPlatformFile(
+            platformFile: item.file,
+          );
+          uploadedUrls.add(url);
+
+          if (mounted) {
+            final progressVal = ((i + 1) / _attachments.length) * 0.85;
+            final percentageInt = (progressVal * 100).toInt();
+            setState(() {
+              _uploadProgress = progressVal;
+              _statusMessage =
+                  widget.staticData.uploadingAttachments(percentageInt);
+            });
+          }
+        }
+      }
+
+      if (mounted) {
+        setState(() {
+          _uploadProgress = 0.90;
+          _statusMessage = widget.staticData.submittingTicket;
+        });
+      }
+
+      // Retrieve current authenticated user profile
+      final currentUser = await UserHiveBox.getUserData();
+
+      final categoryLabel = _selectedCategory != null
+          ? widget.staticData.categories
+              .firstWhere(
+                (c) => c.category == _selectedCategory,
+                orElse: () => widget.staticData.categories.first,
+              )
+              .label
+          : 'General';
+
+      // Create new ticket model with high priority per system rules
+      final ticket = TicketModel(
+        id: '',
+        code: '',
+        title: _subjectController.text.trim(),
+        description: _descriptionController.text.trim(),
+        category: categoryLabel,
+        status: TicketStatus.open,
+        priority: TicketPriority.high,
+        creatorId: currentUser?.id,
+        creatorName: currentUser?.fullName ??
+            currentUser?.email.split('@').first,
+        creatorEmail: currentUser?.email,
+        attachments: uploadedUrls,
+      );
+
+      await _databaseService.createTicket(ticket: ticket);
+
+      if (mounted) {
+        setState(() {
+          _uploadProgress = 1.0;
+        });
+
+        SnackBarService.showInfo(
+          context,
+          widget.staticData.ticketSubmittedSuccess,
+        );
+
+        _formKey.currentState?.reset();
+        _subjectController.clear();
+        _descriptionController.clear();
+        setState(() {
+          _selectedCategory = null;
+          _attachments.clear();
+          _isSubmitting = false;
+          _uploadProgress = 0.0;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isSubmitting = false;
+          _uploadProgress = 0.0;
+        });
+        SnackBarService.showError(
+          context,
+          e.toString().isNotEmpty
+              ? e.toString()
+              : widget.staticData.ticketSubmittingError,
+        );
+      }
+    }
   }
 
   @override
@@ -141,7 +248,11 @@ class _CreateTicketFormCardWidgetState
             placeholder: widget.staticData.selectCategoryPlaceholder,
             requiredErrorText: widget.staticData.categoryRequiredError,
             categories: widget.staticData.categories,
-            onCategoryChanged: (val) => setState(() => _selectedCategory = val),
+            onCategoryChanged: (val) {
+              if (!_isSubmitting) {
+                setState(() => _selectedCategory = val);
+              }
+            },
           ),
           const SizedBox(height: 16.0),
           CreateTicketDescriptionFieldWidget(
@@ -160,10 +271,15 @@ class _CreateTicketFormCardWidgetState
             onRemoveAttachment: _removeAttachment,
           ),
           const SizedBox(height: 20.0),
-          CreateTicketSubmitButtonWidget(
-            label: widget.staticData.submitButtonLabel,
-            onSubmit: _submitForm,
-          ),
+          _isSubmitting
+              ? CreateTicketUploadProgressWidget(
+                  progress: _uploadProgress,
+                  statusMessage: _statusMessage,
+                )
+              : CreateTicketSubmitButtonWidget(
+                  label: widget.staticData.submitButtonLabel,
+                  onSubmit: _submitForm,
+                ),
         ],
       ),
     );

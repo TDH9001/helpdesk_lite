@@ -668,6 +668,24 @@ abstract class AppLocalizations {
   /// **'Ticket submitted successfully'**
   String get ticketSubmittedSuccess;
 
+  /// No description provided for @uploadingAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading attachments... {percentage}%'**
+  String uploadingAttachments(int percentage);
+
+  /// No description provided for @submittingTicket.
+  ///
+  /// In en, this message translates to:
+  /// **'Submitting ticket...'**
+  String get submittingTicket;
+
+  /// No description provided for @ticketSubmittingError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to submit ticket. Please try again.'**
+  String get ticketSubmittingError;
+
   /// No description provided for @loginSuccess.
   ///
   /// In en, this message translates to:

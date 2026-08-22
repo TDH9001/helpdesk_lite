@@ -916,6 +916,17 @@ class AppFonts {
         color: color,
       );
 
+  TextStyle mobileCreateTicketUploadProgressInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
   // --- Desktop Create Ticket Styles ---
 
   TextStyle desktopCreateTicketHeaderTitleInter30SemiBold(

@@ -95,6 +95,16 @@
   "fileSizeExceededError": "A selected file exceeds the 5MB limit",
   "totalSizeExceededError": "Total attachments size exceeds the 25MB limit",
   "ticketSubmittedSuccess": "Ticket submitted successfully",
+  "uploadingAttachments": "Uploading attachments... {percentage}%",
+  "@uploadingAttachments": {
+    "placeholders": {
+      "percentage": {
+        "type": "int"
+      }
+    }
+  },
+  "submittingTicket": "Submitting ticket...",
+  "ticketSubmittingError": "Failed to submit ticket. Please try again.",
   "loginSuccess": "Logged in successfully",
   "signupSuccess": "Account created successfully!",
   "authErrorInvalidCredentials": "Invalid email or password",

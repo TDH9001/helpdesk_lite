@@ -57,6 +57,9 @@ class StaticCreateTicketRepository implements CreateTicketRepo {
       totalSizeExceededError: l10n.totalSizeExceededError,
       ticketSubmittedSuccess: l10n.ticketSubmittedSuccess,
       buttonErrorFixFields: l10n.buttonErrorFixFields,
+      uploadingAttachments: (p) => l10n.uploadingAttachments(p),
+      submittingTicket: l10n.submittingTicket,
+      ticketSubmittingError: l10n.ticketSubmittingError,
     );
   }
 

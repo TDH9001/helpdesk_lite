@@ -302,6 +302,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ticketSubmittedSuccess => 'Ticket submitted successfully';
 
   @override
+  String uploadingAttachments(int percentage) {
+    return 'Uploading attachments... $percentage%';
+  }
+
+  @override
+  String get submittingTicket => 'Submitting ticket...';
+
+  @override
+  String get ticketSubmittingError =>
+      'Failed to submit ticket. Please try again.';
+
+  @override
   String get loginSuccess => 'Logged in successfully';
 
   @override

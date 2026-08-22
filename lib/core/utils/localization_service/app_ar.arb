@@ -95,6 +95,16 @@
   "fileSizeExceededError": "أحد الملفات المحددة يتجاوز الحد الأقصى 5 ميجابايت",
   "totalSizeExceededError": "إجمالي حجم المرفقات يتجاوز الحد الأقصى 25 ميجابايت",
   "ticketSubmittedSuccess": "تم إرسال التذكرة بنجاح",
+  "uploadingAttachments": "جارٍ رفع المرفقات... {percentage}%",
+  "@uploadingAttachments": {
+    "placeholders": {
+      "percentage": {
+        "type": "int"
+      }
+    }
+  },
+  "submittingTicket": "جارٍ تسجيل التذكرة...",
+  "ticketSubmittingError": "فشل إرسال التذكرة. يرجى المحاولة مرة أخرى.",
   "loginSuccess": "تم تسجيل الدخول بنجاح",
   "signupSuccess": "تم إنشاء الحساب بنجاح!",
   "authErrorInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
