@@ -45,6 +45,52 @@ class DatabaseService extends SupabaseDeclaration {
     return (result as List).map((e) => UserModel.fromJson(e)).toList();
   }
 
+  /// Retrieves live overview metrics (total open tickets and tickets created this week).
+  Future<({int totalOpen, int createdThisWeek})> getOverviewMetrics() async {
+    try {
+      final result = await SupabaseDeclaration.instance
+          .from(DatabaseEndpoints.ticketTable)
+          .select('status, created_at')
+          .eq('is_deleted', false);
+
+      final tickets = (result as List);
+      final now = DateTime.now();
+      final sevenDaysAgo = now.subtract(const Duration(days: 7));
+
+      var openCount = 0;
+      var createdThisWeekCount = 0;
+
+      for (final raw in tickets) {
+        final statusInt = raw['status'] as int?;
+        if (statusInt != null) {
+          final status = TicketStatus.fromInt(statusInt);
+          if (status == TicketStatus.open ||
+              status == TicketStatus.pending ||
+              status == TicketStatus.waiting ||
+              status == TicketStatus.delayed) {
+            openCount++;
+          }
+        }
+
+        final createdAtStr = raw['created_at'] as String?;
+        if (createdAtStr != null) {
+          final createdAt = DateTime.tryParse(createdAtStr);
+          if (createdAt != null && createdAt.isAfter(sevenDaysAgo)) {
+            createdThisWeekCount++;
+          }
+        }
+      }
+
+      return (
+        totalOpen: openCount,
+        createdThisWeek: createdThisWeekCount,
+      );
+    } catch (e) {
+      dev.log('Error fetching overview metrics: $e');
+      return (totalOpen: 0, createdThisWeek: 0);
+    }
+  }
+
   /// Adds a ticket identifier to a user's ticket_ids array.
   Future<void> addTicketToUser({
     required String userId,

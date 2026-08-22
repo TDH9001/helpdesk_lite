@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/features/overview/data/model/overview_agent_item_model.dart';
+import 'package:helpdesk_lite/features/overview/data/model/overview_metrics_model.dart';
 import 'package:helpdesk_lite/features/overview/data/model/overview_static_model.dart';
 import 'package:helpdesk_lite/features/overview/data/repos/implementations/static_overview_repo.dart';
 import 'package:helpdesk_lite/features/overview/presentation/view/widgets/overview_agents_card_widget.dart';
@@ -25,20 +26,27 @@ class OverviewDesktop extends StatefulWidget {
 
 class _OverviewDesktopState extends State<OverviewDesktop> {
   List<OverviewAgentItemModel>? _agents;
+  OverviewMetricsModel? _metrics;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _fetchAgents();
+    _fetchDashboardData();
   }
 
-  Future<void> _fetchAgents() async {
-    final liveAgents =
-        await const StaticOverviewRepository().getAgentsOverview();
+  //! <Where state management/cubit should handle fetching overview dashboard data>
+  Future<void> _fetchDashboardData() async {
+    const repo = StaticOverviewRepository();
+    final results = await Future.wait([
+      repo.getAgentsOverview(),
+      repo.getOverviewMetrics(),
+    ]);
+
     if (mounted) {
       setState(() {
-        _agents = liveAgents;
+        _agents = results[0] as List<OverviewAgentItemModel>;
+        _metrics = results[1] as OverviewMetricsModel;
         _isLoading = false;
       });
     }
@@ -47,6 +55,14 @@ class _OverviewDesktopState extends State<OverviewDesktop> {
   @override
   Widget build(BuildContext context) {
     final widgetColors = Theme.of(context).extension<AppThemeColors>()!.colors;
+
+    final openTicketsValue = _metrics != null
+        ? '${_metrics!.totalOpen}'
+        : widget.staticData.totalOpenTicketsCount;
+
+    final createdThisWeekValue = _metrics != null
+        ? '${_metrics!.createdThisWeek}'
+        : widget.staticData.createdThisWeekCount;
 
     return Scaffold(
       backgroundColor: widgetColors.background,
@@ -74,7 +90,7 @@ class _OverviewDesktopState extends State<OverviewDesktop> {
                   child: OverviewStatCardWidget(
                     icon: Icons.confirmation_number_outlined,
                     label: widget.staticData.totalOpenTickets,
-                    value: widget.staticData.totalOpenTicketsCount,
+                    value: openTicketsValue,
                     badgeText: widget.staticData.totalOpenTicketsBadge,
                     isDesktop: true,
                   ),
@@ -83,7 +99,7 @@ class _OverviewDesktopState extends State<OverviewDesktop> {
                 Expanded(
                   child: OverviewWeeklyCardWidget(
                     title: widget.staticData.createdThisWeek,
-                    count: widget.staticData.createdThisWeekCount,
+                    count: createdThisWeekValue,
                     vsSubtitle: widget.staticData.vsLastWeek,
                     isDesktop: true,
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
 import 'package:helpdesk_lite/core/utils/localization_service/app_localizations.dart';
 import 'package:helpdesk_lite/features/overview/data/model/overview_agent_item_model.dart';
+import 'package:helpdesk_lite/features/overview/data/model/overview_metrics_model.dart';
 import 'package:helpdesk_lite/features/overview/data/model/overview_static_model.dart';
 import 'package:helpdesk_lite/features/overview/data/repos/overview_repo.dart';
 
@@ -17,10 +18,10 @@ class StaticOverviewRepository implements OverviewRepo {
       subtitle: l10n.overviewSubtitle,
       addNewAgent: l10n.addNewAgent,
       totalOpenTickets: l10n.totalOpenTickets,
-      totalOpenTicketsCount: '142',
+      totalOpenTicketsCount: '0',
       totalOpenTicketsBadge: l10n.totalOpenTicketsBadge,
       createdThisWeek: l10n.createdThisWeek,
-      createdThisWeekCount: l10n.createdThisWeekCount,
+      createdThisWeekCount: '0',
       vsLastWeek: l10n.vsLastWeek,
       ticketsPerAgent: l10n.ticketsPerAgent,
       noAgentsFound: l10n.noAgentsFound,
@@ -31,6 +32,22 @@ class StaticOverviewRepository implements OverviewRepo {
   @override
   Future<OverviewStaticModel> getOverviewData(BuildContext context) async {
     return getStaticData(context);
+  }
+
+  @override
+  Future<OverviewMetricsModel> getOverviewMetrics() async {
+    try {
+      final metrics = await DatabaseService().getOverviewMetrics();
+      return OverviewMetricsModel(
+        totalOpen: metrics.totalOpen,
+        createdThisWeek: metrics.createdThisWeek,
+      );
+    } catch (_) {
+      return const OverviewMetricsModel(
+        totalOpen: 0,
+        createdThisWeek: 0,
+      );
+    }
   }
 
   @override
