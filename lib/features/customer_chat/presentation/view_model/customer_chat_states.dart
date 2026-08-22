@@ -1,27 +1,12 @@
-import 'package:flutter/foundation.dart';
+/// State representations for Customer Chat screen.
+abstract class CustomerChatStates {}
 
-/// Pure empty state representations for Customer Chat screen.
-@immutable
-abstract class CustomerChatStates {
-  const CustomerChatStates();
-}
+class CustomerChatInitial extends CustomerChatStates {}
 
-class CustomerChatInitial extends CustomerChatStates {
-  const CustomerChatInitial();
-}
+class CustomerChatLoading extends CustomerChatStates {}
 
-class CustomerChatLoading extends CustomerChatStates {
-  const CustomerChatLoading();
-}
+class CustomerChatLoaded extends CustomerChatStates {}
 
-class CustomerChatLoaded extends CustomerChatStates {
-  const CustomerChatLoaded();
-}
+class CustomerChatSending extends CustomerChatStates {}
 
-class CustomerChatSending extends CustomerChatStates {
-  const CustomerChatSending();
-}
-
-class CustomerChatFailure extends CustomerChatStates {
-  const CustomerChatFailure();
-}
+class CustomerChatFailure extends CustomerChatStates {}

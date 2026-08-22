@@ -35,7 +35,7 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
     CloudStorageService? storageService,
   })  : _databaseService = databaseService ?? DatabaseService(),
         _storageService = storageService ?? CloudStorageService(),
-        super(const CustomerChatInitial());
+        super(CustomerChatInitial());
 
   /// Initializes messages and realtime listeners.
   void init() {
@@ -64,7 +64,7 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
             // Avoid duplicates
             if (!messages.any((m) => m.id == newMsg.id)) {
               messages.add(newMsg);
-              emit(const CustomerChatLoaded());
+              emit(CustomerChatLoaded());
               _scrollToBottom();
             }
           }
@@ -79,7 +79,7 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
   Future<void> fetchMessages() async {
     isLoading = true;
     errorMessage = null;
-    emit(const CustomerChatLoading());
+    emit(CustomerChatLoading());
 
     try {
       // Reload ticket data to have latest attachments list
@@ -95,12 +95,12 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
 
       messages = fetched;
       isLoading = false;
-      emit(const CustomerChatLoaded());
+      emit(CustomerChatLoaded());
       _scrollToBottom();
     } catch (e) {
       isLoading = false;
       errorMessage = e.toString();
-      emit(const CustomerChatFailure());
+      emit(CustomerChatFailure());
     }
   }
 
@@ -116,19 +116,19 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
         final size = await file.length();
         if (size > maxSingleFileSize) {
           errorMessage = 'A selected file exceeds the 5MB limit.';
-          emit(const CustomerChatFailure());
+          emit(CustomerChatFailure());
           return false;
         }
         pendingAttachments.add(
           TicketAttachmentItem(file: file, name: file.name, size: size),
         );
       }
-      emit(const CustomerChatLoaded());
+      emit(CustomerChatLoaded());
       return true;
     } catch (e) {
       dev.log('Error picking attachments in CustomerChatCubit: $e');
       errorMessage = e.toString();
-      emit(const CustomerChatFailure());
+      emit(CustomerChatFailure());
       return false;
     }
   }
@@ -137,14 +137,14 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
   void removePendingAttachment(int index) {
     if (index >= 0 && index < pendingAttachments.length) {
       pendingAttachments.removeAt(index);
-      emit(const CustomerChatLoaded());
+      emit(CustomerChatLoaded());
     }
   }
 
   /// Clears all pending attachments.
   void clearPendingAttachments() {
     pendingAttachments.clear();
-    emit(const CustomerChatLoaded());
+    emit(CustomerChatLoaded());
   }
 
   /// Sends a customer message and uploads any pending attachments.
@@ -155,7 +155,7 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
 
     isSending = true;
     errorMessage = null;
-    emit(const CustomerChatSending());
+    emit(CustomerChatSending());
 
     try {
       final currentUser = await UserHiveBox.getUserData();
@@ -226,12 +226,12 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
       }
 
       isSending = false;
-      emit(const CustomerChatLoaded());
+      emit(CustomerChatLoaded());
       _scrollToBottom();
     } catch (e) {
       isSending = false;
       errorMessage = e.toString();
-      emit(const CustomerChatFailure());
+      emit(CustomerChatFailure());
     }
   }
 
