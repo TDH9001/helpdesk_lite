@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/widgets/image_preview_dialog_widget.dart';
 
 /// Modal dialog for inspecting attachments linked to the ticket in Worker Chat.
 class WorkerChatAttachmentsDialogWidget extends StatelessWidget {
@@ -103,54 +104,63 @@ class WorkerChatAttachmentsDialogWidget extends StatelessWidget {
                         lower.endsWith('.webp') ||
                         lower.endsWith('.gif');
 
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: widgetColors.surfaceContainerLow,
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: widgetColors.outlineVariant
-                              .withValues(alpha: 0.5),
+                    return InkWell(
+                      borderRadius: BorderRadius.circular(8.0),
+                      onTap: isImage
+                          ? () => ImagePreviewDialogWidget.show(
+                                context,
+                                imageUrl: url,
+                              )
+                          : null,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: widgetColors.surfaceContainerLow,
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: widgetColors.outlineVariant
+                                .withValues(alpha: 0.5),
+                          ),
                         ),
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      child: isImage
-                          ? Image.network(
-                              url,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Center(
-                                child: Icon(
-                                  Icons.broken_image_rounded,
-                                  color: widgetColors.onSurfaceVariant,
+                        clipBehavior: Clip.antiAlias,
+                        child: isImage
+                            ? Image.network(
+                                url,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Center(
+                                  child: Icon(
+                                    Icons.broken_image_rounded,
+                                    color: widgetColors.onSurfaceVariant,
+                                  ),
                                 ),
-                              ),
-                            )
-                          : Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      Icons.insert_drive_file_rounded,
-                                      size: 32.0,
-                                      color: widgetColors.primary,
-                                    ),
-                                    const SizedBox(height: 4.0),
-                                    Text(
-                                      url.split('/').last.split('?').first,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: AppFonts()
-                                          .mobileCustomerChatBubbleTimeInter10Regular(
-                                        context,
-                                        color: widgetColors.onSurface,
+                              )
+                            : Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.insert_drive_file_rounded,
+                                        size: 32.0,
+                                        color: widgetColors.primary,
                                       ),
-                                    ),
-                                  ],
+                                      const SizedBox(height: 4.0),
+                                      Text(
+                                        url.split('/').last.split('?').first,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppFonts()
+                                            .mobileCustomerChatBubbleTimeInter10Regular(
+                                          context,
+                                          color: widgetColors.onSurface,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                      ),
                     );
                   },
                 ),

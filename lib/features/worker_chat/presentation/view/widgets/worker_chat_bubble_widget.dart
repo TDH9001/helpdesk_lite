@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/core/utils/shared_models/chat_message_model.dart';
+import 'package:helpdesk_lite/core/widgets/image_preview_dialog_widget.dart';
 
 /// Single chat message bubble with distinct styles for customer, worker public, and internal notes.
 class WorkerChatBubbleWidget extends StatelessWidget {
@@ -242,16 +243,22 @@ class WorkerChatBubbleWidget extends StatelessWidget {
                           ),
                           clipBehavior: Clip.antiAlias,
                           child: isImg
-                              ? Image.network(
-                                  url,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Icon(
-                                      Icons.broken_image_rounded,
-                                      color: textColor,
-                                      size: 24.0,
+                              ? InkWell(
+                                  onTap: () => ImagePreviewDialogWidget.show(
+                                    context,
+                                    imageUrl: url,
+                                  ),
+                                  child: Image.network(
+                                    url,
+                                    fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) => Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Icon(
+                                        Icons.broken_image_rounded,
+                                        color: textColor,
+                                        size: 24.0,
+                                      ),
                                     ),
                                   ),
                                 )

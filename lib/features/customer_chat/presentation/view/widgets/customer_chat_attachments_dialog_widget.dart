@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/widgets/image_preview_dialog_widget.dart';
 
 /// Modal dialog overlay displaying all attachments and images belonging to a ticket.
 class CustomerChatAttachmentsDialogWidget extends StatelessWidget {
@@ -123,48 +124,12 @@ class CustomerChatAttachmentsDialogWidget extends StatelessWidget {
 
             return InkWell(
               borderRadius: BorderRadius.circular(12.0),
-              onTap: () {
-                // Show full preview in new dialog
-                showDialog(
-                  context: context,
-                  builder: (ctx) => Dialog(
-                    backgroundColor: Colors.transparent,
-                    insetPadding: const EdgeInsets.all(16.0),
-                    child: Stack(
-                      alignment: Alignment.topRight,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12.0),
-                          child: CachedNetworkImage(
-                            imageUrl: url,
-                            fit: BoxFit.contain,
-                            placeholder: (context, url) => const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              color: Colors.black54,
-                              padding: const EdgeInsets.all(24.0),
-                              child: const Icon(
-                                Icons.broken_image_rounded,
-                                color: Colors.white,
-                                size: 48.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.close_rounded,
-                            color: Colors.white,
-                            size: 28.0,
-                          ),
-                          onPressed: () => Navigator.of(ctx).pop(),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+              onTap: isImg
+                  ? () => ImagePreviewDialogWidget.show(
+                        context,
+                        imageUrl: url,
+                      )
+                  : null,
               child: Container(
                 decoration: BoxDecoration(
                   color: widgetColors.surfaceContainerLow,
