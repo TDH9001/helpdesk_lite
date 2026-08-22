@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 
+/// Reusable themed text field widget with support for prefix icons, password obscuring, and validation for customer authentication screens.
 class AuthTextFieldWidget extends StatelessWidget {
   final String label;
   final String placeholder;
@@ -13,6 +14,7 @@ class AuthTextFieldWidget extends StatelessWidget {
   final Widget? trailingAction;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
+  final TextCapitalization textCapitalization;
   final FormFieldValidator<String>? validator;
   final bool isDesktop;
 
@@ -28,6 +30,7 @@ class AuthTextFieldWidget extends StatelessWidget {
     this.trailingAction,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.next,
+    this.textCapitalization = TextCapitalization.none,
     this.validator,
     this.isDesktop = false,
   });
@@ -86,6 +89,7 @@ class AuthTextFieldWidget extends StatelessWidget {
           obscureText: isPassword && isObscured,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
+          textCapitalization: textCapitalization,
           validator: validator,
           style: inputStyle,
           decoration: InputDecoration(

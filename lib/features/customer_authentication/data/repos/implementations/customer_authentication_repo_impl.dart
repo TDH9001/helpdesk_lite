@@ -28,12 +28,14 @@ class CustomerAuthenticationRepoImpl implements CustomerAuthenticationRepo {
   @override
   Future<CustomerAuthModel> signUp({
     required String email,
+    String? username,
     required String password,
     required String confirmPassword,
   }) async {
     //! <Where signup API integration should be handled>
     return CustomerAuthModel(
       email: email,
+      username: username,
       token: 'mock_token',
       userId: 'mock_user_id',
     );

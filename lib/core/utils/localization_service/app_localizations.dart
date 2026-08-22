@@ -146,6 +146,24 @@ abstract class AppLocalizations {
   /// **'Sign up to submit and track support requests.'**
   String get signupSubtitle;
 
+  /// No description provided for @usernameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get usernameLabel;
+
+  /// No description provided for @usernamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. johndoe'**
+  String get usernamePlaceholder;
+
+  /// No description provided for @usernameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your username'**
+  String get usernameRequired;
+
   /// No description provided for @emailAddress.
   ///
   /// In en, this message translates to:
@@ -413,7 +431,7 @@ abstract class AppLocalizations {
   /// No description provided for @navQueue.
   ///
   /// In en, this message translates to:
-  /// **'Queue'**
+  /// **'Queue Items'**
   String get navQueue;
 
   /// No description provided for @navOverview.
@@ -847,6 +865,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Manager created successfully'**
   String get managerCreatedSuccess;
+
+  /// No description provided for @ticketQueueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket Queue'**
+  String get ticketQueueTitle;
+
+  /// No description provided for @ticketQueueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage incoming and unassigned support tickets.'**
+  String get ticketQueueSubtitle;
+
+  /// No description provided for @searchQueuePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Search tickets, customers, or IDs...'**
+  String get searchQueuePlaceholder;
+
+  /// No description provided for @filterUnassigned.
+  ///
+  /// In en, this message translates to:
+  /// **'Unassigned'**
+  String get filterUnassigned;
+
+  /// No description provided for @filterHighPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'High Priority'**
+  String get filterHighPriority;
+
+  /// No description provided for @assignToMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign to me'**
+  String get assignToMe;
+
+  /// No description provided for @assignedToYouSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket assigned to you successfully'**
+  String get assignedToYouSuccess;
+
+  /// No description provided for @noTicketsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No tickets found'**
+  String get noTicketsFound;
+
+  /// No description provided for @noQueueTicketsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No tickets match the selected filters'**
+  String get noQueueTicketsFound;
+
+  /// No description provided for @statusNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get statusNew;
+
+  /// No description provided for @statusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get statusInProgress;
+
+  /// No description provided for @tableHeaderCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer'**
+  String get tableHeaderCustomer;
+
+  /// No description provided for @tableHeaderAssignee.
+  ///
+  /// In en, this message translates to:
+  /// **'Assignee'**
+  String get tableHeaderAssignee;
+
+  /// No description provided for @tableHeaderActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get tableHeaderActions;
+
+  /// No description provided for @unassignedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unassigned'**
+  String get unassignedLabel;
 }
 
 class _AppLocalizationsDelegate

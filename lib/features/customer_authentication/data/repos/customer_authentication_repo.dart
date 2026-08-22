@@ -15,6 +15,7 @@ abstract class CustomerAuthenticationRepo {
 
   Future<CustomerAuthModel> signUp({
     required String email,
+    String? username,
     required String password,
     required String confirmPassword,
   });
@@ -40,6 +41,8 @@ class StaticCustomerAuthenticationRepository
       loginSubtitle: l10n.loginSubtitle,
       signupTitle: l10n.createAccount,
       signupSubtitle: l10n.signupSubtitle,
+      usernameLabel: l10n.usernameLabel,
+      usernamePlaceholder: l10n.usernamePlaceholder,
       emailLabel: l10n.emailAddress,
       emailPlaceholder: l10n.emailPlaceholder,
       passwordLabel: l10n.password,
@@ -50,6 +53,7 @@ class StaticCustomerAuthenticationRepository
       signupButtonText: l10n.signUp,
       havingTroubleText: l10n.havingTrouble,
       contactSupportText: l10n.contactSupport,
+      usernameRequired: l10n.usernameRequired,
       emailRequired: l10n.emailRequired,
       emailInvalid: l10n.emailInvalid,
       passwordRequired: l10n.passwordRequired,
@@ -82,12 +86,14 @@ class StaticCustomerAuthenticationRepository
   @override
   Future<CustomerAuthModel> signUp({
     required String email,
+    String? username,
     required String password,
     required String confirmPassword,
   }) async {
     //! <Where signup API integration should be handled>
     return CustomerAuthModel(
       email: email,
+      username: username,
       token: 'mock_token',
       userId: 'mock_user_id',
     );

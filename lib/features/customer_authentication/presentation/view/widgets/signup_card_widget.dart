@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/features/customer_authentication/data/model/customer_auth_static_model.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/widgets/auth_header_widget.dart';
@@ -89,6 +88,26 @@ class _SignupCardWidgetState extends State<SignupCardWidget> {
                         isDesktop: widget.isDesktop,
                       ),
                       const SizedBox(height: 24),
+                      // Username input
+                      AuthTextFieldWidget(
+                        label: widget.staticData.usernameLabel,
+                        placeholder: widget.staticData.usernamePlaceholder,
+                        prefixIcon: Icons.person_outline,
+                        controller:
+                            context.read<SignupCubit>().usernameController,
+                        keyboardType: TextInputType.text,
+                        textCapitalization: TextCapitalization.words,
+                        textInputAction: TextInputAction.next,
+                        isDesktop: widget.isDesktop,
+                        validator: (value) {
+                          final username = value?.trim() ?? '';
+                          if (username.isEmpty) {
+                            return widget.staticData.usernameRequired;
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
                       // Email address input
                       AuthTextFieldWidget(
                         label: widget.staticData.emailLabel,

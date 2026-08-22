@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
+import 'package:helpdesk_lite/core/utils/local_storage_service/user_hive_box.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
+import 'package:helpdesk_lite/core/utils/snackbar_service/snackbar_service.dart';
 import 'package:helpdesk_lite/features/my_tickets/data/model/my_tickets_static_model.dart';
-import 'package:helpdesk_lite/features/my_tickets/data/model/ticket_model.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_end_indicator.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_filter_chips.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_header_desktop.dart';
@@ -23,8 +27,47 @@ class MyTicketsDesktop extends StatefulWidget {
 }
 
 class _MyTicketsDesktopState extends State<MyTicketsDesktop> {
+  final DatabaseService _databaseService = DatabaseService();
   TicketStatus? _selectedStatus;
   String _searchQuery = '';
+  List<TicketModel>? _tickets;
+  bool _isLoading = true;
+  UserModel? _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserAndFetch();
+  }
+
+  Future<void> _loadUserAndFetch() async {
+    _currentUser = await UserHiveBox.getUserData();
+    await _fetchTickets();
+  }
+
+  Future<void> _fetchTickets() async {
+    if (_currentUser == null) {
+      setState(() => _isLoading = false);
+      return;
+    }
+    setState(() => _isLoading = true);
+    try {
+      final fetched = await _databaseService.getMyTickets(
+        userId: _currentUser!.id,
+      );
+      if (mounted) {
+        setState(() {
+          _tickets = fetched;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+        SnackBarService.showError(context, e.toString());
+      }
+    }
+  }
 
   String _getStatusLabel(TicketStatus status) {
     switch (status) {
@@ -57,12 +100,16 @@ class _MyTicketsDesktopState extends State<MyTicketsDesktop> {
   }
 
   List<TicketModel> get _filteredTickets {
-    return widget.staticData.tickets.where((ticket) {
+    if (_tickets == null) return const [];
+    return _tickets!.where((ticket) {
       final matchesStatus =
           _selectedStatus == null || ticket.status == _selectedStatus;
-      final matchesSearch = _searchQuery.isEmpty ||
-          ticket.code.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          ticket.title.toLowerCase().contains(_searchQuery.toLowerCase());
+      final lower = _searchQuery.toLowerCase().trim();
+      final matchesSearch = lower.isEmpty ||
+          ticket.code.toLowerCase().contains(lower) ||
+          ticket.title.toLowerCase().contains(lower) ||
+          (ticket.category ?? '').toLowerCase().contains(lower) ||
+          (ticket.description ?? '').toLowerCase().contains(lower);
       return matchesStatus && matchesSearch;
     }).toList();
   }
@@ -220,17 +267,36 @@ class _MyTicketsDesktopState extends State<MyTicketsDesktop> {
               ],
             ),
           ),
-          // Table ticket rows
-          ..._filteredTickets.map((ticket) {
-            return TicketTableRowDesktop(
-              ticket: ticket,
-              statusLabel: _getStatusLabel(ticket.status),
-              priorityLabel: _getPriorityLabel(ticket.priority),
-              onTap: () {
-                //! <Where ticket detail navigation should be handled>
-              },
-            );
-          }),
+          // Table ticket rows or loading / empty state
+          if (_isLoading)
+            const Padding(
+              padding: EdgeInsets.all(40.0),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else if (_filteredTickets.isEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40.0),
+              child: Center(
+                child: Text(
+                  'No tickets found',
+                  style: AppFonts().desktopMyTicketsSubtitleInter13Regular(
+                    context,
+                    color: widgetColors.onSurfaceVariant,
+                  ),
+                ),
+              ),
+            )
+          else
+            ..._filteredTickets.map((ticket) {
+              return TicketTableRowDesktop(
+                ticket: ticket,
+                statusLabel: _getStatusLabel(ticket.status),
+                priorityLabel: _getPriorityLabel(ticket.priority),
+                onTap: () {
+                  //! <Where ticket detail navigation should be handled>
+                },
+              );
+            }),
         ],
       ),
     );
@@ -243,28 +309,33 @@ class _MyTicketsDesktopState extends State<MyTicketsDesktop> {
           const MyTicketsHeaderDesktop(),
           // Scrollable Page Content
           Expanded(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32.0,
-                vertical: 24.0,
-              ),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1200.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      titleSection,
-                      const SizedBox(height: 16.0),
-                      searchAndFilterRow,
-                      const SizedBox(height: 24.0),
-                      dataTableSection,
-                      MyTicketsEndIndicator(
-                        label: widget.staticData.endOfActiveTickets,
-                        isDesktop: true,
-                      ),
-                    ],
+            child: RefreshIndicator(
+              onRefresh: _fetchTickets,
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32.0,
+                  vertical: 24.0,
+                ),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 1200.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        titleSection,
+                        const SizedBox(height: 16.0),
+                        searchAndFilterRow,
+                        const SizedBox(height: 24.0),
+                        dataTableSection,
+                        MyTicketsEndIndicator(
+                          label: widget.staticData.endOfActiveTickets,
+                          isDesktop: true,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

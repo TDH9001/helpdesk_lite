@@ -33,6 +33,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signupSubtitle => 'أنشئ حساباً لتقديم ومتابعة طلبات الدعم.';
 
   @override
+  String get usernameLabel => 'اسم المستخدم';
+
+  @override
+  String get usernamePlaceholder => 'مثال: اسم_المستخدم';
+
+  @override
+  String get usernameRequired => 'يرجى إدخال اسم المستخدم';
+
+  @override
   String get emailAddress => 'البريد الإلكتروني';
 
   @override
@@ -397,4 +406,50 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get managerCreatedSuccess => 'تم إنشاء حساب المدير بنجاح';
+
+  @override
+  String get ticketQueueTitle => 'قائمة انتظار التذاكر';
+
+  @override
+  String get ticketQueueSubtitle => 'إدارة تذاكر الدعم الواردة وغير المعينة.';
+
+  @override
+  String get searchQueuePlaceholder =>
+      'ابحث في التذاكر أو العملاء أو المعرفات...';
+
+  @override
+  String get filterUnassigned => 'غير معينة';
+
+  @override
+  String get filterHighPriority => 'أولوية عالية';
+
+  @override
+  String get assignToMe => 'تعيين لي';
+
+  @override
+  String get assignedToYouSuccess => 'تم تعيين التذكرة لك بنجاح';
+
+  @override
+  String get noTicketsFound => 'لم يتم العثور على تذاكر';
+
+  @override
+  String get noQueueTicketsFound => 'لا توجد تذاكر تطابق الفلاتر المحددة';
+
+  @override
+  String get statusNew => 'جديدة';
+
+  @override
+  String get statusInProgress => 'قيد التنفيذ';
+
+  @override
+  String get tableHeaderCustomer => 'العميل';
+
+  @override
+  String get tableHeaderAssignee => 'المسؤول';
+
+  @override
+  String get tableHeaderActions => 'الإجراءات';
+
+  @override
+  String get unassignedLabel => 'غير معين';
 }

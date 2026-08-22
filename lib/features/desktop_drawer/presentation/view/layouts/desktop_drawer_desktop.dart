@@ -9,6 +9,7 @@ import 'package:helpdesk_lite/features/desktop_drawer/data/model/desktop_drawer_
 import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/widgets/desktop_drawer_sidebar_widget.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
 import 'package:helpdesk_lite/features/overview/presentation/view/overview_screen.dart';
+import 'package:helpdesk_lite/features/ticket_queue/presentation/view/ticket_queue_screen.dart';
 
 /// Desktop layout scaffold integrating the desktop drawer sidebar
 /// and an empty body area ready for custom content resolution.
@@ -44,7 +45,7 @@ class _DesktopDrawerDesktopState extends State<DesktopDrawerDesktop> {
   final List<WidgetBuilder> _screens = [
     (context) => const MyTicketsScreen(),
     (context) => const CreateTicketScreen(),
-    (context) => const SizedBox.shrink(),
+    (context) => const TicketQueueScreen(),
     (context) => const OverviewScreen(),
   ];
 

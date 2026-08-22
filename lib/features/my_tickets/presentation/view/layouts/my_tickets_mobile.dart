@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
+import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
+import 'package:helpdesk_lite/core/utils/local_storage_service/user_hive_box.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
+import 'package:helpdesk_lite/core/utils/snackbar_service/snackbar_service.dart';
 import 'package:helpdesk_lite/features/my_tickets/data/model/my_tickets_static_model.dart';
-import 'package:helpdesk_lite/features/my_tickets/data/model/ticket_model.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_end_indicator.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_filter_chips.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/widgets/my_tickets_search_bar.dart';
@@ -19,9 +23,47 @@ class MyTicketsMobile extends StatefulWidget {
 }
 
 class _MyTicketsMobileState extends State<MyTicketsMobile> {
+  final DatabaseService _databaseService = DatabaseService();
   TicketStatus? _selectedStatus;
-  //* begns as null, meaning all of them are to be seen
   String _searchQuery = '';
+  List<TicketModel>? _tickets;
+  bool _isLoading = true;
+  UserModel? _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserAndFetch();
+  }
+
+  Future<void> _loadUserAndFetch() async {
+    _currentUser = await UserHiveBox.getUserData();
+    await _fetchTickets();
+  }
+
+  Future<void> _fetchTickets() async {
+    if (_currentUser == null) {
+      setState(() => _isLoading = false);
+      return;
+    }
+    setState(() => _isLoading = true);
+    try {
+      final fetched = await _databaseService.getMyTickets(
+        userId: _currentUser!.id,
+      );
+      if (mounted) {
+        setState(() {
+          _tickets = fetched;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+        SnackBarService.showError(context, e.toString());
+      }
+    }
+  }
 
   String _getStatusLabel(TicketStatus status) {
     switch (status) {
@@ -53,24 +95,17 @@ class _MyTicketsMobileState extends State<MyTicketsMobile> {
     }
   }
 
-  //* this adds to the list the items that have " matchesStatus = _selectedStatus"
-  //* which is how the void callback works
-  //* as the void callback simply goes to the parent's state and changes it
-  //?   onTap: () => onStatusSelected?.call(TicketStatus.waiting),
-  //? this means, got to parent, make
-  //? onStatusSelected: (status) => setState(() => _selectedStatus = status),
-  //? meaning that it simply says, only show this status
-
-  //! AKA, the callback is a way to call a func in the parent class
-  //! making it setState to a diffeent value
   List<TicketModel> get _filteredTickets {
-    return widget.staticData.tickets.where((ticket) {
+    if (_tickets == null) return const [];
+    return _tickets!.where((ticket) {
       final matchesStatus =
           _selectedStatus == null || ticket.status == _selectedStatus;
-      final matchesSearch =
-          _searchQuery.isEmpty ||
-          ticket.code.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          ticket.title.toLowerCase().contains(_searchQuery.toLowerCase());
+      final lower = _searchQuery.toLowerCase().trim();
+      final matchesSearch = lower.isEmpty ||
+          ticket.code.toLowerCase().contains(lower) ||
+          ticket.title.toLowerCase().contains(lower) ||
+          (ticket.category ?? '').toLowerCase().contains(lower) ||
+          (ticket.description ?? '').toLowerCase().contains(lower);
       return matchesStatus && matchesSearch;
     }).toList();
   }
@@ -122,42 +157,81 @@ class _MyTicketsMobileState extends State<MyTicketsMobile> {
       ],
     );
 
-    // Ticket cards list section
-    final ticketsList = Column(
-      children: _filteredTickets.map((ticket) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: TicketCardMobile(
-            ticket: ticket,
-            statusLabel: _getStatusLabel(ticket.status),
-            priorityLabel: _getPriorityLabel(ticket.priority),
-            onTap: () {
-              //! <Where ticket detail navigation should be handled>
-            },
+    // Ticket cards list or loading / empty state
+    Widget contentBody;
+    if (_isLoading) {
+      contentBody = const Padding(
+        padding: EdgeInsets.all(40.0),
+        child: Center(child: CircularProgressIndicator()),
+      );
+    } else if (_filteredTickets.isEmpty) {
+      contentBody = Padding(
+        padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 24.0),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.inbox_outlined,
+                size: 48.0,
+                color: widgetColors.outlineVariant,
+              ),
+              const SizedBox(height: 12.0),
+              Text(
+                'No tickets found',
+                style: AppFonts().mobileMyTicketsSubtitleInter14Regular(
+                  context,
+                  color: widgetColors.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
-        );
-      }).toList(),
-    );
+        ),
+      );
+    } else {
+      contentBody = Column(
+        children: [
+          ..._filteredTickets.map((ticket) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: TicketCardMobile(
+                ticket: ticket,
+                statusLabel: _getStatusLabel(ticket.status),
+                priorityLabel: _getPriorityLabel(ticket.priority),
+                onTap: () {
+                  //! <Where ticket detail navigation should be handled>
+                },
+              ),
+            );
+          }),
+          MyTicketsEndIndicator(
+            label: widget.staticData.endOfActiveTickets,
+          ),
+        ],
+      );
+    }
 
     return Scaffold(
       backgroundColor: widgetColors.background,
       body: SafeArea(
         top: false,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 32.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              headerSection,
-              const SizedBox(height: 16.0),
-              filterSection,
-              const SizedBox(height: 16.0),
-              ticketsList,
-              MyTicketsEndIndicator(
-                label: widget.staticData.endOfActiveTickets,
-              ),
-            ],
+        child: RefreshIndicator(
+          onRefresh: _fetchTickets,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
+            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 32.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                headerSection,
+                const SizedBox(height: 16.0),
+                filterSection,
+                const SizedBox(height: 16.0),
+                contentBody,
+              ],
+            ),
           ),
         ),
       ),

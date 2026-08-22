@@ -15,6 +15,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SignupCubit extends Cubit<SignupStates> {
   @override
   Future<void> close() {
+    usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
@@ -24,6 +25,7 @@ class SignupCubit extends Cubit<SignupStates> {
   SignupCubit() : super(SignupStates());
 
   final formKey = GlobalKey<FormState>();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -43,6 +45,7 @@ class SignupCubit extends Cubit<SignupStates> {
           type: UserType.user,
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
+          fullName: usernameController.text.trim(),
         );
 
         if (response.user != null) {

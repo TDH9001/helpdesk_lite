@@ -1,49 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:helpdesk_lite/core/utils/localization_service/app_localizations.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
 import 'package:helpdesk_lite/features/my_tickets/data/model/my_tickets_static_model.dart';
-import 'package:helpdesk_lite/features/my_tickets/data/model/ticket_model.dart';
 import 'package:helpdesk_lite/features/my_tickets/data/repos/my_tickets_repo.dart';
 
 class StaticMyTicketsRepository implements MyTicketsRepo {
   const StaticMyTicketsRepository();
-
-  static List<TicketModel> getInitialTickets() {
-    return const [
-      TicketModel(
-        id: '1',
-        code: '#TKT-8924',
-        title: 'System outage in eu-west-1 region affecting database clusters',
-        status: TicketStatus.open,
-        priority: TicketPriority.urgent,
-        updatedTimeAgo: '10m ago',
-      ),
-      TicketModel(
-        id: '2',
-        code: '#TKT-8919',
-        title: 'Cannot provision new user accounts via SAML integration',
-        status: TicketStatus.pending,
-        priority: TicketPriority.high,
-        updatedTimeAgo: '2h ago',
-      ),
-      TicketModel(
-        id: '3',
-        code: '#TKT-8874',
-        title:
-            'Requesting hardware replacement for laptop with faulty keyboard',
-        status: TicketStatus.delayed,
-        priority: TicketPriority.medium,
-        updatedTimeAgo: '1d ago',
-      ),
-      TicketModel(
-        id: '4',
-        code: '#TKT-8842',
-        title: 'Update billing information on file for next renewal cycle',
-        status: TicketStatus.waiting,
-        priority: TicketPriority.low,
-        updatedTimeAgo: '3d ago',
-      ),
-    ];
-  }
 
   static MyTicketsStaticModel getStaticData(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -85,7 +47,6 @@ class StaticMyTicketsRepository implements MyTicketsRepo {
       tableHeaderPriority: l10n.tableHeaderPriority,
       tableHeaderUpdated: l10n.tableHeaderUpdated,
       internalOps: l10n.internalOps,
-      tickets: getInitialTickets(),
     );
   }
 
@@ -98,24 +59,16 @@ class StaticMyTicketsRepository implements MyTicketsRepo {
 
   @override
   Future<List<TicketModel>> getTickets() async {
-    //! <Where ticket list API fetch should be handled>
-    return getInitialTickets();
+    return const [];
   }
 
   @override
   Future<List<TicketModel>> searchTickets(String query) async {
-    //! <Where search query filter should be handled>
-    final lower = query.toLowerCase();
-    return getInitialTickets().where((t) {
-      return t.code.toLowerCase().contains(lower) ||
-          t.title.toLowerCase().contains(lower);
-    }).toList();
+    return const [];
   }
 
   @override
   Future<List<TicketModel>> filterTickets(TicketStatus? status) async {
-    //! <Where filter selection state should be handled>
-    if (status == null) return getInitialTickets();
-    return getInitialTickets().where((t) => t.status == status).toList();
+    return const [];
   }
 }

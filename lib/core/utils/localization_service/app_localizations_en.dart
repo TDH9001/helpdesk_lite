@@ -33,6 +33,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signupSubtitle => 'Sign up to submit and track support requests.';
 
   @override
+  String get usernameLabel => 'Username';
+
+  @override
+  String get usernamePlaceholder => 'e.g. johndoe';
+
+  @override
+  String get usernameRequired => 'Please enter your username';
+
+  @override
   String get emailAddress => 'Email Address';
 
   @override
@@ -168,7 +177,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navNewTicket => 'New Ticket';
 
   @override
-  String get navQueue => 'Queue';
+  String get navQueue => 'Queue Items';
 
   @override
   String get navOverview => 'Overview';
@@ -397,4 +406,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get managerCreatedSuccess => 'Manager created successfully';
+
+  @override
+  String get ticketQueueTitle => 'Ticket Queue';
+
+  @override
+  String get ticketQueueSubtitle =>
+      'Manage incoming and unassigned support tickets.';
+
+  @override
+  String get searchQueuePlaceholder => 'Search tickets, customers, or IDs...';
+
+  @override
+  String get filterUnassigned => 'Unassigned';
+
+  @override
+  String get filterHighPriority => 'High Priority';
+
+  @override
+  String get assignToMe => 'Assign to me';
+
+  @override
+  String get assignedToYouSuccess => 'Ticket assigned to you successfully';
+
+  @override
+  String get noTicketsFound => 'No tickets found';
+
+  @override
+  String get noQueueTicketsFound => 'No tickets match the selected filters';
+
+  @override
+  String get statusNew => 'New';
+
+  @override
+  String get statusInProgress => 'In Progress';
+
+  @override
+  String get tableHeaderCustomer => 'Customer';
+
+  @override
+  String get tableHeaderAssignee => 'Assignee';
+
+  @override
+  String get tableHeaderActions => 'Actions';
+
+  @override
+  String get unassignedLabel => 'Unassigned';
 }

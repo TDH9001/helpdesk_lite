@@ -1,12 +1,13 @@
 import 'package:go_router/go_router.dart';
+import 'package:helpdesk_lite/features/add_new_agent/presentation/view/add_new_agent_screen.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ticket_screen.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
 import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/desktop_drawer_screen.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/mobile_bottom_navigation_bar_screen.dart';
-import 'package:helpdesk_lite/features/add_new_agent/presentation/view/add_new_agent_screen.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
 import 'package:helpdesk_lite/features/overview/presentation/view/overview_screen.dart';
 import 'package:helpdesk_lite/features/splash/presentation/view/splash_screen.dart';
+import 'package:helpdesk_lite/features/ticket_queue/presentation/view/ticket_queue_screen.dart';
 
 class RoutingService {
   static final GoRouter router = GoRouter(
@@ -30,6 +31,10 @@ class RoutingService {
         builder: (context, state) => const CreateTicketScreen(),
       ),
       GoRoute(
+        path: '/ticket-queue',
+        builder: (context, state) => const TicketQueueScreen(),
+      ),
+      GoRoute(
         path: '/bottom-nav',
         builder: (context, state) => const MobileBottomNavigationBarScreen(),
       ),
@@ -48,33 +53,3 @@ class RoutingService {
     ],
   );
 }
-
-/*
-routes: [
-//! all the required amterials for the routing to use in the future
-      GoRoute(path: '/', builder: (context, state) => const LandingPage()),
-      GoRoute(
-        path: '/contact-us',
-        builder: (context, state) => const ContactUsPage(),
-      ),
-      GoRoute(
-        path: '/car-selection',
-        builder: (context, state) => const CarSelectionPage(),
-      ),
-      GoRoute(
-        path: '/car-details',
-        builder: (context, state) {
-          //TODO: Follow the claude advice and make it
-          // entirely reliant on fetching from backend and not
-          // passing extra object.
-          Car? car;
-          if (state.extra is Car) {
-            car = state.extra as Car;
-          } else if (state.extra is Map) {
-            car = Car.fromJson(Map<String, dynamic>.from(state.extra as Map));
-          }
-          return CarDetailsPage(car: car);
-        },
-      ),
-    ]
-*/

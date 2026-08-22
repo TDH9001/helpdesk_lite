@@ -7,6 +7,8 @@ class CustomerAuthStaticModel {
   final String loginSubtitle;
   final String signupTitle;
   final String signupSubtitle;
+  final String usernameLabel;
+  final String usernamePlaceholder;
   final String emailLabel;
   final String emailPlaceholder;
   final String passwordLabel;
@@ -19,6 +21,7 @@ class CustomerAuthStaticModel {
   final String contactSupportText;
 
   // Validation strings
+  final String usernameRequired;
   final String emailRequired;
   final String emailInvalid;
   final String passwordRequired;
@@ -35,6 +38,8 @@ class CustomerAuthStaticModel {
     required this.loginSubtitle,
     required this.signupTitle,
     required this.signupSubtitle,
+    required this.usernameLabel,
+    required this.usernamePlaceholder,
     required this.emailLabel,
     required this.emailPlaceholder,
     required this.passwordLabel,
@@ -45,6 +50,7 @@ class CustomerAuthStaticModel {
     required this.signupButtonText,
     required this.havingTroubleText,
     required this.contactSupportText,
+    required this.usernameRequired,
     required this.emailRequired,
     required this.emailInvalid,
     required this.passwordRequired,

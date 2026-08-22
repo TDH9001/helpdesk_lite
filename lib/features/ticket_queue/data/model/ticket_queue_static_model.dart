@@ -1,20 +1,16 @@
-import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
-
-/// Static localized UI strings and configuration for the My Tickets feature.
-class MyTicketsStaticModel {
+/// Static localized strings and labels configuration for the Ticket Queue feature.
+class TicketQueueStaticModel {
   final String appName;
-  final String myTicketsTitle;
-  final String yourTicketsTitle;
-  final String yourTicketsSubtitle;
-  final String manageAssignedIssues;
+  final String title;
+  final String subtitle;
   final String searchPlaceholder;
   final String searchDesktopPlaceholder;
   final String filterAllActive;
-  final String filterOpen;
-  final String filterPending;
-  final String filterWaiting;
-  final String filterDelayed;
-  final String filterDate;
+  final String filterUnassigned;
+  final String filterHighPriority;
+  final String assignToMe;
+  final String assignedToYouSuccess;
+  final String noQueueTicketsFound;
   final String statusOpen;
   final String statusPending;
   final String statusDelayed;
@@ -26,34 +22,26 @@ class MyTicketsStaticModel {
   final String priorityMedium;
   final String priorityLow;
   final String endOfActiveTickets;
-  final String navMyTickets;
-  final String navNewTicket;
-  final String navQueue;
-  final String navOverview;
-  final String navSupport;
-  final String navArchive;
   final String tableHeaderId;
+  final String tableHeaderCustomer;
   final String tableHeaderSubject;
   final String tableHeaderStatus;
   final String tableHeaderPriority;
+  final String tableHeaderAssignee;
   final String tableHeaderUpdated;
-  final String internalOps;
-  final List<TicketModel> tickets;
 
-  const MyTicketsStaticModel({
+  const TicketQueueStaticModel({
     required this.appName,
-    required this.myTicketsTitle,
-    required this.yourTicketsTitle,
-    required this.yourTicketsSubtitle,
-    required this.manageAssignedIssues,
+    required this.title,
+    required this.subtitle,
     required this.searchPlaceholder,
     required this.searchDesktopPlaceholder,
     required this.filterAllActive,
-    required this.filterOpen,
-    required this.filterPending,
-    required this.filterWaiting,
-    required this.filterDelayed,
-    required this.filterDate,
+    required this.filterUnassigned,
+    required this.filterHighPriority,
+    required this.assignToMe,
+    required this.assignedToYouSuccess,
+    required this.noQueueTicketsFound,
     required this.statusOpen,
     required this.statusPending,
     required this.statusDelayed,
@@ -65,18 +53,12 @@ class MyTicketsStaticModel {
     required this.priorityMedium,
     required this.priorityLow,
     required this.endOfActiveTickets,
-    required this.navMyTickets,
-    required this.navNewTicket,
-    required this.navQueue,
-    required this.navOverview,
-    required this.navSupport,
-    required this.navArchive,
     required this.tableHeaderId,
+    required this.tableHeaderCustomer,
     required this.tableHeaderSubject,
     required this.tableHeaderStatus,
     required this.tableHeaderPriority,
+    required this.tableHeaderAssignee,
     required this.tableHeaderUpdated,
-    required this.internalOps,
-    this.tickets = const [],
   });
 }
