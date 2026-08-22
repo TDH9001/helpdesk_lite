@@ -237,12 +237,12 @@ class DatabaseService extends SupabaseDeclaration {
         .eq('id', ticketId)
         .select()
         .single();
-    //this shold be added in the ticket ahndlign section
-    // try {
-    //   await incrementHandledTickets(userId: agentId);
-    // } catch (e) {
-    //   dev.log('Could not increment agent handled tickets count: $e');
-    // }
+
+    try {
+      await incrementHandledTickets(userId: agentId);
+    } catch (e) {
+      dev.log('Could not increment agent handled tickets count: $e');
+    }
 
     return TicketModel.fromJson(result);
   }
