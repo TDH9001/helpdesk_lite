@@ -686,6 +686,90 @@ abstract class AppLocalizations {
   /// **'Failed to submit ticket. Please try again.'**
   String get ticketSubmittingError;
 
+  /// No description provided for @chatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Chat'**
+  String get chatTitle;
+
+  /// No description provided for @chatTypeMessagePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your message...'**
+  String get chatTypeMessagePlaceholder;
+
+  /// No description provided for @chatSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get chatSend;
+
+  /// No description provided for @chatViewAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'View Attachments'**
+  String get chatViewAttachments;
+
+  /// No description provided for @chatNoAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'No attachments for this ticket'**
+  String get chatNoAttachments;
+
+  /// No description provided for @chatAttachmentsDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket Attachments'**
+  String get chatAttachmentsDialogTitle;
+
+  /// No description provided for @chatAttachmentCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} files selected'**
+  String chatAttachmentCount(int count);
+
+  /// No description provided for @chatEmptyNoMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet. Send a message to start the conversation.'**
+  String get chatEmptyNoMessages;
+
+  /// No description provided for @chatSendingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending...'**
+  String get chatSendingMessage;
+
+  /// No description provided for @chatWorkerTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Agent'**
+  String get chatWorkerTag;
+
+  /// No description provided for @chatYouTag.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get chatYouTag;
+
+  /// No description provided for @chatTicketInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket Information'**
+  String get chatTicketInfo;
+
+  /// No description provided for @chatTicketDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get chatTicketDetails;
+
+  /// No description provided for @chatUploadAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Files / Images'**
+  String get chatUploadAttachments;
+
   /// No description provided for @loginSuccess.
   ///
   /// In en, this message translates to:

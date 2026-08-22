@@ -1,6 +1,7 @@
 import 'dart:developer' as dev show log;
 
 import 'package:helpdesk_lite/core/utils/database_service/database_endpoints.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/chat_message_model.dart';
 import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
 import 'package:helpdesk_lite/core/utils/shared_models/user_model.dart';
 import 'package:helpdesk_lite/core/utils/supabase_service/Supabase_servic.dart';
@@ -85,6 +86,29 @@ class DatabaseService extends SupabaseDeclaration {
         );
       } catch (e) {
         dev.log('Could not append ticket ID to user ticket_ids list: $e');
+      }
+    }
+
+    // Insert the ticket description and initial attachments as the first message
+    if ((createdTicket.description != null &&
+            createdTicket.description!.trim().isNotEmpty) ||
+        createdTicket.attachments.isNotEmpty) {
+      try {
+        final initialMessage = ChatMessageModel(
+          id: '',
+          ticketId: createdTicket.id,
+          senderId: createdTicket.creatorId,
+          senderName: createdTicket.creatorName ?? 'Customer',
+          senderRole: 'customer',
+          content: createdTicket.description?.trim() ?? '',
+          isInternal: false,
+          attachments: createdTicket.attachments,
+          createdAt: createdTicket.createdAt ?? DateTime.now(),
+          updatedAt: createdTicket.createdAt ?? DateTime.now(),
+        );
+        await sendMessage(message: initialMessage);
+      } catch (e) {
+        dev.log('Could not insert initial ticket description message: $e');
       }
     }
 
@@ -204,4 +228,85 @@ class DatabaseService extends SupabaseDeclaration {
         })
         .eq('id', ticketId);
   }
+
+  /// Fetches all non-internal, active chat messages for a given ticket.
+  Future<List<ChatMessageModel>> getTicketMessages({
+    required String ticketId,
+    bool includeInternal = false,
+  }) async {
+    var query = SupabaseDeclaration.instance
+        .from(DatabaseEndpoints.messageTable)
+        .select()
+        .eq('ticket_id', ticketId)
+        .eq('is_deleted', false);
+
+    if (!includeInternal) {
+      query = query.eq('is_internal', false);
+    }
+
+    final response = await query.order('created_at', ascending: true);
+    return (response as List<dynamic>)
+        .map((json) => ChatMessageModel.fromJson(json as Map<String, dynamic>))
+        .toList();
+  }
+
+  /// Sends a new chat message inside a ticket conversation.
+  Future<ChatMessageModel> sendMessage({
+    required ChatMessageModel message,
+  }) async {
+    final response = await SupabaseDeclaration.instance
+        .from(DatabaseEndpoints.messageTable)
+        .insert(message.toJson())
+        .select()
+        .single();
+
+    return ChatMessageModel.fromJson(response);
+  }
+
+  /// Appends newly uploaded attachment URLs to a ticket's existing attachments array.
+  Future<void> appendTicketAttachments({
+    required String ticketId,
+    required List<String> newAttachmentUrls,
+  }) async {
+    if (newAttachmentUrls.isEmpty) return;
+
+    // Fetch existing attachments first
+    final ticketData = await SupabaseDeclaration.instance
+        .from(DatabaseEndpoints.ticketTable)
+        .select('attachments')
+        .eq('id', ticketId)
+        .single();
+
+    final List<String> currentAttachments =
+        (ticketData['attachments'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            [];
+
+    final updatedAttachments = [
+      ...currentAttachments,
+      ...newAttachmentUrls,
+    ];
+
+    await SupabaseDeclaration.instance
+        .from(DatabaseEndpoints.ticketTable)
+        .update({
+          'attachments': updatedAttachments,
+          'updated_at': DateTime.now().toIso8601String(),
+        })
+        .eq('id', ticketId);
+  }
+
+  /// Fetches a single ticket by its UUID.
+  Future<TicketModel?> getTicketById(String ticketId) async {
+    final response = await SupabaseDeclaration.instance
+        .from(DatabaseEndpoints.ticketTable)
+        .select()
+        .eq('id', ticketId)
+        .maybeSingle();
+
+    if (response == null) return null;
+    return TicketModel.fromJson(response);
+  }
 }
+

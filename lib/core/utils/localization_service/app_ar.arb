@@ -105,6 +105,27 @@
   },
   "submittingTicket": "جارٍ تسجيل التذكرة...",
   "ticketSubmittingError": "فشل إرسال التذكرة. يرجى المحاولة مرة أخرى.",
+  "chatTitle": "محادثة الدعم",
+  "chatTypeMessagePlaceholder": "اكتب رسالتك...",
+  "chatSend": "إرسال",
+  "chatViewAttachments": "عرض المرفقات",
+  "chatNoAttachments": "لا توجد مرفقات لهذه التذكرة",
+  "chatAttachmentsDialogTitle": "مرفقات التذكرة",
+  "chatAttachmentCount": "تم اختيار {count} ملفات",
+  "@chatAttachmentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chatEmptyNoMessages": "لا توجد رسائل بعد. أرسل رسالة لبدء المحادثة.",
+  "chatSendingMessage": "جارٍ الإرسال...",
+  "chatWorkerTag": "فريق الدعم",
+  "chatYouTag": "أنت",
+  "chatTicketInfo": "معلومات التذكرة",
+  "chatTicketDetails": "التفاصيل",
+  "chatUploadAttachments": "إضافة ملفات / صور",
   "loginSuccess": "تم تسجيل الدخول بنجاح",
   "signupSuccess": "تم إنشاء الحساب بنجاح!",
   "authErrorInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",

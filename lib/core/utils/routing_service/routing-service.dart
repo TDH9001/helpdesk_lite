@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
+import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
 import 'package:helpdesk_lite/features/add_new_agent/presentation/view/add_new_agent_screen.dart';
 import 'package:helpdesk_lite/features/create_ticket/presentation/view/create_ticket_screen.dart';
 import 'package:helpdesk_lite/features/customer_authentication/presentation/view/customer_authentication_screen.dart';
+import 'package:helpdesk_lite/features/customer_chat/presentation/view/customer_chat_screen.dart';
 import 'package:helpdesk_lite/features/desktop_drawer/presentation/view/desktop_drawer_screen.dart';
 import 'package:helpdesk_lite/features/mobile_bottom_navigation_bar/presentation/view/mobile_bottom_navigation_bar_screen.dart';
 import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_screen.dart';
@@ -49,6 +51,13 @@ class RoutingService {
       GoRoute(
         path: '/add-new-agent',
         builder: (context, state) => const AddNewAgentScreen(),
+      ),
+      GoRoute(
+        path: '/customer-chat',
+        builder: (context, state) {
+          final ticket = state.extra as TicketModel;
+          return CustomerChatScreen(ticket: ticket);
+        },
       ),
     ],
   );

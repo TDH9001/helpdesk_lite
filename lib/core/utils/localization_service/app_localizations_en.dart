@@ -314,6 +314,51 @@ class AppLocalizationsEn extends AppLocalizations {
       'Failed to submit ticket. Please try again.';
 
   @override
+  String get chatTitle => 'Support Chat';
+
+  @override
+  String get chatTypeMessagePlaceholder => 'Type your message...';
+
+  @override
+  String get chatSend => 'Send';
+
+  @override
+  String get chatViewAttachments => 'View Attachments';
+
+  @override
+  String get chatNoAttachments => 'No attachments for this ticket';
+
+  @override
+  String get chatAttachmentsDialogTitle => 'Ticket Attachments';
+
+  @override
+  String chatAttachmentCount(int count) {
+    return '$count files selected';
+  }
+
+  @override
+  String get chatEmptyNoMessages =>
+      'No messages yet. Send a message to start the conversation.';
+
+  @override
+  String get chatSendingMessage => 'Sending...';
+
+  @override
+  String get chatWorkerTag => 'Support Agent';
+
+  @override
+  String get chatYouTag => 'You';
+
+  @override
+  String get chatTicketInfo => 'Ticket Information';
+
+  @override
+  String get chatTicketDetails => 'Details';
+
+  @override
+  String get chatUploadAttachments => 'Add Files / Images';
+
+  @override
   String get loginSuccess => 'Logged in successfully';
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/core/utils/database_service/database_service.dart';
@@ -293,7 +294,9 @@ class _MyTicketsDesktopState extends State<MyTicketsDesktop> {
                 statusLabel: _getStatusLabel(ticket.status),
                 priorityLabel: _getPriorityLabel(ticket.priority),
                 onTap: () {
-                  //! <Where ticket detail navigation should be handled>
+                  context
+                      .push('/customer-chat', extra: ticket)
+                      .then((_) => _fetchTickets());
                 },
               );
             }),

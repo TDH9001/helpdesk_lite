@@ -105,6 +105,27 @@
   },
   "submittingTicket": "Submitting ticket...",
   "ticketSubmittingError": "Failed to submit ticket. Please try again.",
+  "chatTitle": "Support Chat",
+  "chatTypeMessagePlaceholder": "Type your message...",
+  "chatSend": "Send",
+  "chatViewAttachments": "View Attachments",
+  "chatNoAttachments": "No attachments for this ticket",
+  "chatAttachmentsDialogTitle": "Ticket Attachments",
+  "chatAttachmentCount": "{count} files selected",
+  "@chatAttachmentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chatEmptyNoMessages": "No messages yet. Send a message to start the conversation.",
+  "chatSendingMessage": "Sending...",
+  "chatWorkerTag": "Support Agent",
+  "chatYouTag": "You",
+  "chatTicketInfo": "Ticket Information",
+  "chatTicketDetails": "Details",
+  "chatUploadAttachments": "Add Files / Images",
   "loginSuccess": "Logged in successfully",
   "signupSuccess": "Account created successfully!",
   "authErrorInvalidCredentials": "Invalid email or password",

@@ -312,6 +312,51 @@ class AppLocalizationsAr extends AppLocalizations {
       'فشل إرسال التذكرة. يرجى المحاولة مرة أخرى.';
 
   @override
+  String get chatTitle => 'محادثة الدعم';
+
+  @override
+  String get chatTypeMessagePlaceholder => 'اكتب رسالتك...';
+
+  @override
+  String get chatSend => 'إرسال';
+
+  @override
+  String get chatViewAttachments => 'عرض المرفقات';
+
+  @override
+  String get chatNoAttachments => 'لا توجد مرفقات لهذه التذكرة';
+
+  @override
+  String get chatAttachmentsDialogTitle => 'مرفقات التذكرة';
+
+  @override
+  String chatAttachmentCount(int count) {
+    return 'تم اختيار $count ملفات';
+  }
+
+  @override
+  String get chatEmptyNoMessages =>
+      'لا توجد رسائل بعد. أرسل رسالة لبدء المحادثة.';
+
+  @override
+  String get chatSendingMessage => 'جارٍ الإرسال...';
+
+  @override
+  String get chatWorkerTag => 'فريق الدعم';
+
+  @override
+  String get chatYouTag => 'أنت';
+
+  @override
+  String get chatTicketInfo => 'معلومات التذكرة';
+
+  @override
+  String get chatTicketDetails => 'التفاصيل';
+
+  @override
+  String get chatUploadAttachments => 'إضافة ملفات / صور';
+
+  @override
   String get loginSuccess => 'تم تسجيل الدخول بنجاح';
 
   @override

@@ -927,6 +927,152 @@ class AppFonts {
         color: color,
       );
 
+  // --- Customer Chat Styles ---
+
+  TextStyle mobileCustomerChatHeaderCodeInter13Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatHeaderTitleInter15SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatHeaderSubtitleInter12Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatBubbleMessageInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        height: 1.4,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatBubbleSenderInter12SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatBubbleTimeInter10Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 10,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatInputPlaceholderInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatAttachmentBadgeInter11Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatDialogTitleInter16Bold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: color,
+      );
+
+  TextStyle mobileCustomerChatEmptyMessageInter14Regular(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      );
+
+  TextStyle desktopCustomerChatSidebarTitleInter16SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
+  TextStyle desktopCustomerChatSidebarLabelInter12Medium(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+      );
+
+  TextStyle desktopCustomerChatSidebarValueInter13SemiBold(
+    BuildContext context, {
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        color: color,
+      );
+
   // --- Desktop Create Ticket Styles ---
 
   TextStyle desktopCreateTicketHeaderTitleInter30SemiBold(
