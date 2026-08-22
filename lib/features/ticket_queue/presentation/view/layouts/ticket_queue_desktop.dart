@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:helpdesk_lite/core/utils/app%20fonts/app_fonts.dart';
 import 'package:helpdesk_lite/core/utils/app_theme/app_theme_colors.dart';
 import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
@@ -300,6 +301,7 @@ class TicketQueueDesktop extends StatelessWidget {
               statusLabel: _statusLabel(ticket.status),
               priorityLabel: _priorityLabel(ticket.priority),
               assignToMeLabel: staticData.assignToMe,
+              onTap: () => context.push('/worker-chat', extra: ticket),
               onAssignTap: () => cubit.assignTicketToMe(
                 context: context,
                 ticket: ticket,

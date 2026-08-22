@@ -1057,6 +1057,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unassigned'**
   String get unassignedLabel;
+
+  /// No description provided for @workerChatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket Details'**
+  String get workerChatTitle;
+
+  /// No description provided for @publicReplyTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Public Reply'**
+  String get publicReplyTab;
+
+  /// No description provided for @internalNoteTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal Note'**
+  String get internalNoteTab;
+
+  /// No description provided for @internalNoteBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal'**
+  String get internalNoteBadge;
+
+  /// No description provided for @internalNotePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an internal note (only visible to agents)...'**
+  String get internalNotePlaceholder;
+
+  /// No description provided for @publicReplyPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your message here...'**
+  String get publicReplyPlaceholder;
+
+  /// No description provided for @addNoteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Note'**
+  String get addNoteButton;
+
+  /// No description provided for @changeStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Status'**
+  String get changeStatusTitle;
+
+  /// No description provided for @changePriorityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Priority'**
+  String get changePriorityTitle;
+
+  /// No description provided for @changeCategoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Category'**
+  String get changeCategoryTitle;
+
+  /// No description provided for @assigneeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Assignee'**
+  String get assigneeLabel;
+
+  /// No description provided for @reassignLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reassign'**
+  String get reassignLabel;
+
+  /// No description provided for @customerInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Details'**
+  String get customerInfoTitle;
+
+  /// No description provided for @customerTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer'**
+  String get customerTag;
+
+  /// No description provided for @attachImageTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Attach Image'**
+  String get attachImageTooltip;
+
+  /// No description provided for @attachFileTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Attach File'**
+  String get attachFileTooltip;
+
+  /// No description provided for @statusUpdatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Status updated successfully'**
+  String get statusUpdatedSuccess;
+
+  /// No description provided for @priorityUpdatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority updated successfully'**
+  String get priorityUpdatedSuccess;
+
+  /// No description provided for @categoryUpdatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Category updated successfully'**
+  String get categoryUpdatedSuccess;
+
+  /// No description provided for @internalNoteHelperText.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal notes are only visible to support workers and administrators.'**
+  String get internalNoteHelperText;
 }
 
 class _AppLocalizationsDelegate

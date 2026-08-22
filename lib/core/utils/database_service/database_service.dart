@@ -229,6 +229,20 @@ class DatabaseService extends SupabaseDeclaration {
         .eq('id', ticketId);
   }
 
+  /// Allows a handling agent to adjust a ticket's category.
+  Future<void> updateTicketCategory({
+    required String ticketId,
+    required String category,
+  }) async {
+    await SupabaseDeclaration.instance
+        .from(DatabaseEndpoints.ticketTable)
+        .update({
+          'category': category,
+          'updated_at': DateTime.now().toIso8601String(),
+        })
+        .eq('id', ticketId);
+  }
+
   /// Fetches all non-internal, active chat messages for a given ticket.
   Future<List<ChatMessageModel>> getTicketMessages({
     required String ticketId,

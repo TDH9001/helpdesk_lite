@@ -509,4 +509,66 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unassignedLabel => 'غير معين';
+
+  @override
+  String get workerChatTitle => 'تفاصيل التذكرة';
+
+  @override
+  String get publicReplyTab => 'رد عام';
+
+  @override
+  String get internalNoteTab => 'ملاحظة داخلية';
+
+  @override
+  String get internalNoteBadge => 'داخلي';
+
+  @override
+  String get internalNotePlaceholder =>
+      'أضف ملاحظة داخلية (مرئية للوكلاء فقط)...';
+
+  @override
+  String get publicReplyPlaceholder => 'اكتب رسالتك هنا...';
+
+  @override
+  String get addNoteButton => 'إضافة ملاحظة';
+
+  @override
+  String get changeStatusTitle => 'تغيير الحالة';
+
+  @override
+  String get changePriorityTitle => 'تغيير الأولوية';
+
+  @override
+  String get changeCategoryTitle => 'تغيير الفئة';
+
+  @override
+  String get assigneeLabel => 'المسؤول';
+
+  @override
+  String get reassignLabel => 'إعادة تعيين';
+
+  @override
+  String get customerInfoTitle => 'بيانات العميل';
+
+  @override
+  String get customerTag => 'العميل';
+
+  @override
+  String get attachImageTooltip => 'إرفاق صورة';
+
+  @override
+  String get attachFileTooltip => 'إرفاق ملف';
+
+  @override
+  String get statusUpdatedSuccess => 'تم تحديث الحالة بنجاح';
+
+  @override
+  String get priorityUpdatedSuccess => 'تم تحديث الأولوية بنجاح';
+
+  @override
+  String get categoryUpdatedSuccess => 'تم تحديث الفئة بنجاح';
+
+  @override
+  String get internalNoteHelperText =>
+      'الملاحظات الداخلية مرئية فقط لموظفي الدعم والمسؤولين.';
 }

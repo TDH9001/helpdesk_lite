@@ -509,4 +509,66 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unassignedLabel => 'Unassigned';
+
+  @override
+  String get workerChatTitle => 'Ticket Details';
+
+  @override
+  String get publicReplyTab => 'Public Reply';
+
+  @override
+  String get internalNoteTab => 'Internal Note';
+
+  @override
+  String get internalNoteBadge => 'Internal';
+
+  @override
+  String get internalNotePlaceholder =>
+      'Add an internal note (only visible to agents)...';
+
+  @override
+  String get publicReplyPlaceholder => 'Type your message here...';
+
+  @override
+  String get addNoteButton => 'Add Note';
+
+  @override
+  String get changeStatusTitle => 'Change Status';
+
+  @override
+  String get changePriorityTitle => 'Change Priority';
+
+  @override
+  String get changeCategoryTitle => 'Change Category';
+
+  @override
+  String get assigneeLabel => 'Assignee';
+
+  @override
+  String get reassignLabel => 'Reassign';
+
+  @override
+  String get customerInfoTitle => 'Customer Details';
+
+  @override
+  String get customerTag => 'Customer';
+
+  @override
+  String get attachImageTooltip => 'Attach Image';
+
+  @override
+  String get attachFileTooltip => 'Attach File';
+
+  @override
+  String get statusUpdatedSuccess => 'Status updated successfully';
+
+  @override
+  String get priorityUpdatedSuccess => 'Priority updated successfully';
+
+  @override
+  String get categoryUpdatedSuccess => 'Category updated successfully';
+
+  @override
+  String get internalNoteHelperText =>
+      'Internal notes are only visible to support workers and administrators.';
 }

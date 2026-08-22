@@ -70,6 +70,9 @@ class TicketQueueCardWidget extends StatelessWidget {
 
     switch (ticket.priority) {
       case TicketPriority.urgent:
+        priorityIconColor = widgetColors.error;
+        priorityIcon = Icons.crisis_alert_rounded;
+        break;
       case TicketPriority.high:
         priorityIconColor = widgetColors.error;
         priorityIcon = Icons.keyboard_double_arrow_up_rounded;

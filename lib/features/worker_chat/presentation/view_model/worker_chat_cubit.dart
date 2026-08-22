@@ -1,4 +1,5 @@
 import 'dart:developer' as dev;
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:helpdesk_lite/core/utils/cloud_storage_service/cloud_storage_service.dart';
@@ -10,16 +11,17 @@ import 'package:helpdesk_lite/core/utils/shared_models/chat_message_model.dart';
 import 'package:helpdesk_lite/core/utils/shared_models/ticket_attachment_item.dart';
 import 'package:helpdesk_lite/core/utils/shared_models/ticket_model.dart';
 import 'package:helpdesk_lite/core/utils/supabase_service/Supabase_servic.dart';
-import 'package:helpdesk_lite/features/customer_chat/presentation/view_model/customer_chat_states.dart';
+import 'package:helpdesk_lite/features/worker_chat/presentation/view_model/worker_chat_states.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-/// Cubit managing state, input controllers, attachments, and messages for Customer Chat.
-class CustomerChatCubit extends Cubit<CustomerChatStates> {
+/// Cubit managing state, controls, interactive ticket metadata, and messages for Worker Chat.
+class WorkerChatCubit extends Cubit<WorkerChatStates> {
   final DatabaseService _databaseService;
   final CloudStorageService _storageService;
 
   TicketModel ticket;
   List<ChatMessageModel> messages = [];
+  bool isInternalNote = false;
   final TextEditingController textController = TextEditingController();
   final ScrollController scrollController = ScrollController();
   final List<TicketAttachmentItem> pendingAttachments = [];
@@ -29,24 +31,24 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
   String? errorMessage;
   RealtimeChannel? _realtimeChannel;
 
-  CustomerChatCubit({
+  WorkerChatCubit({
     required this.ticket,
     DatabaseService? databaseService,
     CloudStorageService? storageService,
   })  : _databaseService = databaseService ?? DatabaseService(),
         _storageService = storageService ?? CloudStorageService(),
-        super(const CustomerChatInitial());
+        super(WorkerChatInitial());
 
-  /// Initializes messages and realtime listeners.
+  /// Initializes messages and real-time subscription for worker chat.
   void init() {
     fetchMessages();
     _subscribeToMessages();
   }
 
-  /// Subscribes to real-time incoming messages for this specific ticket.
+  /// Subscribes to real-time incoming messages including internal notes.
   void _subscribeToMessages() {
     try {
-      final channelName = 'ticket_messages_${ticket.id}';
+      final channelName = 'ticket_messages_worker_${ticket.id}';
       _realtimeChannel = SupabaseDeclaration.instance.channel(channelName);
       _realtimeChannel!.onPostgresChanges(
         event: PostgresChangeEvent.insert,
@@ -59,30 +61,31 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
         ),
         callback: (payload) {
           final newRecord = payload.newRecord;
-          if (newRecord.isNotEmpty && newRecord['is_internal'] != true) {
+          if (newRecord.isNotEmpty) {
             final newMsg = ChatMessageModel.fromJson(newRecord);
-            // Avoid duplicates
             if (!messages.any((m) => m.id == newMsg.id)) {
               messages.add(newMsg);
-              emit(const CustomerChatLoaded());
+              if (newMsg.isCustomer) {
+                ticket = ticket.copyWith(status: TicketStatus.pending);
+              }
+              emit(WorkerChatLoaded());
               _scrollToBottom();
             }
           }
         },
       ).subscribe();
     } catch (e) {
-      dev.log('Realtime subscription error in CustomerChatCubit: $e');
+      dev.log('Realtime subscription error in WorkerChatCubit: $e');
     }
   }
 
-  /// Fetches all active non-internal messages for the ticket.
+  /// Fetches all active messages for the ticket including internal notes.
   Future<void> fetchMessages() async {
     isLoading = true;
     errorMessage = null;
-    emit(const CustomerChatLoading());
+    emit(WorkerChatLoading());
 
     try {
-      // Reload ticket data to have latest attachments list
       final refreshedTicket = await _databaseService.getTicketById(ticket.id);
       if (refreshedTicket != null) {
         ticket = refreshedTicket;
@@ -90,23 +93,78 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
 
       final fetched = await _databaseService.getTicketMessages(
         ticketId: ticket.id,
-        includeInternal: false,
+        includeInternal: true,
       );
 
       messages = fetched;
       isLoading = false;
-      emit(const CustomerChatLoaded());
+      emit(WorkerChatLoaded());
       _scrollToBottom();
     } catch (e) {
       isLoading = false;
       errorMessage = e.toString();
-      emit(const CustomerChatFailure());
+      emit(WorkerChatFailure());
+    }
+  }
+
+  /// Toggles between Public Reply and Internal Note composer mode.
+  void setReplyType(bool isInternal) {
+    if (isInternalNote == isInternal) return;
+    isInternalNote = isInternal;
+    emit(WorkerChatModeChanged());
+  }
+
+  /// Updates ticket status on backend and locally.
+  Future<void> updateStatus(TicketStatus newStatus) async {
+    if (ticket.status == newStatus) return;
+    try {
+      await _databaseService.updateTicketStatus(
+        ticketId: ticket.id,
+        status: newStatus,
+      );
+      ticket = ticket.copyWith(status: newStatus);
+      emit(WorkerChatLoaded());
+    } catch (e) {
+      errorMessage = e.toString();
+      emit(WorkerChatFailure());
+    }
+  }
+
+  /// Updates ticket priority on backend and locally.
+  Future<void> updatePriority(TicketPriority newPriority) async {
+    if (ticket.priority == newPriority) return;
+    try {
+      await _databaseService.updateTicketPriority(
+        ticketId: ticket.id,
+        priority: newPriority,
+      );
+      ticket = ticket.copyWith(priority: newPriority);
+      emit(WorkerChatLoaded());
+    } catch (e) {
+      errorMessage = e.toString();
+      emit(WorkerChatFailure());
+    }
+  }
+
+  /// Updates ticket category on backend and locally.
+  Future<void> updateCategory(String newCategory) async {
+    if (ticket.category == newCategory) return;
+    try {
+      await _databaseService.updateTicketCategory(
+        ticketId: ticket.id,
+        category: newCategory,
+      );
+      ticket = ticket.copyWith(category: newCategory);
+      emit(WorkerChatLoaded());
+    } catch (e) {
+      errorMessage = e.toString();
+      emit(WorkerChatFailure());
     }
   }
 
   static const int maxSingleFileSize = 5 * 1024 * 1024; // 5 MB
 
-  /// Picks attachments from user storage and validates size.
+  /// Picks generic file attachments from user storage and validates size limit.
   Future<bool> pickAttachments() async {
     try {
       final files = await FilePickerService.pickMultipleFiles();
@@ -116,19 +174,48 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
         final size = await file.length();
         if (size > maxSingleFileSize) {
           errorMessage = 'A selected file exceeds the 5MB limit.';
-          emit(const CustomerChatFailure());
+          emit(WorkerChatFailure());
           return false;
         }
         pendingAttachments.add(
           TicketAttachmentItem(file: file, name: file.name, size: size),
         );
       }
-      emit(const CustomerChatLoaded());
+      emit(WorkerChatLoaded());
       return true;
     } catch (e) {
-      dev.log('Error picking attachments in CustomerChatCubit: $e');
+      dev.log('Error picking attachments in WorkerChatCubit: $e');
       errorMessage = e.toString();
-      emit(const CustomerChatFailure());
+      emit(WorkerChatFailure());
+      return false;
+    }
+  }
+
+  /// Picks image files specifically to attach to the response.
+  Future<bool> pickImages() async {
+    try {
+      final files = await FilePickerService.pickMultipleFiles(
+        type: FileType.image,
+      );
+      if (files.isEmpty) return true;
+
+      for (final file in files) {
+        final size = await file.length();
+        if (size > maxSingleFileSize) {
+          errorMessage = 'A selected image exceeds the 5MB limit.';
+          emit(WorkerChatFailure());
+          return false;
+        }
+        pendingAttachments.add(
+          TicketAttachmentItem(file: file, name: file.name, size: size),
+        );
+      }
+      emit(WorkerChatLoaded());
+      return true;
+    } catch (e) {
+      dev.log('Error picking images in WorkerChatCubit: $e');
+      errorMessage = e.toString();
+      emit(WorkerChatFailure());
       return false;
     }
   }
@@ -137,17 +224,17 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
   void removePendingAttachment(int index) {
     if (index >= 0 && index < pendingAttachments.length) {
       pendingAttachments.removeAt(index);
-      emit(const CustomerChatLoaded());
+      emit(WorkerChatLoaded());
     }
   }
 
   /// Clears all pending attachments.
   void clearPendingAttachments() {
     pendingAttachments.clear();
-    emit(const CustomerChatLoaded());
+    emit(WorkerChatLoaded());
   }
 
-  /// Sends a customer message and uploads any pending attachments.
+  /// Sends a public reply or internal note with optional attachments.
   Future<void> sendMessage() async {
     final text = textController.text.trim();
     if (text.isEmpty && pendingAttachments.isEmpty) return;
@@ -155,13 +242,12 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
 
     isSending = true;
     errorMessage = null;
-    emit(const CustomerChatSending());
+    emit(WorkerChatSending());
 
     try {
       final currentUser = await UserHiveBox.getUserData();
       final List<String> uploadedUrls = [];
 
-      // Upload pending attachments to Supabase Storage
       if (pendingAttachments.isNotEmpty) {
         for (final item in pendingAttachments) {
           final url = await _storageService.uploadPlatformFile(
@@ -170,24 +256,24 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
           uploadedUrls.add(url);
         }
 
-        // Append new attachment URLs directly to the ticket record
-        await _databaseService.appendTicketAttachments(
-          ticketId: ticket.id,
-          newAttachmentUrls: uploadedUrls,
-        );
+        // If public reply, append to ticket attachments array
+        if (!isInternalNote) {
+          await _databaseService.appendTicketAttachments(
+            ticketId: ticket.id,
+            newAttachmentUrls: uploadedUrls,
+          );
 
-        // Update local ticket model attachments list
-        ticket = ticket.copyWith(
-          attachments: [
-            ...ticket.attachments,
-            ...uploadedUrls,
-          ],
-        );
+          ticket = ticket.copyWith(
+            attachments: [
+              ...ticket.attachments,
+              ...uploadedUrls,
+            ],
+          );
+        }
 
         pendingAttachments.clear();
       }
 
-      // If user typed text OR attached files, post message to chat
       if (text.isNotEmpty || uploadedUrls.isNotEmpty) {
         final newMsg = ChatMessageModel(
           id: '',
@@ -195,10 +281,10 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
           senderId: currentUser?.id,
           senderName: currentUser?.fullName ??
               currentUser?.email.split('@').first ??
-              'Customer',
-          senderRole: 'customer',
+              'Agent',
+          senderRole: 'agent',
           content: text,
-          isInternal: false,
+          isInternal: isInternalNote,
           attachments: uploadedUrls,
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
@@ -209,29 +295,16 @@ class CustomerChatCubit extends Cubit<CustomerChatStates> {
           messages.add(inserted);
         }
 
-        // Whenever the customer replies, update ticket status to pending
-        if (ticket.status != TicketStatus.pending) {
-          try {
-            await _databaseService.updateTicketStatus(
-              ticketId: ticket.id,
-              status: TicketStatus.pending,
-            );
-            ticket = ticket.copyWith(status: TicketStatus.pending);
-          } catch (e) {
-            dev.log('Error updating ticket status to pending on customer reply: $e');
-          }
-        }
-
         textController.clear();
       }
 
       isSending = false;
-      emit(const CustomerChatLoaded());
+      emit(WorkerChatLoaded());
       _scrollToBottom();
     } catch (e) {
       isSending = false;
       errorMessage = e.toString();
-      emit(const CustomerChatFailure());
+      emit(WorkerChatFailure());
     }
   }
 

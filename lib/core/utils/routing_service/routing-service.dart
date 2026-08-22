@@ -10,6 +10,7 @@ import 'package:helpdesk_lite/features/my_tickets/presentation/view/my_tickets_s
 import 'package:helpdesk_lite/features/overview/presentation/view/overview_screen.dart';
 import 'package:helpdesk_lite/features/splash/presentation/view/splash_screen.dart';
 import 'package:helpdesk_lite/features/ticket_queue/presentation/view/ticket_queue_screen.dart';
+import 'package:helpdesk_lite/features/worker_chat/presentation/view/worker_chat_screen.dart';
 
 class RoutingService {
   static final GoRouter router = GoRouter(
@@ -57,6 +58,13 @@ class RoutingService {
         builder: (context, state) {
           final ticket = state.extra as TicketModel;
           return CustomerChatScreen(ticket: ticket);
+        },
+      ),
+      GoRoute(
+        path: '/worker-chat',
+        builder: (context, state) {
+          final ticket = state.extra as TicketModel;
+          return WorkerChatScreen(ticket: ticket);
         },
       ),
     ],
